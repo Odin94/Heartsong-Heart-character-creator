@@ -3,6 +3,7 @@ import ResistanceRow, { ResistanceRowProps } from "./resistance_row"
 import ProtectionsRow from "./protections_row"
 
 const StressCounter = () => {
+    // TODOdin: Consider color-coding your resistances
     const resistances = ["blood", "mind", "echo", "fortune", "supplies"]
     const statusByResistance: Record<string, ResistanceRowProps> = {}
     for (const r of resistances) {

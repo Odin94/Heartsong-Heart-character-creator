@@ -1,11 +1,15 @@
 import Logo from "@/assets/logo.png"
 import StressCounter from "./components/stress_counter/stress_counter"
-import NameClassCalling from "./components/name_class_calling"
+import NameClassCallingBeats from "./components/name_class_calling_beats"
+import Abilities from "./components/abilities"
+import Fallout from "./components/fallout"
+import Equipment from "./components/equipment"
+import Resources from "./components/resources"
 
 const CharacterSheet = () => {
     return (
-        <div className="grid grid-cols-1 lg:grid-cols-2 grid-rows-4 gap-4 h-screen w-full p-4">
-            <div className="h-auto">
+        <div className="grid grid-cols-1 lg:grid-cols-2 grid-rows-[180px_330px_330px_330px] gap-6 h-screen w-full p-5 border-1 rounded-sm">
+            <div className="">
                 <img src={Logo} alt="Decorative" className="w-full object-contain" />
             </div>
 
@@ -13,12 +17,21 @@ const CharacterSheet = () => {
                 <StressCounter />
             </div>
             <div className="">
-                <NameClassCalling />
+                <NameClassCallingBeats />
             </div>
-            <div className="bg-blue-400">1D</div>
+            <div className="row-span-2">
+                {/* TODOdin: maybe move Equipment over Abilities? */}
+                <Abilities />
+            </div>
 
-            <div className="bg-green-300 row-span-1">2A</div>
-            <div className="bg-green-500 row-span-3">2B (Tall)</div>
+            <div className="">
+                <Equipment />
+                <Resources />
+            </div>
+            <div className="bg-blue-400">Skills here</div>
+            <div className="">
+                <Fallout />
+            </div>
         </div>
     )
 }
