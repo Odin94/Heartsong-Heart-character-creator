@@ -1,15 +1,12 @@
-import { useState } from "react"
-import ResistanceRow, { ResistanceRowProps } from "./resistance_row"
+import { numberBy } from "@/heartsong/utils"
 import ProtectionsRow from "./protections_row"
+import ResistanceRow from "./resistance_row"
 
 const StressCounter = () => {
     // TODOdin: Consider color-coding your resistances
-    const resistances = ["blood", "mind", "echo", "fortune", "supplies"]
-    const statusByResistance: Record<string, ResistanceRowProps> = {}
-    for (const r of resistances) {
-        const [checked, setChecked] = useState(0)
-        statusByResistance[r] = { checked, setChecked }
-    }
+    const resistances = ["blood", "mind", "echo", "fortune", "supplies"] as const
+    const numberByResistanceResistance = numberBy(resistances)
+    const numberByResistanceProtection = numberBy(resistances)
 
     const gridClass = "grid grid-cols-[1fr_2fr_1fr] gap-2 text-left"
     return (
@@ -23,8 +20,8 @@ const StressCounter = () => {
             {resistances.map((resistance) => (
                 <div key={resistance} className={gridClass}>
                     <div className="font-bold">{resistance.toUpperCase()}</div>
-                    <ResistanceRow />
-                    <ProtectionsRow />
+                    <ResistanceRow n={numberByResistanceResistance[resistance].n} setN={numberByResistanceResistance[resistance].setN} />
+                    <ProtectionsRow n={numberByResistanceProtection[resistance].n} setN={numberByResistanceProtection[resistance].setN} />
                 </div>
             ))}
         </div>

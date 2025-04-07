@@ -1,21 +1,19 @@
 import { Checkbox } from "@/components/ui/checkbox"
-import { Dispatch, SetStateAction, useState } from "react"
+import { NumberBy } from "@/heartsong/utils"
 
-export type ResistanceRowProps = { checked: number; setChecked: Dispatch<SetStateAction<number>> }
+export type ResistanceRowProps = NumberBy<["s"]>["s"]
 
-const ResistanceRow = () => {
-    const [checked, setChecked] = useState(0)
-
+const ResistanceRow = ({ n, setN }: ResistanceRowProps) => {
     return (
         <div>
             {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((i) => (
                 <Checkbox
                     key={i}
                     className="mx-0.5 p-0"
-                    checked={i <= checked}
+                    checked={i <= n}
                     onCheckedChange={() => {
-                        if (checked === i) setChecked(0)
-                        else setChecked(i)
+                        if (n === i) setN(0)
+                        else setN(i)
                     }}
                 />
             ))}

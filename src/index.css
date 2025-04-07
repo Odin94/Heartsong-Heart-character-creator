@@ -3,6 +3,10 @@
 
 @custom-variant dark (&:is(.dark *));
 
+h2 {
+    font-size: 28px;
+}
+
 :root {
     width: 100%;
     font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;

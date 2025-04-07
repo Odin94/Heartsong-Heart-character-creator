@@ -1,16 +1,13 @@
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
-import { Fragment, useState } from "react"
+import { textBy } from "@/heartsong/utils"
+import { Fragment } from "react"
 
 const NameClassCallingBeats = () => {
     // TODOdin: Add a button that opens a popup with class/beats suggestions (based on calling)?
 
-    const nameClassCalling = ["name", "class", "calling"]
-    const textByNameClassCalling: Record<string, { checked: string; setChecked: any }> = {}
-    for (const ncc of nameClassCalling) {
-        const [text, setText] = useState("")
-        textByNameClassCalling[ncc] = { checked: text, setChecked: setText }
-    }
+    const nameClassCalling = ["name", "class", "calling"] as const
+    const textByNameClassCalling = textBy(nameClassCalling)
 
     return (
         <div className={`grid grid-cols-[1fr_6fr] gap-1 grid-rows-${nameClassCalling.length} size-full`}>

@@ -5,6 +5,7 @@ import Abilities from "./components/abilities"
 import Fallout from "./components/fallout"
 import Equipment from "./components/equipment"
 import Resources from "./components/resources"
+import Skills from "./components/skills"
 
 const CharacterSheet = () => {
     return (
@@ -28,7 +29,9 @@ const CharacterSheet = () => {
                 <Equipment />
                 <Resources />
             </div>
-            <div className="bg-blue-400">Skills here</div>
+            <div className="">
+                <Skills />
+            </div>
             <div className="">
                 <Fallout />
             </div>
