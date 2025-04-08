@@ -10,7 +10,7 @@ import ActiveBeats from "./components/active_beats"
 
 const CharacterSheet = () => {
     return (
-        <div className="grid grid-cols-1 lg:grid-cols-2 grid-rows-[170px_90px_500px_330px] gap-6 w-full p-5 border-1 rounded-sm">
+        <div className="grid grid-cols-1 lg:grid-cols-2 grid-rows-[110px_300px_200px_330px] lg:grid-rows-[170px_90px_500px_330px] gap-6 w-full p-5 border-1 rounded-sm">
             <div className="">
                 <img src={Logo} alt="Decorative" className="w-full object-contain" />
             </div>
