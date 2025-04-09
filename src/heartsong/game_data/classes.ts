@@ -1,4 +1,4 @@
-export const classes = [
+export const characterClasses = [
     "Cleaver",
     "Deadwalker",
     "Deep Apiarist",
@@ -9,4 +9,4 @@ export const classes = [
     "Vermissian Knight",
     "Witch",
 ] as const
-export type Class = (typeof classes)[number]
+export type CharacterClass = (typeof characterClasses)[number]

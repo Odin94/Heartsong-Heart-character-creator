@@ -1,6 +1,6 @@
 import { Calling } from "./callings"
 import { Character } from "./character"
-import { Class } from "./classes"
+import { CharacterClass } from "./classes"
 import { Domain } from "./domains"
 
 export type Ability = {
@@ -11,7 +11,7 @@ export type Ability = {
     staticBonuses: (character: Character) => Character
 }
 
-export const abilitiesByClassOrRecord: Record<Class | Calling, Ability[]> = {
+export const abilitiesByClassOrRecord: Record<CharacterClass | Calling, Ability[]> = {
     // Classes
     Cleaver: [],
     Deadwalker: [],
