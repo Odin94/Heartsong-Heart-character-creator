@@ -1,13 +1,12 @@
 import { Checkbox } from "@/components/ui/checkbox"
 import { Input } from "@/components/ui/input"
+import { domains } from "@/heartsong/game_data/domains"
+import { skills } from "@/heartsong/game_data/skills"
 import { textBy } from "@/heartsong/utils"
 import { Fragment } from "react/jsx-runtime"
 
 const Skills = () => {
-    const skills = ["compel", "delve", "discern", "endure", "evade", "hunt", "kill", "mend", "sneak"] as const
     const knacksBySkills = textBy(skills)
-
-    const domains = ["cursed", "desolate", "haven", "occult", "religion", "technology", "warren", "wild"] as const
     const knacksByDomain = textBy(domains)
 
     const rowCount = Math.max(skills.length, domains.length)
