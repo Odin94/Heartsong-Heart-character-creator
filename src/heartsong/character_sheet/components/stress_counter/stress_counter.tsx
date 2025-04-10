@@ -1,10 +1,10 @@
 import { numberBy } from "@/heartsong/utils"
 import ProtectionsRow from "./protections_row"
 import ResistanceRow from "./resistance_row"
+import { resistances } from "@/heartsong/game_data/resistances"
 
 const StressCounter = () => {
     // TODOdin: Consider color-coding your resistances
-    const resistances = ["blood", "mind", "echo", "fortune", "supplies"] as const
     const numberByResistanceResistance = numberBy(resistances)
     const numberByResistanceProtection = numberBy(resistances)
 

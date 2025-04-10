@@ -7,15 +7,14 @@ import {
     DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
 import { Input } from "@/components/ui/input"
-import { SettableCharacter } from "@/heartsong/game_data/character"
 import { characterClasses } from "@/heartsong/game_data/classes"
+import { useCalling, useCharacterClass, useName } from "../character_states"
 
-export type NameClassCallingProps = Pick<
-    SettableCharacter,
-    "name" | "setName" | "characterClass" | "setCharacterClass" | "calling" | "setCalling"
->
+const NameClassCalling = () => {
+    const { name, setName } = useName()
+    const { characterClass, setCharacterClass } = useCharacterClass()
+    const { calling, setCalling } = useCalling()
 
-const NameClassCalling = ({ name, setName, characterClass, setCharacterClass, calling, setCalling }: NameClassCallingProps) => {
     return (
         <div className="grid grid-cols-[1fr_6fr] gap-1 grid-rows-3 size-full">
             {/* Name */}

@@ -1,5 +1,4 @@
 import Logo from "@/assets/logo.png"
-import { SettableCharacter } from "../game_data/character"
 import Abilities from "./components/abilities"
 import ActiveBeats from "./components/active_beats"
 import Equipment from "./components/equipment"
@@ -9,7 +8,7 @@ import Resources from "./components/resources"
 import Skills from "./components/skills"
 import StressCounter from "./components/stress_counter/stress_counter"
 
-const CharacterSheet = ({ settableCharacter }: { settableCharacter: SettableCharacter }) => {
+const CharacterSheet = () => {
     return (
         <div className="grid grid-cols-1 lg:grid-cols-2 grid-rows-[110px_300px_200px_330px] lg:grid-rows-[170px_90px_500px_330px] gap-6 w-full p-5 border-1 rounded-sm">
             <div className="">
@@ -20,15 +19,7 @@ const CharacterSheet = ({ settableCharacter }: { settableCharacter: SettableChar
                 <StressCounter />
             </div>
             <div className="">
-                {/* TODOdin: This is still laggy and probably causing full rerenders on change */}
-                <NameClassCalling
-                    name={settableCharacter.name}
-                    setName={settableCharacter.setName}
-                    characterClass={settableCharacter.characterClass}
-                    setCharacterClass={settableCharacter.setCharacterClass}
-                    calling={settableCharacter.calling}
-                    setCalling={settableCharacter.setCalling}
-                />
+                <NameClassCalling />
             </div>
             <div className="row-span-2">
                 <Abilities />

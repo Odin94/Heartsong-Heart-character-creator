@@ -1,13 +1,12 @@
 import { Checkbox } from "@/components/ui/checkbox"
 import { Input } from "@/components/ui/input"
-import { domains } from "@/heartsong/game_data/domains"
-import { skills } from "@/heartsong/game_data/skills"
-import { textBy } from "@/heartsong/utils"
 import { Fragment } from "react/jsx-runtime"
+import { useSkillsAndDomains } from "../character_states"
+import { skills } from "@/heartsong/game_data/skills"
+import { domains } from "@/heartsong/game_data/domains"
 
 const Skills = () => {
-    const knacksBySkills = textBy(skills)
-    const knacksByDomain = textBy(domains)
+    const { hasAndKnacksBySkill, hasAndKnacksByDomain, setSkills, setDomains } = useSkillsAndDomains()
 
     const rowCount = Math.max(skills.length, domains.length)
 
@@ -23,6 +22,7 @@ const Skills = () => {
             <div className={`text-black grid grid-cols-4 gap-1 gap-y-0 grid-rows-${rowCount} size-full`}>
                 {Array.from({ length: rowCount }).map((_, i) => {
                     const skill = skills[i]
+                    const { hasSkill, knacks: skillKnacks } = hasAndKnacksBySkill[skill]
                     const domain = domains[i]
 
                     const colClass = "flex items-center h-8"
@@ -37,7 +37,15 @@ const Skills = () => {
                                         {skill.toUpperCase()}
                                     </div>
                                     <div className={`ml-4 ${colClass}`}>
-                                        <Input className="w-28 text-sm h-8" />
+                                        <Input
+                                            value={skillKnacks}
+                                            onChange={(e) => {
+                                                // TODOdin: This causes error `input.tsx:7 A component is changing a controlled input to be uncontrolled.`
+                                                const newKnack = e.target.value
+                                                setSkills({ ...hasAndKnacksBySkill, [skill]: { hasSkill, knack: newKnack } })
+                                            }}
+                                            className="w-28 text-sm h-8"
+                                        />
                                     </div>
                                 </>
                             ) : (
