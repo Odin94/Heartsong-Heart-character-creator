@@ -7,8 +7,9 @@ import {
     DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
 import { Input } from "@/components/ui/input"
-import { characterClasses } from "@/heartsong/game_data/classes"
+import { CharacterClass, characterClasses } from "@/heartsong/game_data/classes"
 import { useCalling, useCharacterClass, useName } from "../character_states"
+import { Calling, callings } from "@/heartsong/game_data/callings"
 
 const NameClassCalling = () => {
     const { name, setName } = useName()
@@ -28,8 +29,8 @@ const NameClassCalling = () => {
             <div className="flex items-center">
                 <Input value={characterClass} onChange={(e) => setCharacterClass(e.target.value)} style={{ width: "90%" }} />
                 <ClassDropdown
-                    onSelect={(text: string) => {
-                        setCharacterClass(text)
+                    onSelect={(characterClass: CharacterClass) => {
+                        setCharacterClass(characterClass)
                     }}
                 />
             </div>
@@ -38,13 +39,17 @@ const NameClassCalling = () => {
             <div className="flex items-center font-bold text-left">Calling</div>
             <div className="flex items-center">
                 <Input value={calling} onChange={(e) => setCalling(e.target.value)} style={{ width: "90%" }} />
-                <button>✨</button>
+                <CallingDropdown
+                    onSelect={(calling: Calling) => {
+                        setCalling(calling)
+                    }}
+                />
             </div>
         </div>
     )
 }
 
-const ClassDropdown = ({ onSelect }: { onSelect: (text: string) => void }) => {
+const ClassDropdown = ({ onSelect }: { onSelect: (text: CharacterClass) => void }) => {
     return (
         <DropdownMenu>
             <DropdownMenuTrigger>✨</DropdownMenuTrigger>
@@ -52,6 +57,23 @@ const ClassDropdown = ({ onSelect }: { onSelect: (text: string) => void }) => {
                 <DropdownMenuLabel>Class</DropdownMenuLabel>
                 <DropdownMenuSeparator />
                 {characterClasses.map((c) => (
+                    <DropdownMenuItem onSelect={(_e) => onSelect(c)} key={c}>
+                        {c}
+                    </DropdownMenuItem>
+                ))}
+            </DropdownMenuContent>
+        </DropdownMenu>
+    )
+}
+
+const CallingDropdown = ({ onSelect }: { onSelect: (text: Calling) => void }) => {
+    return (
+        <DropdownMenu>
+            <DropdownMenuTrigger>✨</DropdownMenuTrigger>
+            <DropdownMenuContent>
+                <DropdownMenuLabel>Calling</DropdownMenuLabel>
+                <DropdownMenuSeparator />
+                {callings.map((c) => (
                     <DropdownMenuItem onSelect={(_e) => onSelect(c)} key={c}>
                         {c}
                     </DropdownMenuItem>
