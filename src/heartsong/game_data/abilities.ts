@@ -1,7 +1,6 @@
 import { Calling } from "./callings"
 import { Character } from "./character"
 import { CharacterClass } from "./classes"
-import { Domain } from "./domains"
 
 export type Ability = {
     name: string

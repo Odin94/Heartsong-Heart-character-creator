@@ -6,6 +6,7 @@ import { skills } from "@/heartsong/game_data/skills"
 import { domains } from "@/heartsong/game_data/domains"
 
 const Skills = () => {
+    // TODOdin: Fix the naming on the hasAnd.. things
     const { hasAndKnacksBySkill, hasAndKnacksByDomain, setSkills, setDomains } = useSkillsAndDomains()
 
     const rowCount = Math.max(skills.length, domains.length)
@@ -24,6 +25,7 @@ const Skills = () => {
                     const skill = skills[i]
                     const { hasSkill, knacks: skillKnacks } = hasAndKnacksBySkill[skill]
                     const domain = domains[i]
+                    const { hasDomain, knacks: domainKnacks } = hasAndKnacksByDomain[domain]
 
                     const colClass = "flex items-center h-8"
 
@@ -38,13 +40,13 @@ const Skills = () => {
                                     </div>
                                     <div className={`ml-4 ${colClass}`}>
                                         <Input
+                                            className="w-28 text-sm h-8"
                                             value={skillKnacks}
                                             onChange={(e) => {
                                                 // TODOdin: This causes error `input.tsx:7 A component is changing a controlled input to be uncontrolled.`
                                                 const newKnack = e.target.value
                                                 setSkills({ ...hasAndKnacksBySkill, [skill]: { hasSkill, knack: newKnack } })
                                             }}
-                                            className="w-28 text-sm h-8"
                                         />
                                     </div>
                                 </>
@@ -60,7 +62,15 @@ const Skills = () => {
                                         {domain.toUpperCase()}
                                     </div>
                                     <div className={`ml-4 ${colClass}`}>
-                                        <Input className="w-28 text-sm h-8" />
+                                        <Input
+                                            className="w-28 text-sm h-8"
+                                            value={domainKnacks}
+                                            onChange={(e) => {
+                                                // TODOdin: This causes error `input.tsx A component is changing a controlled input to be uncontrolled.`
+                                                const newKnack = e.target.value
+                                                setDomains({ ...hasAndKnacksByDomain, [domain]: { hasDomain, knack: newKnack } })
+                                            }}
+                                        />
                                     </div>
                                 </>
                             ) : (
