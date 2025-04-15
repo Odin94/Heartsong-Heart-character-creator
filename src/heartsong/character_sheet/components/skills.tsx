@@ -23,9 +23,10 @@ const Skills = () => {
             <div className={`text-black grid grid-cols-4 gap-1 gap-y-0 grid-rows-${rowCount} size-full`}>
                 {Array.from({ length: rowCount }).map((_, i) => {
                     const skill = skills[i]
-                    const { hasSkill, knacks: skillKnacks } = hasAndKnacksBySkill[skill]
+                    const { hasSkill, knacks: skillKnacks } = hasAndKnacksBySkill[skill] ?? { hasSkill: false, knacks: [] }
+
                     const domain = domains[i]
-                    const { hasDomain, knacks: domainKnacks } = hasAndKnacksByDomain[domain]
+                    const { hasDomain, knacks: domainKnacks } = hasAndKnacksByDomain[domain] ?? { hasDomain: false, knacks: [] }
 
                     const colClass = "flex items-center h-8"
 

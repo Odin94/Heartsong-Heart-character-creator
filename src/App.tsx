@@ -7,6 +7,15 @@ function App() {
             <a href="https://odin-matthias.de/" className="absolute top-2 left-8 text-sm underline">
                 /My Website/
             </a>
+            <a href="https://github.com/Odin94/Heartsong-Heart-character-creator" className="absolute top-2 left-32 text-sm underline">
+                /Source Code/
+            </a>
+            <a
+                href="https://rowanrookanddecard.com/product-category/game-systems/resistance/heart/"
+                className="absolute top-2 left-58 text-sm underline"
+            >
+                /Heart/
+            </a>
             <div className="container mx-auto max-w-screen-xl text-red-900">
                 <CharacterSheet />
             </div>
