@@ -1,9 +1,9 @@
 import { Checkbox } from "@/components/ui/checkbox"
 import { Input } from "@/components/ui/input"
-import { Fragment } from "react/jsx-runtime"
-import { useSkillsAndDomains } from "../character_states"
-import { skills } from "@/heartsong/game_data/skills"
 import { domains } from "@/heartsong/game_data/domains"
+import { skills } from "@/heartsong/game_data/skills"
+import { Fragment } from "react/jsx-runtime"
+import { useSkillsAndDomains, ZustandDomain, ZustandSkill } from "../character_states"
 
 const Skills = () => {
     // TODOdin: Fix the naming on the hasAnd.. things
@@ -36,7 +36,16 @@ const Skills = () => {
                             {skill ? (
                                 <>
                                     <div className={`font-bold text-md text-left ${colClass}`}>
-                                        <Checkbox className="mr-3" />
+                                        <Checkbox
+                                            checked={hasSkill}
+                                            onCheckedChange={(checked) => {
+                                                setSkills({
+                                                    ...hasAndKnacksBySkill,
+                                                    [skill]: { hasSkill: checked, knacks: skillKnacks } as ZustandSkill,
+                                                })
+                                            }}
+                                            className="mr-3"
+                                        />
                                         {skill.toUpperCase()}
                                     </div>
                                     <div className={`ml-4 ${colClass}`}>
@@ -44,9 +53,11 @@ const Skills = () => {
                                             className="w-28 text-sm h-8"
                                             value={skillKnacks}
                                             onChange={(e) => {
-                                                // TODOdin: This causes error `input.tsx:7 A component is changing a controlled input to be uncontrolled.`
-                                                const newKnack = e.target.value
-                                                setSkills({ ...hasAndKnacksBySkill, [skill]: { hasSkill, knack: newKnack } })
+                                                const newKnacks = e.target.value
+                                                setSkills({
+                                                    ...hasAndKnacksBySkill,
+                                                    [skill]: { hasSkill, knacks: newKnacks } as ZustandSkill,
+                                                })
                                             }}
                                         />
                                     </div>
@@ -59,7 +70,16 @@ const Skills = () => {
                             {domain ? (
                                 <>
                                     <div className={`font-bold text-md text-left ${colClass}`}>
-                                        <Checkbox className="mr-3" />
+                                        <Checkbox
+                                            checked={hasDomain}
+                                            onCheckedChange={(checked) => {
+                                                setDomains({
+                                                    ...hasAndKnacksByDomain,
+                                                    [domain]: { hasDomain: checked, knacks: domainKnacks } as ZustandDomain,
+                                                })
+                                            }}
+                                            className="mr-3"
+                                        />
                                         {domain.toUpperCase()}
                                     </div>
                                     <div className={`ml-4 ${colClass}`}>
@@ -67,9 +87,11 @@ const Skills = () => {
                                             className="w-28 text-sm h-8"
                                             value={domainKnacks}
                                             onChange={(e) => {
-                                                // TODOdin: This causes error `input.tsx A component is changing a controlled input to be uncontrolled.`
-                                                const newKnack = e.target.value
-                                                setDomains({ ...hasAndKnacksByDomain, [domain]: { hasDomain, knack: newKnack } })
+                                                const newKnacks = e.target.value
+                                                setDomains({
+                                                    ...hasAndKnacksByDomain,
+                                                    [domain]: { hasDomain, knacks: newKnacks } as ZustandDomain,
+                                                })
                                             }}
                                         />
                                     </div>

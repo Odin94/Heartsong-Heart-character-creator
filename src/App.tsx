@@ -5,7 +5,7 @@ function App() {
     return (
         <div className="relative min-h-screen">
             <a href="https://odin-matthias.de/" className="absolute top-2 left-8 text-sm underline">
-                /My Website/
+                /Odin's Site/
             </a>
             <a href="https://github.com/Odin94/Heartsong-Heart-character-creator" className="absolute top-2 left-32 text-sm underline">
                 /Source Code/

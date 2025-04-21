@@ -126,8 +126,10 @@ export const useFallout = create<FalloutZustand>((set) => ({
     setFallout: (fallout: string) => set(() => ({ fallout })),
 }))
 
-export type ZustandSkills = Record<Skill, { hasSkill: boolean; knacks: string }>
-export type ZustandDomains = Record<Domain, { hasDomain: boolean; knacks: string }>
+export type ZustandSkill = { hasSkill: boolean; knacks: string }
+export type ZustandSkills = Record<Skill, ZustandSkill>
+export type ZustandDomain = { hasDomain: boolean; knacks: string }
+export type ZustandDomains = Record<Domain, ZustandDomain>
 export type SkillsAndDomainsZustand = {
     // TODOdin: Find a good name for hasAndKnacksBySkill
     hasAndKnacksBySkill: ZustandSkills

@@ -1,12 +1,12 @@
-import { numberBy } from "@/heartsong/utils"
+import { resistances } from "@/heartsong/game_data/resistances"
+import { useProtections, useStress } from "../../character_states"
 import ProtectionsRow from "./protections_row"
 import ResistanceRow from "./resistance_row"
-import { resistances } from "@/heartsong/game_data/resistances"
 
 const StressCounter = () => {
     // TODOdin: Consider color-coding your resistances
-    const numberByResistanceResistance = numberBy(resistances)
-    const numberByResistanceProtection = numberBy(resistances)
+    const { stress, setStress } = useStress()
+    const { protections, setProtections } = useProtections()
 
     const gridClass = "grid grid-cols-[1fr_2fr_1fr] gap-2 text-left"
     return (
@@ -20,8 +20,8 @@ const StressCounter = () => {
             {resistances.map((resistance) => (
                 <div key={resistance} className={gridClass}>
                     <div className="font-bold">{resistance.toUpperCase()}</div>
-                    <ResistanceRow n={numberByResistanceResistance[resistance].n} setN={numberByResistanceResistance[resistance].setN} />
-                    <ProtectionsRow n={numberByResistanceProtection[resistance].n} setN={numberByResistanceProtection[resistance].setN} />
+                    <ResistanceRow n={stress[resistance]} setN={(n) => setStress({ ...stress, [resistance]: n })} />
+                    <ProtectionsRow n={protections[resistance]} setN={(n) => setProtections({ ...protections, [resistance]: n })} />
                 </div>
             ))}
         </div>
