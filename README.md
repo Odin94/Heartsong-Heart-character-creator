@@ -4,6 +4,8 @@ Heartsong is a web app that lets you manage a web character sheet for the TTRPG 
 
 [Check out Heartsong here!](https://heartsong.odin-matthias.de)
 
+If you want, you can [buy me a coffee here ☕](https://ko-fi.com/odin_dev)
+
 ## Credits:
 * Heart - The City Beneath TTRPG [Rowan, Rook & Decard](https://rowanrookanddecard.com/product-category/game-systems/resistance/heart/)
 * heart-illustration-1-svgrepo-com favicon - [svgrepo.com](https://www.svgrepo.com/svg/482873/heart-illustration-1)
