@@ -55,12 +55,15 @@ h2 {
     --sidebar-ring: oklch(0.708 0 0);
 }
 
-a {
+a,
+.link-like {
     font-weight: 500;
     color: oklch(50% 0.141 25.723);
     text-decoration: inherit;
 }
-a:hover {
+
+a:hover,
+.link-like:hover {
     color: oklch(65% 0.141 25.723);
 }
 
