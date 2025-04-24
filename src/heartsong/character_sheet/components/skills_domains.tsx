@@ -5,7 +5,7 @@ import { skills } from "@/heartsong/game_data/skills"
 import { Fragment } from "react/jsx-runtime"
 import { useSkillsAndDomains, ZustandDomain, ZustandSkill } from "../character_states"
 
-const Skills = () => {
+const SkillsDomains = () => {
     // TODOdin: Fix the naming on the hasAnd.. things
     const { hasAndKnacksBySkill, hasAndKnacksByDomain, setSkills, setDomains } = useSkillsAndDomains()
 
@@ -107,4 +107,4 @@ const Skills = () => {
     )
 }
 
-export default Skills
+export default SkillsDomains

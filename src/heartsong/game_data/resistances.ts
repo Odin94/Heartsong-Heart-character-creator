@@ -1,2 +1,2 @@
 export const resistances = ["blood", "mind", "echo", "fortune", "supplies"] as const
-export type Resistances = (typeof resistances)[number]
+export type Resistance = (typeof resistances)[number]

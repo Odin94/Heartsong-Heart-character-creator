@@ -13,6 +13,7 @@ import { Calling, callings } from "@/heartsong/game_data/callings"
 
 const NameClassCalling = () => {
     const { name, setName } = useName()
+    // TODOdin: When selecting a class, ask for confirmation and then apply CORE TRAITS & ABILITIES
     const { characterClass, setCharacterClass } = useCharacterClass()
     const { calling, setCalling } = useCalling()
 

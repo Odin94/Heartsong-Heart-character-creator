@@ -5,7 +5,7 @@ import Equipment from "./components/equipment"
 import Fallout from "./components/fallout"
 import NameClassCalling from "./components/name_class_calling"
 import Resources from "./components/resources"
-import Skills from "./components/skills"
+import SkillsDomains from "./components/skills_domains"
 import StressCounter from "./components/stress_counter/stress_counter"
 
 const CharacterSheet = () => {
@@ -33,7 +33,7 @@ const CharacterSheet = () => {
                 <Resources />
             </div>
             <div className="">
-                <Skills />
+                <SkillsDomains />
             </div>
             <div className="">
                 <Fallout />

@@ -1,21 +1,8 @@
 import { create } from "zustand"
 import { Skill } from "../game_data/skills"
-import { Resistances } from "../game_data/resistances"
+import { Resistance } from "../game_data/resistances"
 import { Domain } from "../game_data/domains"
-import { persist, createJSONStorage } from "zustand/middleware"
-
-// export const useBearStore = create<BearStore>()(
-//     persist(
-//       (set, get) => ({
-//         bears: 0,
-//         addABear: () => set({ bears: get().bears + 1 }),
-//       }),
-//       {
-//         name: 'food-storage', // name of the item in the storage (must be unique)
-//         storage: createJSONStorage(() => sessionStorage), // (optional) by default, 'localStorage' is used
-//       },
-//     ),
-//   )
+import { persist } from "zustand/middleware"
 
 export type NameZustand = {
     name: string
@@ -222,8 +209,8 @@ export const useSkillsAndDomains = create<SkillsAndDomainsZustand>()(
 )
 
 export type ProtectionsZustand = {
-    protections: Record<Resistances, number>
-    setProtections: (protections: Record<Resistances, number>) => void
+    protections: Record<Resistance, number>
+    setProtections: (protections: Record<Resistance, number>) => void
 }
 export const useProtections = create<ProtectionsZustand>()(
     persist(
@@ -235,7 +222,7 @@ export const useProtections = create<ProtectionsZustand>()(
                 fortune: 0,
                 supplies: 0,
             },
-            setProtections: (protections: Record<Resistances, number>) => set(() => ({ protections })),
+            setProtections: (protections: Record<Resistance, number>) => set(() => ({ protections })),
         }),
         {
             name: "protections",
@@ -244,8 +231,8 @@ export const useProtections = create<ProtectionsZustand>()(
 )
 
 export type StressZustand = {
-    stress: Record<Resistances, number>
-    setStress: (stress: Record<Resistances, number>) => void
+    stress: Record<Resistance, number>
+    setStress: (stress: Record<Resistance, number>) => void
 }
 export const useStress = create<StressZustand>()(
     persist(
@@ -257,7 +244,7 @@ export const useStress = create<StressZustand>()(
                 fortune: 0,
                 supplies: 0,
             },
-            setStress: (stress: Record<Resistances, number>) => set(() => ({ stress })),
+            setStress: (stress: Record<Resistance, number>) => set(() => ({ stress })),
         }),
         {
             name: "stress",
