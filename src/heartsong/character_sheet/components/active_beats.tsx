@@ -4,6 +4,8 @@ import { useActiveBeats } from "../character_states"
 const ActiveBeats = () => {
     const { activeBeats, setActiveBeats } = useActiveBeats()
 
+    // TODOdin: Make beats line-by-line with a checkbox and store completed beats in a history somewhere
+    // TODOdin: Add MAJOR/MINOR badge to beats
     return (
         <div className="row-span-3 col-span-2 text-left mt-5">
             <h2 className="font-bold py-2 bg-red-900 text-white pl-3">ACTIVE BEATS</h2>
