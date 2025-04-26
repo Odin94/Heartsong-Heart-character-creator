@@ -208,6 +208,7 @@ export const useSkillsAndDomains = create<SkillsAndDomainsZustand>()(
     )
 )
 
+export const protectionMaximum = 5
 export type ProtectionsZustand = {
     protections: Record<Resistance, number>
     setProtections: (protections: Record<Resistance, number>) => void
