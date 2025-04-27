@@ -53,8 +53,9 @@ const NameClassCalling = () => {
 const ClassDropdown = ({ onSelect }: { onSelect: (text: CharacterClass) => void }) => {
     return (
         <DropdownMenu>
-            <DropdownMenuTrigger>✨</DropdownMenuTrigger>
+            <DropdownMenuTrigger className="hover:bg-accent">✨</DropdownMenuTrigger>
             <DropdownMenuContent>
+                {/* TODOdin: Add icons for what classes are good at? Eg. sword for fighting, shovel for delving..? */}
                 <DropdownMenuLabel>Class</DropdownMenuLabel>
                 <DropdownMenuSeparator />
                 {characterClasses.map((c) => (
@@ -70,7 +71,7 @@ const ClassDropdown = ({ onSelect }: { onSelect: (text: CharacterClass) => void 
 const CallingDropdown = ({ onSelect }: { onSelect: (text: Calling) => void }) => {
     return (
         <DropdownMenu>
-            <DropdownMenuTrigger>✨</DropdownMenuTrigger>
+            <DropdownMenuTrigger className="hover:bg-accent">✨</DropdownMenuTrigger>
             <DropdownMenuContent>
                 <DropdownMenuLabel>Calling</DropdownMenuLabel>
                 <DropdownMenuSeparator />

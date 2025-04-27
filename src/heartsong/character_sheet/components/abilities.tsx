@@ -17,7 +17,7 @@ const Abilities = () => {
             <div className="row-span-3 col-span-2 text-left mt-2">
                 <Dialog>
                     <h2 className="font-bold py-2 bg-red-900 text-white pl-3">
-                        ABILITIES <DialogTrigger className="absolute right-7">✨</DialogTrigger>
+                        ABILITIES <DialogTrigger className="absolute right-7 hover:bg-red-800">✨</DialogTrigger>
                     </h2>
                     <AbilitiesDialog characterClass={characterClass} />
                 </Dialog>
