@@ -1,17 +1,8 @@
 import { Ability } from "../abilities"
-import { Domain } from "../domains"
-import { Resistance } from "../resistances"
-import { Skill } from "../skills"
+import { domain, skill, protection, noBonuses } from "./ability_utils"
 
 // TODOdin: How to represent "pick any domain" abilities like "DOMINION"?
 // TODOdin: Create an ability-pick modal with tabs for minor, major, zenith
-
-// {
-//     name: "xxx",
-//     description: "xxx",
-//     type: "minor",
-//     staticBonuses: noBonuses(),
-// },
 
 export const cleaverAbilities: Ability[] = [
     {
@@ -258,35 +249,3 @@ export const cleaverAbilities: Ability[] = [
         staticBonuses: noBonuses(),
     },
 ]
-
-function domain(...domains: Domain[]) {
-    return {
-        domains: domains,
-        skills: [],
-        protections: [],
-    }
-}
-
-function skill(...skills: Skill[]) {
-    return {
-        domains: [],
-        skills: skills,
-        protections: [],
-    }
-}
-
-function protection(resistance: Resistance, amount: number) {
-    return {
-        domains: [],
-        skills: [],
-        protections: [{ resistance, amount }],
-    }
-}
-
-function noBonuses() {
-    return {
-        domains: [],
-        skills: [],
-        protections: [],
-    }
-}

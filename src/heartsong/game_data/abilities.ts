@@ -1,4 +1,5 @@
 import { cleaverAbilities } from "./abilitiesByClass.ts/cleaver_abilities"
+import { deadwalkerAbilities } from "./abilitiesByClass.ts/deadwalker_abilities"
 import { Calling } from "./callings"
 import { CharacterClass } from "./classes"
 import { Domain } from "./domains"
@@ -22,7 +23,7 @@ export type Ability = {
 export const abilitiesByClassOrRecord: Record<CharacterClass | Calling, Ability[]> = {
     // Classes
     Cleaver: cleaverAbilities,
-    Deadwalker: [],
+    Deadwalker: deadwalkerAbilities,
     "Deep Apiarist": [],
     Heretic: [],
     Hound: [],
