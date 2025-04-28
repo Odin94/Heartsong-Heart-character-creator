@@ -180,7 +180,7 @@ export const deepApiaristAbilities: Ability[] = [
     },
     {
         name: "Pristine",
-        description: "When you arrive in a landmark after a delve, roll with mastery when you make a first impression.",
+        description: "When you arrive in a landmark after a delve, roll with 'Mastery' when you make a first impression.",
         type: "minor",
         staticBonuses: noBonuses(),
         parentName: "Sacred Geometry",
@@ -196,7 +196,7 @@ export const deepApiaristAbilities: Ability[] = [
     {
         name: "Unchaos",
         description:
-            "Roll 'Mend' + 'Occult' to cast this spell. On a success, for the remainder of the situation, you or one nearby ally treats Risky actions as Standard actions.",
+            "Roll 'Mend' + 'Occult' to cast this spell. On a success, for the remainder of the situation, you or one nearby ally treats 'Risky' actions as Standard actions.",
         type: "major",
         staticBonuses: noBonuses(),
         parentName: "Unchaos",

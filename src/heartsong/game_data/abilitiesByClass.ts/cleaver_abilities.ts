@@ -84,7 +84,7 @@ export const cleaverAbilities: Ability[] = [
     {
         name: "Pack Hunter",
         description:
-            "If you mark stress to 'Blood' to activate the 'Bloodbound' tag, roll with mastery on the 'Delve' and 'Hunt' skills for the situation.",
+            "If you mark stress to 'Blood' to activate the 'Bloodbound' tag, roll with 'Mastery' on the 'Delve' and 'Hunt' skills for the situation.",
         type: "minor",
         staticBonuses: noBonuses(),
         parentName: "Bloodbound Beast",
@@ -152,7 +152,7 @@ export const cleaverAbilities: Ability[] = [
     {
         name: "Hunter's Eye",
         description:
-            "Once per situation, point out a helpful element of the landscape. The first time an ally interacts with it they roll with Mastery.",
+            "Once per situation, point out a helpful element of the landscape. The first time an ally interacts with it they roll with 'Mastery'.",
         type: "minor",
         staticBonuses: noBonuses(),
         parentName: "Extinction Bow",
@@ -199,7 +199,7 @@ export const cleaverAbilities: Ability[] = [
     {
         name: "The Wild Hunt",
         description:
-            "Pass an 'Endure' + 'Cursed' roll (risky if you're in a 'Haven') to make yourself and your allies to gain the 'Hunt' skill and increase stress they inflict on delves by 1 step for the current delve.",
+            "Pass an 'Endure' + 'Cursed' roll ('Risky' if you're in a 'Haven') to make yourself and your allies to gain the 'Hunt' skill and increase stress they inflict on delves by 1 step for the current delve.",
         type: "minor",
         staticBonuses: noBonuses(),
     },

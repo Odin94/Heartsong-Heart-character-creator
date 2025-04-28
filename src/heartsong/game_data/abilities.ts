@@ -1,6 +1,7 @@
 import { cleaverAbilities } from "./abilitiesByClass.ts/cleaver_abilities"
 import { deadwalkerAbilities } from "./abilitiesByClass.ts/deadwalker_abilities"
 import { deepApiaristAbilities } from "./abilitiesByClass.ts/deep_apiarist_abilities"
+import { hereticAbilities } from "./abilitiesByClass.ts/heretic_abilities"
 import { Calling } from "./callings"
 import { CharacterClass } from "./classes"
 import { Domain } from "./domains"
@@ -26,7 +27,7 @@ export const abilitiesByClassOrRecord: Record<CharacterClass | Calling, Ability[
     Cleaver: cleaverAbilities,
     Deadwalker: deadwalkerAbilities,
     "Deep Apiarist": deepApiaristAbilities,
-    Heretic: [],
+    Heretic: hereticAbilities,
     Hound: [],
     Incarnadine: [],
     "Junk Mage": [],

@@ -40,7 +40,7 @@ export const deadwalkerAbilities: Ability[] = [
     },
     {
         name: "Marked for Death",
-        description: "Gain 'Hunt' skill. You can mark prey by observing them for 10 minutes. When hunting them, roll with Mastery.",
+        description: "Gain 'Hunt' skill. You can mark prey by observing them for 10 minutes. When hunting them, roll with 'Mastery'.",
         type: "minor",
         staticBonuses: noBonuses(),
     },
@@ -134,7 +134,7 @@ export const deadwalkerAbilities: Ability[] = [
     {
         name: "Invidious Spectre",
         description:
-            "Any weapon you carry gains 'Conduit', meaning you can mark D4 stress to 'Mind' to roll with mastery on attacks for one situation.",
+            "Any weapon you carry gains 'Conduit', meaning you can mark D4 stress to 'Mind' to roll with 'Mastery' on attacks for one situation.",
         type: "major",
         staticBonuses: noBonuses(),
     },
@@ -237,7 +237,7 @@ export const deadwalkerAbilities: Ability[] = [
     {
         name: "Sunder the Veil",
         description:
-            "When you die, all nearby allies remove all ongoing fallout and stress, and they gain mastery on all rolls for the situation.",
+            "When you die, all nearby allies remove all ongoing fallout and stress, and they gain 'Mastery' on all rolls for the situation.",
         type: "zenith",
         staticBonuses: noBonuses(),
     },
