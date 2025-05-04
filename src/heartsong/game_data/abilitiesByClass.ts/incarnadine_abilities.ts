@@ -34,7 +34,7 @@ export const incarnadineAbilities: Ability[] = [
         type: "minor",
         staticBonuses: skill("discern"),
     },
-    // Add "Jack of all Trades" here once we have skillpick
+    // TODOdin: Add "Jack of all Trades" here once we have skillpick
     {
         name: "Lost it All",
         description: "Gain 'Desolate' domain. Once per session, the GM will tell you where the nearest source of wealth is.",
