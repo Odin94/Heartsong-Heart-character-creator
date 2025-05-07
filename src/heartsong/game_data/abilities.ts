@@ -5,6 +5,7 @@ import { hereticAbilities } from "./abilitiesByClass.ts/heretic_abilities"
 import { houndAbilities } from "./abilitiesByClass.ts/hound_abilities"
 import { incarnadineAbilities } from "./abilitiesByClass.ts/incarnadine_abilities"
 import { junkMageAbilities } from "./abilitiesByClass.ts/junk_mage_abilities"
+import { vermissianKnightAbilities } from "./abilitiesByClass.ts/vermissian_knight_abilities"
 import { Calling } from "./callings"
 import { CharacterClass } from "./classes"
 import { Domain } from "./domains"
@@ -34,7 +35,7 @@ export const abilitiesByClassOrRecord: Record<CharacterClass | Calling, Ability[
     Hound: houndAbilities,
     Incarnadine: incarnadineAbilities,
     "Junk Mage": junkMageAbilities,
-    "Vermissian Knight": [],
+    "Vermissian Knight": vermissianKnightAbilities,
     Witch: [],
 
     // Callings
