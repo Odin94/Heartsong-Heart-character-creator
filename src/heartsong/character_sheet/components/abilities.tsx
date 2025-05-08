@@ -2,7 +2,7 @@ import { Textarea } from "@/components/ui/textarea"
 import { protectionMaximum, useAbilities, useCharacterClass, useProtections, useSkillsAndDomains } from "../character_states"
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog"
 import { CharacterClass } from "@/heartsong/game_data/classes"
-import { abilitiesByClassOrRecord, StaticBonuses } from "@/heartsong/game_data/abilities"
+import { abilitiesByClassOrRecord, Ability, StaticBonuses } from "@/heartsong/game_data/abilities"
 import { useState } from "react"
 import { ScrollArea } from "@/components/ui/scroll-area"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@radix-ui/react-tabs"
@@ -53,11 +53,19 @@ const AbilitiesDialog = ({ characterClass }: { characterClass: CharacterClass | 
         setProtections(zustandProtections)
     }
 
-    const abilityOptions = abilitiesByClassOrRecord[characterClass as unknown as CharacterClass] ?? []
+    const abilityOptions = abilitiesByClassOrRecord[characterClass.trim() as unknown as CharacterClass] ?? []
     const filteredAbilityOptions = abilityOptions
         .filter((ability) => ability.type === value)
         .filter((ability) => !abilities.includes(`${ability.name} - `))
     const selectedClassName = "border-b-0"
+
+    const getIcon = ({ staticBonuses }: Ability) => {
+        if (staticBonuses.protections.length > 0) return "🛡️ "
+        if (staticBonuses.domains.length > 0) return "🗺️ "
+        if (staticBonuses.skills.length > 0) return "💪 "
+
+        return ""
+    }
 
     const renderAbilities = () => (
         <ScrollArea className="h-170" style={{ borderColor: "red" }}>
@@ -70,7 +78,7 @@ const AbilitiesDialog = ({ characterClass }: { characterClass: CharacterClass | 
                         applyStaticBonuses(ability.staticBonuses)
                     }}
                 >
-                    <h2>{ability.name}</h2>
+                    <h2>{`${getIcon(ability)}${ability.name}`}</h2>
                     <p className="text-muted-foreground text-sm">{ability.description}</p>
                 </div>
             ))}
@@ -81,22 +89,26 @@ const AbilitiesDialog = ({ characterClass }: { characterClass: CharacterClass | 
         <DialogContent className="w-88 sm:w-112 h-200">
             <DialogHeader>
                 <DialogTitle>{characterClass.toUpperCase()} ABILITIES</DialogTitle>
-                <Tabs defaultValue="minor" className="w-[300px] sm:w-[400px] p-2" value={value} onValueChange={setValue}>
-                    <TabsList className="grid w-full grid-cols-3">
-                        <TabsTrigger value="minor" className={`border-1 ${value === "minor" ? selectedClassName : ""}`}>
-                            Minor
-                        </TabsTrigger>
-                        <TabsTrigger value="major" className={`border-1 ${value === "major" ? selectedClassName : ""}`}>
-                            Major
-                        </TabsTrigger>
-                        <TabsTrigger value="zenith" className={`border-1 ${value === "zenith" ? selectedClassName : ""}`}>
-                            Zenith
-                        </TabsTrigger>
-                    </TabsList>
-                    <TabsContent value="minor">{renderAbilities()}</TabsContent>
-                    <TabsContent value="major">{renderAbilities()}</TabsContent>
-                    <TabsContent value="zenith">{renderAbilities()}</TabsContent>
-                </Tabs>
+                {abilityOptions.length === 0 ? (
+                    <p>Pick a pre-defined class to select abilities</p>
+                ) : (
+                    <Tabs defaultValue="minor" className="w-[300px] sm:w-[400px] p-2" value={value} onValueChange={setValue}>
+                        <TabsList className="grid w-full grid-cols-3">
+                            <TabsTrigger value="minor" className={`border-1 ${value === "minor" ? selectedClassName : ""}`}>
+                                Minor
+                            </TabsTrigger>
+                            <TabsTrigger value="major" className={`border-1 ${value === "major" ? selectedClassName : ""}`}>
+                                Major
+                            </TabsTrigger>
+                            <TabsTrigger value="zenith" className={`border-1 ${value === "zenith" ? selectedClassName : ""}`}>
+                                Zenith
+                            </TabsTrigger>
+                        </TabsList>
+                        <TabsContent value="minor">{renderAbilities()}</TabsContent>
+                        <TabsContent value="major">{renderAbilities()}</TabsContent>
+                        <TabsContent value="zenith">{renderAbilities()}</TabsContent>
+                    </Tabs>
+                )}
             </DialogHeader>
         </DialogContent>
     )
