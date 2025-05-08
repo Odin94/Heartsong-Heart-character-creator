@@ -25,7 +25,11 @@ export type Ability = {
     type: "core" | "major" | "minor" | "zenith"
     staticBonuses: StaticBonuses
     parentName?: string
-    pickFrom?: (Skill | Domain | Resistance)[]
+    pickFrom?: {
+        skills: Skill[]
+        domains: Domain[]
+        protections: Resistance[]
+    }
 }
 
 export const abilitiesByClassOrRecord: Record<CharacterClass | Calling, Ability[]> = {

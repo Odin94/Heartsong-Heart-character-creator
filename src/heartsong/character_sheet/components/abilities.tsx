@@ -1,11 +1,14 @@
-import { Textarea } from "@/components/ui/textarea"
-import { protectionMaximum, useAbilities, useCharacterClass, useProtections, useSkillsAndDomains } from "../character_states"
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog"
-import { CharacterClass } from "@/heartsong/game_data/classes"
-import { abilitiesByClassOrRecord, Ability, StaticBonuses } from "@/heartsong/game_data/abilities"
-import { useState } from "react"
 import { ScrollArea } from "@/components/ui/scroll-area"
+import { Textarea } from "@/components/ui/textarea"
+import { abilitiesByClassOrRecord, Ability, StaticBonuses } from "@/heartsong/game_data/abilities"
+import { CharacterClass } from "@/heartsong/game_data/classes"
+import { iconByDomain } from "@/heartsong/game_data/domains"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@radix-ui/react-tabs"
+import { useState } from "react"
+import { MdOutlineShield } from "react-icons/md"
+import { protectionMaximum, useAbilities, useCharacterClass, useProtections, useSkillsAndDomains } from "../character_states"
+import { iconBySkill } from "@/heartsong/game_data/skills"
 
 const Abilities = () => {
     const { abilities, setAbilities } = useAbilities()
@@ -59,12 +62,19 @@ const AbilitiesDialog = ({ characterClass }: { characterClass: CharacterClass | 
         .filter((ability) => !abilities.includes(`${ability.name} - `))
     const selectedClassName = "border-b-0"
 
-    const getIcon = ({ staticBonuses }: Ability) => {
-        if (staticBonuses.protections.length > 0) return "🛡️ "
-        if (staticBonuses.domains.length > 0) return "🗺️ "
-        if (staticBonuses.skills.length > 0) return "💪 "
+    const getIcon = ({ staticBonuses, pickFrom }: Ability) => {
+        if (pickFrom?.domains) return "🗺️ "
+        if (pickFrom?.skills) return "💪 "
+        if (pickFrom?.skills) return "🛡️ "
 
-        return ""
+        if (staticBonuses.protections.length > 0) return <MdOutlineShield />
+
+        for (const domain of staticBonuses.domains) {
+            return iconByDomain[domain]
+        }
+        for (const skill of staticBonuses.skills) {
+            return iconBySkill[skill]
+        }
     }
 
     const renderAbilities = () => (
@@ -78,7 +88,11 @@ const AbilitiesDialog = ({ characterClass }: { characterClass: CharacterClass | 
                         applyStaticBonuses(ability.staticBonuses)
                     }}
                 >
-                    <h2>{`${getIcon(ability)}${ability.name}`}</h2>
+                    <h2 className="flex items-center">
+                        {getIcon(ability)}
+                        <span className="ml-2">{`${ability.name}`}</span>
+                    </h2>
+
                     <p className="text-muted-foreground text-sm">{ability.description}</p>
                 </div>
             ))}
