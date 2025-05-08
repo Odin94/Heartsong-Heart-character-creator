@@ -225,21 +225,21 @@ export const houndAbilities: Ability[] = [
         name: "Everlasting Stand",
         description:
             "When a landmark is under threat from outside powers, become the original owner of your badge. You are subsumed into the Hounds and the 33rd will watch the landmark as safe indefinitely.",
-        type: "minor",
+        type: "zenith",
         staticBonuses: noBonuses(),
     },
     {
         name: "Fulcrum",
         description:
             "Until the end of the current situation, you roll five dice and pick the highest whenever you make an action as you are filled with the hopes and fears of everyone in the Heart. Once the situation ends, you slope off into the depths of the Heart to fight metaphysical battles beyond the understanding of mortals",
-        type: "minor",
+        type: "zenith",
         staticBonuses: noBonuses(),
     },
     {
         name: "Incursion",
         description:
             "Smash your badge apart on an altar to summon the last moments of the 33rd to your location. Reality comes undone as your surroundings turn into a trench warfare zone. The landmark you’re in is destroyed, pretty much everything inside it dies and your mind is blasted into pieces as you witness the lengths they went to in order to survive.",
-        type: "minor",
+        type: "zenith",
         staticBonuses: noBonuses(),
     },
 ]

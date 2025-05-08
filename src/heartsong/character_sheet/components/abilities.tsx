@@ -12,6 +12,7 @@ const Abilities = () => {
     const { characterClass } = useCharacterClass()
     // TODOdin: Add a button that opens a modal with suggestions for your class?
 
+    // TODOdin: Add https://milkdown.dev or https://lexical.dev instead of plain Textarea to render Markdown
     return (
         <div>
             <div className="row-span-3 col-span-2 text-left mt-2">

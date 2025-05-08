@@ -274,21 +274,21 @@ export const incarnadineAbilities: Ability[] = [
         name: "Ultimate Credit",
         description:
             "Once, you can buy anything (except the Heart itself). You have as much control over this item or concept as you have over any object you own. Two sessions from now, the debt will be recalled and it will take your life.",
-        type: "minor",
+        type: "zenith",
         staticBonuses: noBonuses(),
     },
     {
         name: "Ultimate Debt",
         description:
             "Once you can unload the weight of Incarne's debt upon a single individual, location or entity (except the Heart itself). Everything will go catastrophically wrong for the target, but they do not die. Once per situation, you can harvest the debt on the target to clear stress from your resistance tracks. When doing so, roll a D10. 2 or higher: Remove that much stress. 1: Your luck runs out and a cosmic loophole sees Incarne claim your life.",
-        type: "minor",
+        type: "zenith",
         staticBonuses: noBonuses(),
     },
     {
         name: "Ultimate Reward",
         description:
             "You got out of Incarne's debt. You can retire to a normal life. You die several decades from now, surrounded by loved ones.",
-        type: "minor",
+        type: "zenith",
         staticBonuses: noBonuses(),
     },
 ]

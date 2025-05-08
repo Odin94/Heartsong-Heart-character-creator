@@ -242,21 +242,21 @@ export const vermissianKnightAbilities: Ability[] = [
         name: "End of the Line",
         description:
             "On tier 2 or deeper, you may activate this power. You learn of the location of a unique and extraordinary landmark. Work out what it is with the GM. Once you complete a delve to reach it, you cannot leave again. Instead, die in some tragic fashion, vow to protect it forever or ascend into a pure state of electricity and echoing rails. Your character is removed from the story.",
-        type: "minor",
+        type: "zenith",
         staticBonuses: noBonuses(),
     },
     {
         name: "Perpetual Motion Machine",
         description:
             "Upon implantation of the heartseed into your suit's furnace, you become an unstoppable force within the City Beneath - indeed, you can never stop moving. You stamp off into the darkness, and your character is removed from the story except for the 'Deus Ex Machina' ability that is granted to all surviving members of your party.\n\n'Deus Ex Machina': May only be used once per campaign. When you are outside of a landmark and you or an ally suffers Major or Critical fallout, an inhuman collection of meat and twisted steel - the Vermissian Knight - arrives. They've been watching you this whole time. They immediately inflict 25 stress on an adversary of the GM's choosing, then disappear into the City Beneath to protect other delvers.",
-        type: "minor",
+        type: "zenith",
         staticBonuses: noBonuses(),
     },
     {
         name: "The Last Train",
         description:
             "The Last Train arrives at your current position by the most direct and destructive route, destroying anything in its path. You are killed when this ability is used, crushed under the wheels of the train, riddled with strange energies and cooked in your armour or burned out from the occult strain.",
-        type: "minor",
+        type: "zenith",
         staticBonuses: noBonuses(),
     },
 ]

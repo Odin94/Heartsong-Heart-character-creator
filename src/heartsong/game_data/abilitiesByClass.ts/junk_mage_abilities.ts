@@ -262,21 +262,21 @@ export const junkMageAbilities: Ability[] = [
         name: "The Herald of the Red King",
         description:
             "You can only cast this spell once. The Red King appears and burns anyone or anything you direct him towards. When you cast the spell, roll 'Endure' + 'Occult'. On a success, you become the new Red King, a furious engine of desire, and can be summoned by other Junk Mages. On a failure, you are added to his hoard. Either way, there's no coming back.",
-        type: "minor",
+        type: "zenith",
         staticBonuses: noBonuses(),
     },
     {
         name: "The Herald of the Drowned Queen",
         description:
             "You can only cast this spell once. The landmark you're currently in is flooded and half-submergedin water. The throne of the Drowned Queen rises in it's center, and she claims ownership of the landmark. You are her trusted advisor and gain control over the landmark. You have a session or two to get what you need out of the situation, before you get retired as a PC (driven mad, assassinated or betrothed to the Queen).",
-        type: "minor",
+        type: "zenith",
         staticBonuses: noBonuses(),
     },
     {
         name: "The Herald of the Stone Chorus",
         description:
             "You can only cast this spell once. A creature or entity you are touching is sealed away in the Stone Chorus' prison eternally; you become part of the mechanism that locks the door, and cease to exist in any meaningful sense. Nothing can free the target from its prison short of you, the door, agreeing to open.",
-        type: "minor",
+        type: "zenith",
         staticBonuses: noBonuses(),
     },
 ]
