@@ -72,7 +72,7 @@ const AbilitiesDialog = ({ characterClass }: { characterClass: CharacterClass | 
             {filteredAbilityOptions.map((ability) => (
                 <div
                     key={ability.name}
-                    className="border-1 p-2 border-t-0 cursor-pointer hover:bg-accent"
+                    className={`border-1 p-2 border-t-0 cursor-pointer hover:bg-accent ${ability.parentName ? "ml-6" : ""}`}
                     onClick={() => {
                         setAbilities(`${abilities}\n\n${ability.name} - ${ability.description}`)
                         applyStaticBonuses(ability.staticBonuses)
