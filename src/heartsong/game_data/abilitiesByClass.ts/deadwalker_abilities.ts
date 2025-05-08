@@ -80,7 +80,7 @@ export const deadwalkerAbilities: Ability[] = [
     {
         name: "Esoteric Cartographer",
         description: "Choose two additional heavens you can access from the Grey.",
-        type: "minor",
+        type: "major",
         staticBonuses: noBonuses(),
         parentName: "Descent",
     },
@@ -88,14 +88,14 @@ export const deadwalkerAbilities: Ability[] = [
         name: "Step Between",
         description:
             "You can leave a Heaven and arrive at a different landmark than the one you started at. Your exit point must be within the same tier and share a domain with the Heaven you're exiting. If you've never been there, the delve is 'Risky'.",
-        type: "minor",
+        type: "major",
         staticBonuses: noBonuses(),
         parentName: "Descent",
     },
     {
         name: "All Doors as One",
         description: "When you use 'Step Between', your destination point can be one tier above or below your current tier.",
-        type: "minor",
+        type: "major",
         staticBonuses: noBonuses(),
         parentName: "Descent",
     },
@@ -110,7 +110,7 @@ export const deadwalkerAbilities: Ability[] = [
     {
         name: "Hidden Passageway",
         description: "One per delve, when using 'Echoes', it functions as a D8 boon.",
-        type: "minor",
+        type: "major",
         staticBonuses: noBonuses(),
         parentName: "Echoes",
     },
@@ -118,7 +118,7 @@ export const deadwalkerAbilities: Ability[] = [
         name: "Fragmentary Recollection",
         description:
             "When you use 'Echoes', you can speak with the echoes of people present. They're just momentary snapshots of psyches, with all limitations on cognition that entails.",
-        type: "minor",
+        type: "major",
         staticBonuses: noBonuses(),
         parentName: "Echoes",
     },
@@ -126,7 +126,7 @@ export const deadwalkerAbilities: Ability[] = [
         name: "Absorb Memories",
         description:
             "Once per session, when in a location with a domain you don't have, activate this power to gain access to that domnain until the end of the session.",
-        type: "minor",
+        type: "major",
         staticBonuses: noBonuses(),
         parentName: "Echoes",
     },
@@ -141,21 +141,21 @@ export const deadwalkerAbilities: Ability[] = [
     {
         name: "Soothe",
         description: "Once per session, when you mark stress, add +1 to any protection until the end of the session.",
-        type: "minor",
+        type: "major",
         staticBonuses: noBonuses(),
         parentName: "Invidious Spectre",
     },
     {
         name: "Ghoulish Grasp",
         description: "Once per situation, a weapon you carry has 'Debilitating'.",
-        type: "minor",
+        type: "major",
         staticBonuses: noBonuses(),
         parentName: "Invidious Spectre",
     },
     {
         name: "Ethereal Touch",
         description: "If you mark stress to activate 'Conduit', your weapon also gains 'Piercing'.",
-        type: "minor",
+        type: "major",
         staticBonuses: noBonuses(),
         parentName: "Invidious Spectre",
     },
@@ -171,7 +171,7 @@ export const deadwalkerAbilities: Ability[] = [
         name: "Inexorable",
         description:
             "If the first dice you roll to determine stress inflicted on an adversary shows 1 or 2, roll an additional dice of the same size and add the result to stress inflicted.",
-        type: "minor",
+        type: "major",
         staticBonuses: noBonuses(),
         parentName: "Reaper's Strike",
     },
@@ -179,14 +179,14 @@ export const deadwalkerAbilities: Ability[] = [
         name: "Bloodied but Unbroken",
         description:
             "When you have 4 of more stress marked to 'Blood' or are suffering from ongoing 'Blood' fallout, gain +2 'Blood' Protection",
-        type: "minor",
+        type: "major",
         staticBonuses: noBonuses(),
         parentName: "Reaper's Strike",
     },
     {
         name: "Scything Blow",
         description: "Once per situation, treat your weapon as though it has the 'Spread' tag when you inflict stress to an adversary.",
-        type: "minor",
+        type: "major",
         staticBonuses: noBonuses(),
         parentName: "Reaper's Strike",
     },
@@ -202,22 +202,25 @@ export const deadwalkerAbilities: Ability[] = [
         name: "Liminal",
         description:
             "Gain +2 'Blood' Protection after entering the Grey. You can see and interact with people who are int he living world. You appear to them as a semi-ethereal phantom.",
-        type: "minor",
+        type: "major",
         staticBonuses: noBonuses(),
+        parentName: "Sudden Death",
     },
     {
         name: "Entropy",
         description:
             "You hands become 'Kill' D8, 'Dangerous' weapons. You can rust and decay machines by touching them. Doing this under pressure requires a 'Kill' + 'Technology' check.",
-        type: "minor",
+        type: "major",
         staticBonuses: noBonuses(),
+        parentName: "Sudden Death",
     },
     {
         name: "Blood Sacrifice",
         description:
             "Once per situation, when inflicting stress on an adversary that's roughly the same size as you in melee combat, you can transport both of you to the Grey.",
-        type: "minor",
+        type: "major",
         staticBonuses: noBonuses(),
+        parentName: "Sudden Death",
     },
     // Zenith
     {

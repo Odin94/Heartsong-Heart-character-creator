@@ -83,7 +83,7 @@ export const junkMageAbilities: Ability[] = [
         name: "Ecstasy",
         description:
             "When you cast 'Curse of the Sky Court', you can focus it on a single target rather than everyone nearby. This individual is overwhelmed with joy, and energised to seek more of it - they find it hard to focus on even immediate dangers. As long as you maintain your concentration on them, their difficulty is reduced to 'Standard'.",
-        type: "minor",
+        type: "major",
         staticBonuses: noBonuses(),
         parentName: "Curse of the Sky Court",
     },
@@ -91,7 +91,7 @@ export const junkMageAbilities: Ability[] = [
         name: "A Moment Eternal",
         description:
             "Roll 'Evade' + 'Occult' to cast this spell. On a success, your immediate area is time-shifted. For each hour outside of the area, those in the area experience 4 hours of time passing. While intended to stretch out a perfect moment, this can make time-sensitive tasks easier to attempt. The barrier that surrounds the area is blurry and indistinct, and if anyone from outside the area intrudes, the spell is broken and time resumes to normal speed.",
-        type: "minor",
+        type: "major",
         staticBonuses: noBonuses(),
         parentName: "Curse of the Sky Court",
     },
@@ -99,7 +99,7 @@ export const junkMageAbilities: Ability[] = [
         name: "Steal the Night Away",
         description:
             "Once per session, when you engage in reckless hedonism, refresh D6. If you spend time with someone who fascinates you during the process, refresh D8 instead. These refreshes can be spent to remove fallout as though you were making use of a haunt.",
-        type: "minor",
+        type: "major",
         staticBonuses: noBonuses(),
         parentName: "Curse of the Sky Court",
     },
@@ -114,21 +114,21 @@ export const junkMageAbilities: Ability[] = [
     {
         name: "Words of Flame",
         description: "Your unarmed attacks inflict D6 stress rather than D4.",
-        type: "minor",
+        type: "major",
         staticBonuses: noBonuses(),
         parentName: "Fire of the Red King",
     },
     {
         name: "Superheat",
         description: "In melee, your unarmed attacks have the 'Piercing' tag.",
-        type: "minor",
+        type: "major",
         staticBonuses: noBonuses(),
         parentName: "Fire of the Red King",
     },
     {
         name: "Coin-Gold Blood",
         description: "You gain Protection 5 against stress marked due to flame or heat.",
-        type: "minor",
+        type: "major",
         staticBonuses: noBonuses(),
         parentName: "Fire of the Red King",
     },
@@ -144,7 +144,7 @@ export const junkMageAbilities: Ability[] = [
         name: "Temporary Perfection",
         description:
             "When you cast 'Frenzy of the Sky Court', you gain access to a skill that you do not possess until the end of the situation.",
-        type: "minor",
+        type: "major",
         staticBonuses: noBonuses(),
         parentName: "Frenzy of the Sky Court",
     },
@@ -152,7 +152,7 @@ export const junkMageAbilities: Ability[] = [
         name: "Brisk Conjuration",
         description:
             "You are able to summon an indiscriminate blast of air in a direction of your choice. This spell functions as a 'Kill' D4, 'Spread', 'Debilitating', 'One-Shot') weapon.",
-        type: "minor",
+        type: "major",
         staticBonuses: noBonuses(),
         parentName: "Frenzy of the Sky Court",
     },
@@ -160,7 +160,7 @@ export const junkMageAbilities: Ability[] = [
         name: "Maddening Storm",
         description:
             "Roll 'Compel' + 'Occult' to cast this spell. On a success, an area roughly the size of a city block - centred on you - is assailed with stiff winds that stir up debris and howl deafeningly through tunnels and vents, but everything within ten feet of you remains calm. All 'Sneak' and 'Evade' checks in this area are made with mastery, but the inhabitants definitely know something's going on. This effect lasts until the end of the current situation; if you move outside of the zone of calm at the centre beforehand, the spell ends.",
-        type: "minor",
+        type: "major",
         staticBonuses: noBonuses(),
         parentName: "Frenzy of the Sky Court",
     },
@@ -176,7 +176,7 @@ export const junkMageAbilities: Ability[] = [
         name: "Only the Finest",
         description:
             "Once per situation, an item you are holding becomes Excellent quality. At the end of the situation, the item is destroyed.",
-        type: "minor",
+        type: "major",
         staticBonuses: noBonuses(),
         parentName: "Greed of the Red King",
     },
@@ -184,14 +184,14 @@ export const junkMageAbilities: Ability[] = [
         name: "Gorge",
         description:
             "Once per situation, when you eat (destroy) a resource with the Haven domain, remove stress from Blood, Mind or Echo equal to half the amount rolled on the resource's dice.",
-        type: "minor",
+        type: "major",
         staticBonuses: noBonuses(),
         parentName: "Greed of the Red King",
     },
     {
         name: "A King Demands",
         description: "Once per session, you can demand that a target holding any item gives you that item, and they must obey.",
-        type: "minor",
+        type: "major",
         staticBonuses: noBonuses(),
         parentName: "Greed of the Red King",
     },
@@ -207,7 +207,7 @@ export const junkMageAbilities: Ability[] = [
         name: "Slumbering Eternal",
         description:
             "You no longer need to breathe air; no matter the situation, you will not asphyxiate. Once per session, you can also locate a useful source of water - a stream, a pipe, a drain, a reservoir, a waterfall, etc.",
-        type: "minor",
+        type: "major",
         staticBonuses: noBonuses(),
         parentName: "Kiss of the Drowned Queen",
     },
@@ -215,14 +215,14 @@ export const junkMageAbilities: Ability[] = [
         name: "Body of Water",
         description:
             "You may no longer remove 'Blood' fallout or stress by using haunts. However, once per session, choose one of the following when you spend at least an hour submerged in water: remove all stress from 'Blood', remove all minor 'Blood' fallout or downgrade one major 'Blood' fallout to minor",
-        type: "minor",
+        type: "major",
         staticBonuses: noBonuses(),
         parentName: "Kiss of the Drowned Queen",
     },
     {
         name: "Grace",
         description: "You may walk on water as though it were solid ground.",
-        type: "minor",
+        type: "major",
         staticBonuses: noBonuses(),
         parentName: "Kiss of the Drowned Queen",
     },
@@ -238,7 +238,7 @@ export const junkMageAbilities: Ability[] = [
         name: "Benevolent",
         description:
             "Instead of removing D6 stress from 'Echo', you or any allies may remove D6 stress from 'Supplies' or 'Fortune' instead.",
-        type: "minor",
+        type: "major",
         staticBonuses: noBonuses(),
         parentName: "Sanctum of the Stone Chorus",
     },
@@ -246,14 +246,14 @@ export const junkMageAbilities: Ability[] = [
         name: "Omnipresent",
         description:
             "When you cast this spell, you access the same temple every time, no matter where you are; it becomes a Fracture. At the GM's discretion, major 'Mind' fallout could result in you losing access to this specific temple, and minor 'Mind' fallout could see it robbed or otherwise compromised.",
-        type: "minor",
+        type: "major",
         staticBonuses: noBonuses(),
         parentName: "Sanctum of the Stone Chorus",
     },
     {
         name: "Bountiful",
         description: "Once per session, when you access the temple, you can locate a non-unique item of D8 value or lower.",
-        type: "minor",
+        type: "major",
         staticBonuses: noBonuses(),
         parentName: "Sanctum of the Stone Chorus",
     },
