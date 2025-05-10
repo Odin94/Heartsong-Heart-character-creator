@@ -1,14 +1,15 @@
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog"
 import { ScrollArea } from "@/components/ui/scroll-area"
 import { Textarea } from "@/components/ui/textarea"
-import { abilitiesByClassOrRecord, Ability, StaticBonuses } from "@/heartsong/game_data/abilities"
+import { abilitiesByClassOrRecord, Ability } from "@/heartsong/game_data/abilities"
 import { CharacterClass } from "@/heartsong/game_data/classes"
 import { iconByDomain } from "@/heartsong/game_data/domains"
+import { iconBySkill } from "@/heartsong/game_data/skills"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@radix-ui/react-tabs"
 import { useState } from "react"
 import { MdOutlineShield } from "react-icons/md"
-import { protectionMaximum, useAbilities, useCharacterClass, useProtections, useSkillsAndDomains } from "../character_states"
-import { iconBySkill } from "@/heartsong/game_data/skills"
+import { useAbilities, useCharacterClass } from "../character_states"
+import { useApplyStaticBonuses } from "../hooks/useApplyStaticBonuses"
 
 const Abilities = () => {
     const { abilities, setAbilities } = useAbilities()
@@ -35,26 +36,7 @@ const Abilities = () => {
 const AbilitiesDialog = ({ characterClass }: { characterClass: CharacterClass | string }) => {
     const [value, setValue] = useState("minor")
     const { abilities, setAbilities } = useAbilities()
-
-    const { hasAndKnacksBySkill, hasAndKnacksByDomain, setSkills, setDomains } = useSkillsAndDomains()
-    const { protections: zustandProtections, setProtections } = useProtections()
-
-    const applyStaticBonuses = ({ domains, skills, protections }: StaticBonuses) => {
-        for (const domain of domains) {
-            hasAndKnacksByDomain[domain].hasDomain = true
-        }
-        setDomains(hasAndKnacksByDomain)
-
-        for (const skill of skills) {
-            hasAndKnacksBySkill[skill].hasSkill = true
-        }
-        setSkills(hasAndKnacksBySkill)
-
-        for (const { resistance, amount } of protections) {
-            zustandProtections[resistance] = Math.min(zustandProtections[resistance] + amount, protectionMaximum)
-        }
-        setProtections(zustandProtections)
-    }
+    const applyStaticBonuses = useApplyStaticBonuses()
 
     const abilityOptions = abilitiesByClassOrRecord[characterClass.trim() as unknown as CharacterClass] ?? []
     const filteredAbilityOptions = abilityOptions

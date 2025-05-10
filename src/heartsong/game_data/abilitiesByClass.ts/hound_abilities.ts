@@ -104,7 +104,7 @@ export const houndAbilities: Ability[] = [
     // Forewarned and Forearmed
     {
         name: "Forewarned and Forearmed",
-        // TODOdin: Check if newlines are working, and maybe find a good way to have better text formatting. Maybe render markdown?
+        // TODOdin: Newlines are not working, and maybe find a good way to have better text formatting. Maybe render markdown?
         description:
             "Once per session, when you have an hour or two to spare in a landmark, you can make preparations for the coming challenges. Pick one of the benefits from the list below. You and all other characters who choose to take part in preparations gain this benefit until they next enter a landmark. \n• Whetstone and Weapon Drill: One piece of 'Kill' equipment gains the 'Brutal' tag.\n• Checked and Triple-Checked: One piece of Delve equipment gains the 'Trusty' tag.\n• Toughen Up: Gain +1 'Blood' protection. \n• One for the Road. Gain +1 'Mind' protection.\n• Creative Acquisitions: Gain +1 'Supplies' protection.",
         type: "major",

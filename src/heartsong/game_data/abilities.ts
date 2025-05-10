@@ -1,3 +1,4 @@
+import { noBonuses, protection, skill } from "./abilitiesByClass.ts/ability_utils"
 import { cleaverAbilities } from "./abilitiesByClass.ts/cleaver_abilities"
 import { deadwalkerAbilities } from "./abilitiesByClass.ts/deadwalker_abilities"
 import { deepApiaristAbilities } from "./abilitiesByClass.ts/deep_apiarist_abilities"
@@ -45,9 +46,47 @@ export const abilitiesByClassOrRecord: Record<CharacterClass | Calling, Ability[
     Witch: witchAbilities,
 
     // Callings
-    Adventure: [],
-    Enlightenment: [],
-    Forced: [],
-    Heartsong: [],
-    Penitent: [],
+    Adventure: [
+        {
+            name: "Legendary",
+            description: "When you gain a minor advance, refresh D6. When you gain a major advance, refresh D8",
+            type: "core",
+            staticBonuses: noBonuses(),
+        },
+    ],
+    Enlightenment: [
+        {
+            name: "Unorthodox Methods",
+            description:
+                "Gain 'Discern' skill. Once per session, before you roll dice to resolve an action, instead state that your result is a 6. You succeed but take stress.",
+            type: "core",
+            staticBonuses: skill("discern"),
+        },
+    ],
+    Forced: [
+        {
+            name: "Collateral",
+            description: "Once per session, allocate stress to the nearest friendly target (PC or NPC) instead of marking it yourself.",
+            type: "core",
+            staticBonuses: noBonuses(),
+        },
+    ],
+    Heartsong: [
+        {
+            name: "In the Blood",
+            description:
+                "Gain +1 'Echo' protection. Once per situation, when you take stress to any resistance other than 'Echo', allocate it to 'Echo'.",
+            type: "core",
+            staticBonuses: protection("echo", 1),
+        },
+    ],
+    Penitent: [
+        {
+            name: "Not Yet",
+            description:
+                "Once per session, activate this ability to avoid suffering negative effects from Blood or Mind fallout for the remainder of the situation.",
+            type: "core",
+            staticBonuses: noBonuses(),
+        },
+    ],
 }
