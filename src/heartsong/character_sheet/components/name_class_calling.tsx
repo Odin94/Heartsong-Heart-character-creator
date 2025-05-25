@@ -9,9 +9,11 @@ import {
 import { Input } from "@/components/ui/input"
 import { CharacterClass, characterClasses } from "@/heartsong/game_data/classes"
 import { useAbilities, useCalling, useCharacterClass, useName } from "../character_states"
-import { Calling, callings } from "@/heartsong/game_data/callings"
+import { Calling, callings, isCalling } from "@/heartsong/game_data/callings"
 import { abilitiesByClassOrRecord } from "@/heartsong/game_data/abilities"
 import { useApplyStaticBonuses } from "../hooks/useApplyStaticBonuses"
+import { Dialog, DialogClose, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog"
+import { Button } from "@/components/ui/button"
 
 const NameClassCalling = () => {
     const { name, setName } = useName()
@@ -47,13 +49,17 @@ const NameClassCalling = () => {
                 <CallingDropdown
                     onSelect={(calling: Calling) => {
                         setCalling(calling)
-
-                        // TODOdin: Popup asking confirmation before applying bonuses
-                        const callingAbility = abilitiesByClassOrRecord[calling][0]
-                        if (!abilities.includes(`${callingAbility.name} - `)) {
-                            setAbilities(`${callingAbility.name} - ${callingAbility.description}\n\n${abilities}`)
+                    }}
+                    onConfirm={() => {
+                        if (isCalling(calling)) {
+                            const callingAbility = abilitiesByClassOrRecord[calling as Calling][0]
+                            if (!abilities.includes(`${callingAbility.name} - `)) {
+                                setAbilities(`${callingAbility.name} - ${callingAbility.description}\n\n${abilities}`)
+                            }
+                            applyStaticBonuses(callingAbility.staticBonuses)
+                        } else {
+                            console.log(`Not a correct calling: '${calling}'`)
                         }
-                        applyStaticBonuses(callingAbility.staticBonuses)
                     }}
                 />
             </div>
@@ -79,21 +85,50 @@ const ClassDropdown = ({ onSelect }: { onSelect: (text: CharacterClass) => void 
     )
 }
 
-const CallingDropdown = ({ onSelect }: { onSelect: (text: Calling) => void }) => {
+const CallingDropdown = ({ onSelect, onConfirm }: { onSelect: (text: Calling) => void; onConfirm: () => void }) => {
+    const { calling } = useCalling()
+    console.log({ calling, isCalling: isCalling(calling) })
+    const callingAbility = isCalling(calling) ? abilitiesByClassOrRecord[calling][0] : null
+
     return (
-        <DropdownMenu>
-            <DropdownMenuTrigger className="hover:bg-accent">✨</DropdownMenuTrigger>
-            <DropdownMenuContent>
-                <DropdownMenuLabel>Calling</DropdownMenuLabel>
-                <DropdownMenuSeparator />
-                {callings.map((c) => (
-                    // TODOdin: apply ability and static bonuses
-                    <DropdownMenuItem onSelect={(_e) => onSelect(c)} key={c}>
-                        {c}
-                    </DropdownMenuItem>
-                ))}
-            </DropdownMenuContent>
-        </DropdownMenu>
+        <Dialog>
+            <DropdownMenu modal={false}>
+                <DropdownMenuTrigger className="hover:bg-accent">✨</DropdownMenuTrigger>
+                <DropdownMenuContent>
+                    <DropdownMenuLabel>Calling</DropdownMenuLabel>
+                    <DropdownMenuSeparator />
+                    {callings.map((c) => (
+                        <DialogTrigger asChild>
+                            <DropdownMenuItem onSelect={(_e) => onSelect(c)} key={c}>
+                                {c}
+                            </DropdownMenuItem>
+                        </DialogTrigger>
+                    ))}
+                </DropdownMenuContent>
+            </DropdownMenu>
+            <DialogContent>
+                <DialogHeader>
+                    <DialogTitle>Apply '{calling}' skills/domains/ability?</DialogTitle>
+                    <div>
+                        <p className="text-muted-foreground text-md my-2">
+                            '{callingAbility?.name}': {callingAbility?.description}
+                        </p>
+                        <div className="mt-2 flex justify-end">
+                            <DialogClose asChild>
+                                <Button type="button" variant="secondary" onClick={onConfirm}>
+                                    Cancel
+                                </Button>
+                            </DialogClose>
+                            <DialogClose asChild>
+                                <Button className="ml-3" type="button" onClick={onConfirm}>
+                                    Apply
+                                </Button>
+                            </DialogClose>
+                        </div>
+                    </div>
+                </DialogHeader>
+            </DialogContent>
+        </Dialog>
     )
 }
 
