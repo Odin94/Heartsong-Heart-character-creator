@@ -33,6 +33,21 @@ const Abilities = () => {
     )
 }
 
+const putAfterParentAbility = (fullAbilityText: string, parentNameWithDash: string, newAbilityText: string): string => {
+    const splitBySearchText = fullAbilityText.split(parentNameWithDash)
+    const textBeforeParentName = splitBySearchText[0]
+    if (splitBySearchText.length > 1) {
+        const splitByNewline = splitBySearchText[1].split("\n\n")
+        console.log({ splitBySearchText, splitByNewline })
+        const parentDescription = splitByNewline[0]
+        const textAfterParent = splitByNewline.slice(1).join("\n\n")
+
+        return `${textBeforeParentName}${parentNameWithDash}${parentDescription} \n  - ${newAbilityText}\n\n${textAfterParent}`
+    } else {
+        return `${fullAbilityText}\n\n${newAbilityText}`
+    }
+}
+
 const AbilitiesDialog = ({ characterClass }: { characterClass: CharacterClass | string }) => {
     const [abilityType, setAbilityType] = useState("minor")
     const { abilities, setAbilities } = useAbilities()
@@ -42,7 +57,10 @@ const AbilitiesDialog = ({ characterClass }: { characterClass: CharacterClass | 
     const abilityOptions = abilitiesByClassOrRecord[characterClass.trim() as unknown as CharacterClass] ?? []
     const filteredAbilityOptions =
         abilityType === "major"
-            ? abilityOptions.filter((ability) => ability.type === "major" || !!ability.parentName)
+            ? abilityOptions.filter(
+                  (ability) =>
+                      ability.type === "major" || (ability.type === "minor" && !!ability.parentName && !isAbilityPickedAlready(ability))
+              )
             : abilityOptions
                   .filter((ability) => ability.type === abilityType)
                   .filter((ability) => !ability.parentName)
@@ -82,7 +100,13 @@ const AbilitiesDialog = ({ characterClass }: { characterClass: CharacterClass | 
                         onClick={() => {
                             if (isAlreadyPickedMajor) return
 
-                            setAbilities(`${abilities}\n\n${ability.name} - ${ability.description}`)
+                            if (ability.parentName) {
+                                setAbilities(
+                                    putAfterParentAbility(abilities, `${ability.parentName} - `, `${ability.name} - ${ability.description}`)
+                                )
+                            } else {
+                                setAbilities(`${abilities}\n\n${ability.name} - ${ability.description}`)
+                            }
                             applyStaticBonuses(ability.staticBonuses)
                         }}
                     >
