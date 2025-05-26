@@ -38,10 +38,11 @@ const AbilitiesDialog = ({ characterClass }: { characterClass: CharacterClass | 
     const { abilities, setAbilities } = useAbilities()
     const applyStaticBonuses = useApplyStaticBonuses()
 
+    const isAbilityPickedAlready = (ability: Ability) => abilities.includes(`${ability.name} - `)
     const abilityOptions = abilitiesByClassOrRecord[characterClass.trim() as unknown as CharacterClass] ?? []
     const filteredAbilityOptions = abilityOptions
         .filter((ability) => ability.type === value)
-        .filter((ability) => !abilities.includes(`${ability.name} - `))
+        .filter((ability) => !isAbilityPickedAlready(ability) || ability.type === "major")
     const selectedClassName = "border-b-0"
 
     const getIcon = ({ staticBonuses, pickFrom }: Ability) => {
@@ -61,23 +62,35 @@ const AbilitiesDialog = ({ characterClass }: { characterClass: CharacterClass | 
 
     const renderAbilities = () => (
         <ScrollArea className="h-170" style={{ borderColor: "red" }}>
-            {filteredAbilityOptions.map((ability) => (
-                <div
-                    key={ability.name}
-                    className={`border-1 p-2 border-t-0 cursor-pointer hover:bg-accent ${ability.parentName ? "ml-6" : ""}`}
-                    onClick={() => {
-                        setAbilities(`${abilities}\n\n${ability.name} - ${ability.description}`)
-                        applyStaticBonuses(ability.staticBonuses)
-                    }}
-                >
-                    <h2 className="flex items-center">
-                        {getIcon(ability)}
-                        <span className="ml-2">{`${ability.name}`}</span>
-                    </h2>
+            {filteredAbilityOptions.map((ability) => {
+                const isAlreadyPickedMajor = ability.type === "major" && abilities.includes(`${ability.name} - `)
+                return (
+                    <div
+                        key={ability.name}
+                        className={`border-1 p-2 border-t-0 
+                            ${ability.parentName ? "ml-6" : ""} 
+                            ${
+                                isAlreadyPickedMajor
+                                    ? "border border-[#999999] bg-[#eee] text-[#888] hover:bg-[#eee]"
+                                    : " cursor-pointer  hover:bg-accent"
+                            }
+                        `}
+                        onClick={() => {
+                            if (isAlreadyPickedMajor) return
 
-                    <p className="text-muted-foreground text-sm">{ability.description}</p>
-                </div>
-            ))}
+                            setAbilities(`${abilities}\n\n${ability.name} - ${ability.description}`)
+                            applyStaticBonuses(ability.staticBonuses)
+                        }}
+                    >
+                        <h2 className="flex items-center">
+                            {getIcon(ability)}
+                            <span className="ml-2">{`${ability.name}`}</span>
+                        </h2>
+
+                        <p className="text-muted-foreground text-sm">{ability.description}</p>
+                    </div>
+                )
+            })}
         </ScrollArea>
     )
 
