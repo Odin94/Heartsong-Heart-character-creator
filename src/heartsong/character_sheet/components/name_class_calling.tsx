@@ -87,7 +87,6 @@ const ClassDropdown = ({ onSelect }: { onSelect: (text: CharacterClass) => void 
 
 const CallingDropdown = ({ onSelect, onConfirm }: { onSelect: (text: Calling) => void; onConfirm: () => void }) => {
     const { calling } = useCalling()
-    console.log({ calling, isCalling: isCalling(calling) })
     const callingAbility = isCalling(calling) ? abilitiesByClassOrRecord[calling][0] : null
 
     return (
@@ -115,7 +114,7 @@ const CallingDropdown = ({ onSelect, onConfirm }: { onSelect: (text: Calling) =>
                         </p>
                         <div className="mt-2 flex justify-end">
                             <DialogClose asChild>
-                                <Button type="button" variant="secondary" onClick={onConfirm}>
+                                <Button type="button" variant="secondary" onClick={() => {}}>
                                     Cancel
                                 </Button>
                             </DialogClose>

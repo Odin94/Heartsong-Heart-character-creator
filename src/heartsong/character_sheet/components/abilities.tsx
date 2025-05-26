@@ -38,7 +38,6 @@ const putAfterParentAbility = (fullAbilityText: string, parentNameWithDash: stri
     const textBeforeParentName = splitBySearchText[0]
     if (splitBySearchText.length > 1) {
         const splitByNewline = splitBySearchText[1].split("\n\n")
-        console.log({ splitBySearchText, splitByNewline })
         const parentDescription = splitByNewline[0]
         const textAfterParent = splitByNewline.slice(1).join("\n\n")
 
