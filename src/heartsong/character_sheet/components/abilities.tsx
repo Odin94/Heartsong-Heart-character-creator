@@ -47,7 +47,7 @@ const AbilitiesDialog = ({ characterClass }: { characterClass: CharacterClass | 
     const getIcon = ({ staticBonuses, pickFrom }: Ability) => {
         if (pickFrom?.domains) return "🗺️ "
         if (pickFrom?.skills) return "💪 "
-        if (pickFrom?.skills) return "🛡️ "
+        if (pickFrom?.protections) return "🛡️ "
 
         if (staticBonuses.protections.length > 0) return <MdOutlineShield />
 
