@@ -90,7 +90,7 @@ export const incarnadineAbilities: Ability[] = [
     {
         name: "Dead Eye",
         description: "The benefit also applies to ranged weapons.",
-        type: "major",
+        type: "minor",
         staticBonuses: noBonuses(),
         parentName: "Backstab",
     },
@@ -98,7 +98,7 @@ export const incarnadineAbilities: Ability[] = [
         name: "Never Saw it Coming",
         description:
             "Mark D4 stress to 'Mind' to activate this for your next 'Backstab' against a living person. You attack dice increase in size by two steps.",
-        type: "major",
+        type: "minor",
         staticBonuses: noBonuses(),
         parentName: "Backstab",
     },
@@ -106,7 +106,7 @@ export const incarnadineAbilities: Ability[] = [
         name: "Remuneration",
         description:
             "When you reduce a target to 0 resistance with 'Backstab', remove stress from 'Supplies' equal to double the value of your current tier.",
-        type: "major",
+        type: "minor",
         staticBonuses: noBonuses(),
         parentName: "Backstab",
     },
@@ -121,7 +121,7 @@ export const incarnadineAbilities: Ability[] = [
     {
         name: "Invest",
         description: "You can use 'Broker' on yourself.",
-        type: "major",
+        type: "minor",
         staticBonuses: noBonuses(),
         parentName: "Broker",
     },
@@ -129,7 +129,7 @@ export const incarnadineAbilities: Ability[] = [
         name: "Transferral",
         description:
             "Roll 'Mend' + 'Haven' to cast this spell. On a success, move a Minor fallout from any willing target other than yourself to any other willing target. Both targets must be within arm's reach of one another, and the receiving party must be able to bear the fallout (i.e. a creature with no legs can't receive 'Limping')",
-        type: "major",
+        type: "minor",
         staticBonuses: noBonuses(),
         parentName: "Broker",
     },
@@ -137,7 +137,7 @@ export const incarnadineAbilities: Ability[] = [
         name: "Inflict",
         description:
             "When you cast 'Transferral', the target receiving the fallout does not have to be willing to receive it. Casting the spell in this way uses the target's difficulty instead of standard difficulty.",
-        type: "major",
+        type: "minor",
         staticBonuses: noBonuses(),
         parentName: "Broker",
     },
@@ -153,7 +153,7 @@ export const incarnadineAbilities: Ability[] = [
         name: "Addict",
         description:
             "Extend the duration of 'Crave' until the end of the session. If they don't get what they want, they either descend into violence to get it or lose their mind (GM's choice).",
-        type: "major",
+        type: "minor",
         staticBonuses: noBonuses(),
         parentName: "Crave",
     },
@@ -161,7 +161,7 @@ export const incarnadineAbilities: Ability[] = [
         name: "Viral",
         description:
             "A target of 'Crave' has a 1 in 6 chance to spread the desire to anyone they talk to for over 1 Minute (you are immune).",
-        type: "major",
+        type: "minor",
         staticBonuses: noBonuses(),
         parentName: "Crave",
     },
@@ -169,7 +169,7 @@ export const incarnadineAbilities: Ability[] = [
         name: "Conditioning",
         description:
             "You may take D6 'Mind' stress to scar the target of your 'Crave' with the desire. The first time they see you each session, treat them as if you had just cast 'Crave' on them with the same desire.",
-        type: "major",
+        type: "minor",
         staticBonuses: noBonuses(),
         parentName: "Crave",
     },
@@ -184,7 +184,7 @@ export const incarnadineAbilities: Ability[] = [
     {
         name: "Buy Off",
         description: "Once per situation, while wearing 'Debtor's Reds', and incur stress, mark the stress to 'Supplies' instead.",
-        type: "major",
+        type: "minor",
         staticBonuses: noBonuses(),
         parentName: "Debtor's Reds",
     },
@@ -192,7 +192,7 @@ export const incarnadineAbilities: Ability[] = [
         name: "Cycle of Debt",
         description:
             "Roll 'Kill' + 'Religion' to cast this spell. Target an adversary who has been marked by 'Debtor's Reds' and make them take stress equal to your 'Supplies' stress.",
-        type: "major",
+        type: "minor",
         staticBonuses: noBonuses(),
         parentName: "Debtor's Reds",
     },
@@ -200,7 +200,7 @@ export const incarnadineAbilities: Ability[] = [
         name: "Assume Debt",
         description:
             "While wearing 'Debtor's Reds', any time you mark 'Supplies' stress, you may choose to ignore your 'Supplies' protection. If you do so, you may immediately cause someone in arms reach to take the same amount of stress you've just taken.",
-        type: "major",
+        type: "minor",
         staticBonuses: noBonuses(),
         parentName: "Debtor's Reds",
     },
@@ -216,7 +216,7 @@ export const incarnadineAbilities: Ability[] = [
         name: "Connection",
         description:
             "When you cast 'Karmic Ledger', you can see who the debt is owed to via an ephemeral red string connecting the two parties.",
-        type: "major",
+        type: "minor",
         staticBonuses: noBonuses(),
         parentName: "Karmic Ledger",
     },
@@ -224,7 +224,7 @@ export const incarnadineAbilities: Ability[] = [
         name: "Harvest",
         description:
             "When you cast 'Karmic Ledger', you can ask the GM to rate the value of their debt from D4 to D12. When you murder the target and give their debt to Incarne, remove stress equal to the dice size of their debt.",
-        type: "major",
+        type: "minor",
         staticBonuses: noBonuses(),
         parentName: "Karmic Ledger",
     },
@@ -232,7 +232,7 @@ export const incarnadineAbilities: Ability[] = [
         name: "Candidate",
         description:
             "Once per session, when you spend a few minutes communing with Incarne, they show you a vision of a person with outstanding karmic debt in your area.",
-        type: "major",
+        type: "minor",
         staticBonuses: noBonuses(),
         parentName: "Karmic Ledger",
     },
@@ -248,7 +248,7 @@ export const incarnadineAbilities: Ability[] = [
         name: "Proliferation",
         description:
             "Whilst at a haven that's in your trade network, you and your party may use haunts located in havens that you are not currently visiting. When you use a haunt in this way, halve the value rolled on the dice when determining how much stress to remove from your resistances. If you use such a haunt to remove fallout, increase the cost by 1 step",
-        type: "major",
+        type: "minor",
         staticBonuses: noBonuses(),
         parentName: "Network",
     },
@@ -256,7 +256,7 @@ export const incarnadineAbilities: Ability[] = [
         name: "Pathways",
         description:
             "When you and your allies attempt to establish a Connection between landmarks and at least one of them is part of your trade network, roll with mastery.",
-        type: "major",
+        type: "minor",
         staticBonuses: noBonuses(),
         parentName: "Network",
     },
@@ -264,7 +264,7 @@ export const incarnadineAbilities: Ability[] = [
         name: "Money Talks",
         description:
             "Whilst at a shrine to Incarne, you can communicate with bonds or haunts in any haven that's part of your trade network.",
-        type: "major",
+        type: "minor",
         staticBonuses: noBonuses(),
         parentName: "Network",
     },

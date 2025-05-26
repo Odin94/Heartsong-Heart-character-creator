@@ -85,14 +85,14 @@ export const cleaverAbilities: Ability[] = [
         name: "Pack Hunter",
         description:
             "If you mark stress to 'Blood' to activate the 'Bloodbound' tag, roll with 'Mastery' on the 'Delve' and 'Hunt' skills for the situation.",
-        type: "major",
+        type: "minor",
         staticBonuses: noBonuses(),
         parentName: "Bloodbound Beast",
     },
     {
         name: "Pounce",
         description: "Once per situation, your companion pounces an adversary you can see for D6 stress.",
-        type: "major",
+        type: "minor",
         staticBonuses: noBonuses(),
         parentName: "Bloodbound Beast",
     },
@@ -100,7 +100,7 @@ export const cleaverAbilities: Ability[] = [
         name: "Faithful until the End",
         description:
             "If you die, get dragged to safety by your companion. Your companion dies; replace it with a new major ability. You can never take 'Bloodbound Beast' again.",
-        type: "major",
+        type: "minor",
         staticBonuses: noBonuses(),
         parentName: "Bloodbound Beast",
     },
@@ -115,7 +115,7 @@ export const cleaverAbilities: Ability[] = [
         name: "Blighted",
         description:
             "When you activate 'Chimeric Strain', increase 'Echo' stress inflicted by 1 step and gain +2 'Blood' protection for one situation.",
-        type: "major",
+        type: "minor",
         staticBonuses: noBonuses(),
         parentName: "Chimeric Strain",
     },
@@ -123,7 +123,7 @@ export const cleaverAbilities: Ability[] = [
         name: "Horned",
         description:
             "When you activate 'Chimeric Strain', increase 'Echo' stress inflicted by 1 step and increase your melee damage by 1 step for one situation.",
-        type: "major",
+        type: "minor",
         staticBonuses: noBonuses(),
         parentName: "Chimeric Strain",
     },
@@ -131,7 +131,7 @@ export const cleaverAbilities: Ability[] = [
         name: "Bezerk",
         description:
             "When you activate 'Chimeric Strain', increase 'Echo' stress inflicted by 1 step and ignore effects of 'Blood' fallout for one situation.",
-        type: "major",
+        type: "minor",
         staticBonuses: noBonuses(),
         parentName: "Chimeric Strain",
     },
@@ -145,7 +145,7 @@ export const cleaverAbilities: Ability[] = [
     {
         name: "Harpoon",
         description: "Once per situation, you can attach yourself to an adversary you hit with 'Extinction Bow' with a rope or chain.",
-        type: "major",
+        type: "minor",
         staticBonuses: noBonuses(),
         parentName: "Extinction Bow",
     },
@@ -153,14 +153,14 @@ export const cleaverAbilities: Ability[] = [
         name: "Hunter's Eye",
         description:
             "Once per situation, point out a helpful element of the landscape. The first time an ally interacts with it they roll with 'Mastery'.",
-        type: "major",
+        type: "minor",
         staticBonuses: noBonuses(),
         parentName: "Extinction Bow",
     },
     {
         name: "Nighmare Arrow",
         description: "Gain a weapon with 'Kill' D8, 'Spread', 'Ranged', 'One-Shot'.",
-        type: "major",
+        type: "minor",
         staticBonuses: noBonuses(),
         parentName: "Extinction Bow",
     },
@@ -175,7 +175,7 @@ export const cleaverAbilities: Ability[] = [
         name: "Rejuvenation",
         description:
             "Once per session when using 'Monstrous Appetite' on a resource of value D8 or higher, remove a minor 'Blood' or 'Echo' fallout.",
-        type: "major",
+        type: "minor",
         staticBonuses: noBonuses(),
         parentName: "Monstrous Apetite",
     },
@@ -183,7 +183,7 @@ export const cleaverAbilities: Ability[] = [
         name: "Tainted Meat",
         description:
             "Once per session when using 'Monstrous Appetite' on a 'Cursed' resource of value D8 or higher, add 1 to the minimum protection provided by 'Heartsblood' for one situation instead of removing stress.",
-        type: "major",
+        type: "minor",
         staticBonuses: noBonuses(),
         parentName: "Monstrous Apetite",
     },
@@ -191,7 +191,7 @@ export const cleaverAbilities: Ability[] = [
         name: "Horrendous Bite",
         description:
             "Once per situation, when you inflict stress with an unarmed attack, you can lower their difficulty by one step to a minimum of Standard for this situation.",
-        type: "major",
+        type: "minor",
         staticBonuses: noBonuses(),
         parentName: "Monstrous Apetite",
     },
@@ -206,7 +206,7 @@ export const cleaverAbilities: Ability[] = [
     {
         name: "Echoes of the City Beneath",
         description: "When you use 'The Wild Hunt', instead of 'Hunt' you may grant the 'Delve' skill.",
-        type: "major",
+        type: "minor",
         staticBonuses: noBonuses(),
         parentName: "The Wild Hunt",
     },
@@ -214,7 +214,7 @@ export const cleaverAbilities: Ability[] = [
         name: "Storyteller",
         description:
             "Once per session, when tracking a beast, you can declare it a renowned beast. Tell the party what makes it dangerous. Increase the beast's protection by 1, it's damage by 1 step and resources gathered from it by 2 steps.",
-        type: "major",
+        type: "minor",
         staticBonuses: noBonuses(),
         parentName: "The Wild Hunt",
     },
@@ -222,7 +222,7 @@ export const cleaverAbilities: Ability[] = [
         name: "Bounty Shared",
         description:
             "When you complete a delve, hunt or kill a renowned beast, everyone who took part in 'The Wild Hunt' may remove D6 stress from 'Fortune' or 'Supplies'.",
-        type: "major",
+        type: "minor",
         staticBonuses: noBonuses(),
         parentName: "The Wild Hunt",
     },

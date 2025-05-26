@@ -80,7 +80,7 @@ export const hereticAbilities: Ability[] = [
     {
         name: "Martyr's Blood",
         description: "Once per session, when a nearby ally takes major 'Blood' fallout, you both take minor 'Blood' fallout instead.",
-        type: "major",
+        type: "minor",
         staticBonuses: noBonuses(),
         parentName: "Oath of Community",
     },
@@ -88,7 +88,7 @@ export const hereticAbilities: Ability[] = [
         name: "Miraculous Intervention",
         description:
             "Once per situation, when you would mark stress to 'Blood' but before the GM rolls to determine how much, activate this power. The attack only inflicts D4 stress.",
-        type: "major",
+        type: "minor",
         staticBonuses: noBonuses(),
         parentName: "Oath of Community",
     },
@@ -96,7 +96,7 @@ export const hereticAbilities: Ability[] = [
         name: "Cast Asunder",
         description:
             "Once per situation, when an adversary inflicts 'Blood' fallout on you, reduce that adversary's stress dice by 1 step.",
-        type: "major",
+        type: "minor",
         staticBonuses: noBonuses(),
         parentName: "Oath of Community",
     },
@@ -112,7 +112,7 @@ export const hereticAbilities: Ability[] = [
         name: "Avatar of Flame",
         description:
             "When you use 'Oath of Fury', you can replace the benefits with +2 'Blood' protection and gaining 'Debilitating' on your attacks.",
-        type: "major",
+        type: "minor",
         staticBonuses: noBonuses(),
         parentName: "Oath of Fury",
     },
@@ -120,7 +120,7 @@ export const hereticAbilities: Ability[] = [
         name: "Avatar of Moonlight",
         description:
             "When you use 'Oath of Fury', you can replace the benefits with +2 'Echo' protection. Your 'Mend' skill can remove an ally's minor 'Blood' or 'Mind' fallout instead of reducing stress on a successful roll. If you have not removed both 'Blood' and 'Mind' fallout at the end of the session, mark D6 stress to 'Mind'.",
-        type: "major",
+        type: "minor",
         staticBonuses: noBonuses(),
         parentName: "Oath of Fury",
     },
@@ -128,7 +128,7 @@ export const hereticAbilities: Ability[] = [
         name: "Avatar of Shadows",
         description:
             "When you use 'Oath of Fury', you can replace the benefits with +2 'Fortune' protection and all your attacks gain 'Extreme Range'.",
-        type: "major",
+        type: "minor",
         staticBonuses: noBonuses(),
         parentName: "Oath of Fury",
     },
@@ -143,21 +143,21 @@ export const hereticAbilities: Ability[] = [
     {
         name: "Fragment of Lekole",
         description: "The weapon gains 'Brutal'.",
-        type: "major",
+        type: "minor",
         staticBonuses: noBonuses(),
         parentName: "Oath of Sagacity",
     },
     {
         name: "Fragment of Lombre",
         description: "The weapon gains 'Smoke', creates no noise and dampens nearby noise.",
-        type: "major",
+        type: "minor",
         staticBonuses: noBonuses(),
         parentName: "Oath of Sagacity",
     },
     {
         name: "Fragment of Limye",
         description: "When you use 'Oath of Sagacity', you and nearby allies remove D4 stress from 'Blood'.",
-        type: "major",
+        type: "minor",
         staticBonuses: noBonuses(),
         parentName: "Oath of Sagacity",
     },
@@ -172,7 +172,7 @@ export const hereticAbilities: Ability[] = [
     {
         name: "Implacable faith",
         description: "When you take stress due to attempting a Risky or Dangerous action, the stress dice is reduced by 1 step.",
-        type: "major",
+        type: "minor",
         staticBonuses: noBonuses(),
         parentName: "Oath of Tenacity",
     },
@@ -180,14 +180,14 @@ export const hereticAbilities: Ability[] = [
         name: "Glorious Resurgence",
         description:
             "Once per session, when you succeed at a 'Risky' or 'Dangerous' action, clear all stress marked against your resistances.",
-        type: "major",
+        type: "minor",
         staticBonuses: noBonuses(),
         parentName: "Oath of Tenacity",
     },
     {
         name: "Abide with Me",
         description: "Once per situation, you may grant the benefits of 'Oath of Tenacity' to a nearby ally.",
-        type: "major",
+        type: "minor",
         staticBonuses: noBonuses(),
         parentName: "Oath of Tenacity",
     },
@@ -202,7 +202,7 @@ export const hereticAbilities: Ability[] = [
     {
         name: "Hunter",
         description: "When an ally acts on information from this ability, they roll with 'Mastery' on their first attack.",
-        type: "major",
+        type: "minor",
         staticBonuses: noBonuses(),
         parentName: "Rite of Vigilance",
     },
@@ -210,14 +210,14 @@ export const hereticAbilities: Ability[] = [
         name: "Heart's Sight",
         description:
             "When an ally acts on information from this ability, they roll with 'Mastery' on attempts to socialise with the target.",
-        type: "major",
+        type: "minor",
         staticBonuses: noBonuses(),
         parentName: "Rite of Vigilance",
     },
     {
         name: "Blessing",
         description: "When this ability is active, you can touch an ally and confer the benefits of soul-sight to them as well.",
-        type: "major",
+        type: "minor",
         staticBonuses: noBonuses(),
         parentName: "Rite of Vigilance",
     },

@@ -34,15 +34,19 @@ const Abilities = () => {
 }
 
 const AbilitiesDialog = ({ characterClass }: { characterClass: CharacterClass | string }) => {
-    const [value, setValue] = useState("minor")
+    const [abilityType, setAbilityType] = useState("minor")
     const { abilities, setAbilities } = useAbilities()
     const applyStaticBonuses = useApplyStaticBonuses()
 
     const isAbilityPickedAlready = (ability: Ability) => abilities.includes(`${ability.name} - `)
     const abilityOptions = abilitiesByClassOrRecord[characterClass.trim() as unknown as CharacterClass] ?? []
-    const filteredAbilityOptions = abilityOptions
-        .filter((ability) => ability.type === value)
-        .filter((ability) => !isAbilityPickedAlready(ability) || ability.type === "major")
+    const filteredAbilityOptions =
+        abilityType === "major"
+            ? abilityOptions.filter((ability) => ability.type === "major" || !!ability.parentName)
+            : abilityOptions
+                  .filter((ability) => ability.type === abilityType)
+                  .filter((ability) => !ability.parentName)
+                  .filter((ability) => !isAbilityPickedAlready(ability))
     const selectedClassName = "border-b-0"
 
     const getIcon = ({ staticBonuses, pickFrom }: Ability) => {
@@ -72,7 +76,7 @@ const AbilitiesDialog = ({ characterClass }: { characterClass: CharacterClass | 
                             ${
                                 isAlreadyPickedMajor
                                     ? "border border-[#999999] bg-[#eee] text-[#888] hover:bg-[#eee]"
-                                    : " cursor-pointer  hover:bg-accent"
+                                    : "cursor-pointer hover:bg-accent"
                             }
                         `}
                         onClick={() => {
@@ -101,15 +105,15 @@ const AbilitiesDialog = ({ characterClass }: { characterClass: CharacterClass | 
                 {abilityOptions.length === 0 ? (
                     <p>Pick a pre-defined class to select abilities</p>
                 ) : (
-                    <Tabs defaultValue="minor" className="w-[300px] sm:w-[400px] p-2" value={value} onValueChange={setValue}>
+                    <Tabs defaultValue="minor" className="w-[300px] sm:w-[400px] p-2" value={abilityType} onValueChange={setAbilityType}>
                         <TabsList className="grid w-full grid-cols-3">
-                            <TabsTrigger value="minor" className={`border-1 ${value === "minor" ? selectedClassName : ""}`}>
+                            <TabsTrigger value="minor" className={`border-1 ${abilityType === "minor" ? selectedClassName : ""}`}>
                                 Minor
                             </TabsTrigger>
-                            <TabsTrigger value="major" className={`border-1 ${value === "major" ? selectedClassName : ""}`}>
+                            <TabsTrigger value="major" className={`border-1 ${abilityType === "major" ? selectedClassName : ""}`}>
                                 Major
                             </TabsTrigger>
-                            <TabsTrigger value="zenith" className={`border-1 ${value === "zenith" ? selectedClassName : ""}`}>
+                            <TabsTrigger value="zenith" className={`border-1 ${abilityType === "zenith" ? selectedClassName : ""}`}>
                                 Zenith
                             </TabsTrigger>
                         </TabsList>
