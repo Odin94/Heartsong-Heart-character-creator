@@ -25,6 +25,10 @@ export type CoreTraits = {
     abilities: Ability[]
 }
 
+export const isCharacterClass = (key: string): key is CharacterClass => {
+    return characterClasses.includes(key as CharacterClass)
+}
+
 export const coreTraitsByCharacter: Record<CharacterClass, CoreTraits> = {
     Cleaver: {
         skill: "hunt",

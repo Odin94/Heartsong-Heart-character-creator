@@ -7,21 +7,58 @@ import {
     DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
 import { Input } from "@/components/ui/input"
-import { CharacterClass, characterClasses } from "@/heartsong/game_data/classes"
-import { useAbilities, useCalling, useCharacterClass, useName } from "../character_states"
+import { CharacterClass, characterClasses, coreTraitsByCharacter, isCharacterClass } from "@/heartsong/game_data/classes"
+import { useAbilities, useCalling, useCharacterClass, useEquipment, useName, useResources, useSkillsAndDomains } from "../character_states"
 import { Calling, callings, isCalling } from "@/heartsong/game_data/callings"
 import { abilitiesByClassOrRecord } from "@/heartsong/game_data/abilities"
 import { useApplyStaticBonuses } from "../hooks/useApplyStaticBonuses"
 import { Dialog, DialogClose, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog"
 import { Button } from "@/components/ui/button"
+import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
+import { Label } from "@/components/ui/label"
+import { useState } from "react"
 
 const NameClassCalling = () => {
     const { name, setName } = useName()
-    // TODOdin: When selecting a class, ask for confirmation and then apply CORE TRAITS & ABILITIES
     const { characterClass, setCharacterClass } = useCharacterClass()
     const { abilities, setAbilities } = useAbilities()
     const { calling, setCalling } = useCalling()
+    const { skills: existingSkills, setSkills, domains: existingDomains, setDomains } = useSkillsAndDomains()
+    const { resources, setResources } = useResources()
+    const { equipment, setEquipment } = useEquipment()
     const applyStaticBonuses = useApplyStaticBonuses()
+
+    const applyCoreTraits = ({ pickedEquipment }: { pickedEquipment: string }) => {
+        if (isCharacterClass(characterClass)) {
+            const coreTraits = coreTraitsByCharacter[characterClass]
+
+            let newAbilities = abilities
+            for (const coreAbility of [...coreTraits.abilities].reverse()) {
+                if (!abilities.includes(`${coreAbility.name} - `)) {
+                    newAbilities = `${coreAbility.name} - ${coreAbility.description}\n\n${newAbilities}`
+                }
+                applyStaticBonuses(coreAbility.staticBonuses)
+            }
+            setAbilities(newAbilities)
+
+            let newEquipment = equipment
+            for (const coreEquipment of [pickedEquipment, coreTraits.equipment]) {
+                if (!equipment.includes(coreEquipment)) {
+                    newEquipment = `${coreEquipment}\n\n${newEquipment}`
+                }
+            }
+            setEquipment(newEquipment)
+
+            existingSkills[coreTraits.skill].hasSkill = true
+            setSkills(existingSkills)
+            existingDomains[coreTraits.domain].hasDomain = true
+            setDomains(existingDomains)
+
+            setResources(`${coreTraits.resource}\n\n${resources}`)
+        } else {
+            console.log(`Not a correct character class: '${characterClass}'`)
+        }
+    }
 
     return (
         <div className="grid grid-cols-[1fr_6fr] gap-1 grid-rows-3 size-full">
@@ -39,6 +76,7 @@ const NameClassCalling = () => {
                     onSelect={(characterClass: CharacterClass) => {
                         setCharacterClass(characterClass)
                     }}
+                    onConfirm={applyCoreTraits}
                 />
             </div>
 
@@ -51,8 +89,9 @@ const NameClassCalling = () => {
                         setCalling(calling)
                     }}
                     onConfirm={() => {
+                        // TODOdin: Deal with people putting their race in this field somehow
                         if (isCalling(calling)) {
-                            const callingAbility = abilitiesByClassOrRecord[calling as Calling][0]
+                            const callingAbility = abilitiesByClassOrRecord[calling][0]
                             if (!abilities.includes(`${callingAbility.name} - `)) {
                                 setAbilities(`${callingAbility.name} - ${callingAbility.description}\n\n${abilities}`)
                             }
@@ -67,21 +106,87 @@ const NameClassCalling = () => {
     )
 }
 
-const ClassDropdown = ({ onSelect }: { onSelect: (text: CharacterClass) => void }) => {
+const ClassDropdown = ({
+    onSelect,
+    onConfirm,
+}: {
+    onSelect: (text: CharacterClass) => void
+    onConfirm: (selection: { pickedEquipment: string }) => void
+}) => {
+    const { characterClass } = useCharacterClass()
+    const coreTraits = isCharacterClass(characterClass) ? coreTraitsByCharacter[characterClass] : null
+    const [pickedEquipmentIndex, setPickedEquipmentIndex] = useState("0")
+
     return (
-        <DropdownMenu>
-            <DropdownMenuTrigger className="hover:bg-accent">✨</DropdownMenuTrigger>
-            <DropdownMenuContent>
-                {/* TODOdin: Add icons for what classes are good at? Eg. sword for fighting, shovel for delving..? */}
-                <DropdownMenuLabel>Class</DropdownMenuLabel>
-                <DropdownMenuSeparator />
-                {characterClasses.map((c) => (
-                    <DropdownMenuItem onSelect={(_e) => onSelect(c)} key={c}>
-                        {c}
-                    </DropdownMenuItem>
-                ))}
-            </DropdownMenuContent>
-        </DropdownMenu>
+        <Dialog>
+            <DropdownMenu modal={false}>
+                <DropdownMenuTrigger className="hover:bg-accent">✨</DropdownMenuTrigger>
+                <DropdownMenuContent>
+                    <DropdownMenuLabel>Class</DropdownMenuLabel>
+                    <DropdownMenuSeparator />
+                    {characterClasses.map((c) => (
+                        <DialogTrigger asChild>
+                            <DropdownMenuItem onSelect={(_e) => onSelect(c)} key={c}>
+                                {c}
+                            </DropdownMenuItem>
+                        </DialogTrigger>
+                    ))}
+                </DropdownMenuContent>
+            </DropdownMenu>
+            <DialogContent>
+                <DialogHeader>
+                    <DialogTitle>Apply {characterClass.toUpperCase()} core traits?</DialogTitle>
+                    {!!coreTraits ? (
+                        // TODOdin: Make this Dialog pretty
+                        <div>
+                            <p className="text-muted-foreground text-md my-2">Skill: {coreTraits.skill.toUpperCase()}</p>
+                            <p className="text-muted-foreground text-md my-2">Domain: {coreTraits.domain.toUpperCase()}</p>
+                            <p className="text-muted-foreground text-md my-2">Resource: {coreTraits.resource}</p>
+
+                            <p className="text-muted-foreground text-md my-2">
+                                Abilities: {coreTraits.abilities.map((ability) => `'${ability.name}'`).join(", ")}
+                            </p>
+
+                            <p>Equipment:</p>
+                            {!!coreTraits.equipment ? (
+                                <>
+                                    <p>{coreTraits.equipment}</p>
+                                    <p>AND</p>
+                                </>
+                            ) : null}
+                            <RadioGroup value={pickedEquipmentIndex} onValueChange={setPickedEquipmentIndex}>
+                                {coreTraits.pickEquipment.map((pickEquipment, i) => (
+                                    <div className="flex items-center space-x-2">
+                                        <RadioGroupItem value={`${i}`} id={`${i}`} />
+                                        <Label htmlFor={`${i}`}>{pickEquipment}</Label>
+                                    </div>
+                                ))}
+                            </RadioGroup>
+
+                            <div className="mt-2 flex justify-end">
+                                <DialogClose asChild>
+                                    <Button type="button" variant="secondary" onClick={() => {}}>
+                                        Cancel
+                                    </Button>
+                                </DialogClose>
+                                <DialogClose asChild>
+                                    <Button
+                                        className="ml-3"
+                                        type="button"
+                                        onClick={() => {
+                                            onConfirm({ pickedEquipment: coreTraits.pickEquipment[Number(pickedEquipmentIndex)] })
+                                            setPickedEquipmentIndex("1")
+                                        }}
+                                    >
+                                        Apply
+                                    </Button>
+                                </DialogClose>
+                            </div>
+                        </div>
+                    ) : null}
+                </DialogHeader>
+            </DialogContent>
+        </Dialog>
     )
 }
 
@@ -107,7 +212,7 @@ const CallingDropdown = ({ onSelect, onConfirm }: { onSelect: (text: Calling) =>
             </DropdownMenu>
             <DialogContent>
                 <DialogHeader>
-                    <DialogTitle>Apply '{calling}' skills/domains/ability?</DialogTitle>
+                    <DialogTitle>Apply {calling.toUpperCase()} stats?</DialogTitle>
                     <div>
                         <p className="text-muted-foreground text-md my-2">
                             '{callingAbility?.name}': {callingAbility?.description}

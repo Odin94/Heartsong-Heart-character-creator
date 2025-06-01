@@ -2,19 +2,19 @@ import { StaticBonuses } from "@/heartsong/game_data/abilities"
 import { protectionMaximum, useProtections, useSkillsAndDomains } from "../character_states"
 
 export const useApplyStaticBonuses = () => {
-    const { skills: hasAndKnacksBySkill, domains: hasAndKnacksByDomain, setSkills, setDomains } = useSkillsAndDomains()
+    const { skills: existingSkills, domains: existingDomains, setSkills, setDomains } = useSkillsAndDomains()
     const { protections: zustandProtections, setProtections } = useProtections()
 
     const applyStaticBonuses = ({ domains, skills, protections }: StaticBonuses) => {
         for (const domain of domains) {
-            hasAndKnacksByDomain[domain].hasDomain = true
+            existingDomains[domain].hasDomain = true
         }
-        setDomains(hasAndKnacksByDomain)
+        setDomains(existingDomains)
 
         for (const skill of skills) {
-            hasAndKnacksBySkill[skill].hasSkill = true
+            existingSkills[skill].hasSkill = true
         }
-        setSkills(hasAndKnacksBySkill)
+        setSkills(existingSkills)
 
         for (const { resistance, amount } of protections) {
             zustandProtections[resistance] = Math.min(zustandProtections[resistance] + amount, protectionMaximum)

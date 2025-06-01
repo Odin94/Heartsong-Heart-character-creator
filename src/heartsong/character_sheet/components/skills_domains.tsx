@@ -6,8 +6,7 @@ import { Fragment } from "react/jsx-runtime"
 import { useSkillsAndDomains, ZustandDomain, ZustandSkill } from "../character_states"
 
 const SkillsDomains = () => {
-    // TODOdin: Fix the naming on the hasAnd.. things
-    const { skills: hasAndKnacksBySkill, domains: hasAndKnacksByDomain, setSkills, setDomains } = useSkillsAndDomains()
+    const { skills: existingSkills, domains: existingDomains, setSkills, setDomains } = useSkillsAndDomains()
 
     const rowCount = Math.max(skills.length, domains.length)
 
@@ -23,10 +22,10 @@ const SkillsDomains = () => {
             <div className={`text-black grid grid-cols-4 gap-1 gap-y-0 grid-rows-${rowCount} size-full`}>
                 {Array.from({ length: rowCount }).map((_, i) => {
                     const skill = skills[i]
-                    const { hasSkill, knacks: skillKnacks } = hasAndKnacksBySkill[skill] ?? { hasSkill: false, knacks: [] }
+                    const { hasSkill, knacks: skillKnacks } = existingSkills[skill] ?? { hasSkill: false, knacks: [] }
 
                     const domain = domains[i]
-                    const { hasDomain, knacks: domainKnacks } = hasAndKnacksByDomain[domain] ?? { hasDomain: false, knacks: [] }
+                    const { hasDomain, knacks: domainKnacks } = existingDomains[domain] ?? { hasDomain: false, knacks: [] }
 
                     const colClass = "flex items-center h-8"
 
@@ -40,7 +39,7 @@ const SkillsDomains = () => {
                                             checked={hasSkill}
                                             onCheckedChange={(checked) => {
                                                 setSkills({
-                                                    ...hasAndKnacksBySkill,
+                                                    ...existingSkills,
                                                     [skill]: { hasSkill: checked, knacks: skillKnacks } as ZustandSkill,
                                                 })
                                             }}
@@ -55,7 +54,7 @@ const SkillsDomains = () => {
                                             onChange={(e) => {
                                                 const newKnacks = e.target.value
                                                 setSkills({
-                                                    ...hasAndKnacksBySkill,
+                                                    ...existingSkills,
                                                     [skill]: { hasSkill, knacks: newKnacks } as ZustandSkill,
                                                 })
                                             }}
@@ -74,7 +73,7 @@ const SkillsDomains = () => {
                                             checked={hasDomain}
                                             onCheckedChange={(checked) => {
                                                 setDomains({
-                                                    ...hasAndKnacksByDomain,
+                                                    ...existingDomains,
                                                     [domain]: { hasDomain: checked, knacks: domainKnacks } as ZustandDomain,
                                                 })
                                             }}
@@ -89,7 +88,7 @@ const SkillsDomains = () => {
                                             onChange={(e) => {
                                                 const newKnacks = e.target.value
                                                 setDomains({
-                                                    ...hasAndKnacksByDomain,
+                                                    ...existingDomains,
                                                     [domain]: { hasDomain, knacks: newKnacks } as ZustandDomain,
                                                 })
                                             }}

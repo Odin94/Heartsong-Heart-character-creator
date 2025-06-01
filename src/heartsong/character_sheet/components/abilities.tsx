@@ -72,12 +72,14 @@ const AbilitiesDialog = ({ characterClass }: { characterClass: CharacterClass | 
 
         if (staticBonuses.protections.length > 0) return <MdOutlineShield />
 
+        let icons: React.ReactNode[] = []
         for (const domain of staticBonuses.domains) {
-            return iconByDomain[domain]
+            icons.push(iconByDomain[domain])
         }
         for (const skill of staticBonuses.skills) {
-            return iconBySkill[skill]
+            icons.push(iconBySkill[skill])
         }
+        return icons
     }
 
     const renderAbilities = () => (
@@ -103,7 +105,8 @@ const AbilitiesDialog = ({ characterClass }: { characterClass: CharacterClass | 
                                     putAfterParentAbility(abilities, `${ability.parentName} - `, `${ability.name} - ${ability.description}`)
                                 )
                             } else {
-                                setAbilities(`${abilities}\n\n${ability.name} - ${ability.description}`)
+                                if (abilities.trim() === "") return setAbilities(`${ability.name} - ${ability.description}`)
+                                else setAbilities(`${abilities}\n\n${ability.name} - ${ability.description}`)
                             }
                             applyStaticBonuses(ability.staticBonuses)
                         }}
