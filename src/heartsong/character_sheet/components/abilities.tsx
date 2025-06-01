@@ -14,7 +14,6 @@ import { useApplyStaticBonuses } from "../hooks/useApplyStaticBonuses"
 const Abilities = () => {
     const { abilities, setAbilities } = useAbilities()
     const { characterClass } = useCharacterClass()
-    // TODOdin: Add a button that opens a modal with suggestions for your class?
 
     // TODOdin: Add https://milkdown.dev or https://lexical.dev instead of plain Textarea to render Markdown
     return (
