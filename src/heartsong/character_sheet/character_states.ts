@@ -118,17 +118,16 @@ export type ZustandSkills = Record<Skill, ZustandSkill>
 export type ZustandDomain = { hasDomain: boolean; knacks: string }
 export type ZustandDomains = Record<Domain, ZustandDomain>
 export type SkillsAndDomainsZustand = {
-    // TODOdin: Find a good name for hasAndKnacksBySkill
-    hasAndKnacksBySkill: ZustandSkills
+    skills: ZustandSkills
     setSkills: (skills: ZustandSkills) => void
 
-    hasAndKnacksByDomain: ZustandDomains
+    domains: ZustandDomains
     setDomains: (domains: ZustandDomains) => void
 }
 export const useSkillsAndDomains = create<SkillsAndDomainsZustand>()(
     persist(
         (set) => ({
-            hasAndKnacksBySkill: {
+            skills: {
                 compel: {
                     hasSkill: false,
                     knacks: "",
@@ -166,9 +165,9 @@ export const useSkillsAndDomains = create<SkillsAndDomainsZustand>()(
                     knacks: "",
                 },
             },
-            setSkills: (skills: ZustandSkills) => set(() => ({ hasAndKnacksBySkill: skills })),
+            setSkills: (skills: ZustandSkills) => set(() => ({ skills: skills })),
 
-            hasAndKnacksByDomain: {
+            domains: {
                 cursed: {
                     hasDomain: false,
                     knacks: "",
@@ -202,7 +201,7 @@ export const useSkillsAndDomains = create<SkillsAndDomainsZustand>()(
                     knacks: "",
                 },
             },
-            setDomains: (domains: ZustandDomains) => set(() => ({ hasAndKnacksByDomain: domains })),
+            setDomains: (domains: ZustandDomains) => set(() => ({ domains: domains })),
         }),
         { name: "skillsAndDomains" }
     )

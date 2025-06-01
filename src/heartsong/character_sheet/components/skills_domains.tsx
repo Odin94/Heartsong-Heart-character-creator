@@ -7,7 +7,7 @@ import { useSkillsAndDomains, ZustandDomain, ZustandSkill } from "../character_s
 
 const SkillsDomains = () => {
     // TODOdin: Fix the naming on the hasAnd.. things
-    const { hasAndKnacksBySkill, hasAndKnacksByDomain, setSkills, setDomains } = useSkillsAndDomains()
+    const { skills: hasAndKnacksBySkill, domains: hasAndKnacksByDomain, setSkills, setDomains } = useSkillsAndDomains()
 
     const rowCount = Math.max(skills.length, domains.length)
 
