@@ -2,6 +2,7 @@ import { resistances } from "@/heartsong/game_data/resistances"
 import { useProtections, useStress } from "../../character_states"
 import ProtectionsRow from "./protections_row"
 import ResistanceRow from "./resistance_row"
+import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip"
 
 const StressCounter = () => {
     // TODOdin: Consider color-coding your resistances
@@ -19,7 +20,15 @@ const StressCounter = () => {
 
             {resistances.map((resistance) => (
                 <div key={resistance} className={gridClass}>
-                    <div className="font-bold">{resistance.toUpperCase()}</div>
+                    <Tooltip>
+                        <TooltipTrigger>
+                            <div className="font-bold">{resistance.toUpperCase()}</div>
+                        </TooltipTrigger>
+                        <TooltipContent>
+                            <p>{`${resistance.toUpperCase()}: ${stress[resistance]}`}</p>
+                        </TooltipContent>
+                    </Tooltip>
+
                     <ResistanceRow n={stress[resistance]} setN={(n) => setStress({ ...stress, [resistance]: n })} />
                     <ProtectionsRow n={protections[resistance]} setN={(n) => setProtections({ ...protections, [resistance]: n })} />
                 </div>
