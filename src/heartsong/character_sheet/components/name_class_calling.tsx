@@ -175,7 +175,7 @@ const ClassDropdown = ({
                                         type="button"
                                         onClick={() => {
                                             onConfirm({ pickedEquipment: coreTraits.pickEquipment[Number(pickedEquipmentIndex)] })
-                                            setPickedEquipmentIndex("1")
+                                            setPickedEquipmentIndex("0")
                                         }}
                                     >
                                         Apply
