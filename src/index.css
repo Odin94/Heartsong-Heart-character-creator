@@ -180,3 +180,27 @@ button:hover {
         @apply bg-background text-foreground;
     }
 }
+
+@layer utilities {
+    .scrollbar::-webkit-scrollbar {
+        width: 10px;
+    }
+
+    .scrollbar::-webkit-scrollbar-thumb:hover {
+        background: #df08b0;
+        cursor: default;
+    }
+    .scrollbar::-webkit-scrollbar-track {
+        background: oklch(92% 0.02 20);
+    }
+
+    .scrollbar::-webkit-scrollbar-thumb {
+        background: var(--color-primary);
+        border-radius: 100vh;
+        border: 3px solid oklch(92% 0.02 20);
+    }
+
+    .scrollbar::-webkit-scrollbar-thumb:hover {
+        background: oklch(48% 0.18 25.723);
+    }
+}
