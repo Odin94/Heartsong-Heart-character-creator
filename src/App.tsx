@@ -50,7 +50,7 @@ function App() {
                 </DialogContent>
             </Dialog>
 
-            <div className={"absolute left-0 flex gap-8 ml-4"}>
+            <div className={"h-10 items-start absolute left-0 flex gap-8 ml-4"}>
                 <JSONDownloadButton />
                 <ResetButton />
 
