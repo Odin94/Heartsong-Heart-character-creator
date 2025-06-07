@@ -1,8 +1,9 @@
 import { create } from "zustand"
-import { Skill } from "../game_data/skills"
+import { SkillKey } from "../game_data/skills"
 import { Resistance } from "../game_data/resistances"
-import { Domain } from "../game_data/domains"
+import { DomainKey } from "../game_data/domains"
 import { persist } from "zustand/middleware"
+import { Character } from "../game_data/character"
 
 export type NameZustand = {
     name: string
@@ -113,16 +114,16 @@ export const useFallout = create<FalloutZustand>((set) => ({
     setFallout: (fallout: string) => set(() => ({ fallout })),
 }))
 
-export type ZustandSkill = { hasSkill: boolean; knacks: string }
-export type ZustandSkills = Record<Skill, ZustandSkill>
-export type ZustandDomain = { hasDomain: boolean; knacks: string }
-export type ZustandDomains = Record<Domain, ZustandDomain>
+export type Skill = { hasSkill: boolean; knacks: string }
+export type Skills = Record<SkillKey, Skill>
+export type Domain = { hasDomain: boolean; knacks: string }
+export type Domains = Record<DomainKey, Domain>
 export type SkillsAndDomainsZustand = {
-    skills: ZustandSkills
-    setSkills: (skills: ZustandSkills) => void
+    skills: Skills
+    setSkills: (skills: Skills) => void
 
-    domains: ZustandDomains
-    setDomains: (domains: ZustandDomains) => void
+    domains: Domains
+    setDomains: (domains: Domains) => void
 }
 export const useSkillsAndDomains = create<SkillsAndDomainsZustand>()(
     persist(
@@ -165,7 +166,7 @@ export const useSkillsAndDomains = create<SkillsAndDomainsZustand>()(
                     knacks: "",
                 },
             },
-            setSkills: (skills: ZustandSkills) => set(() => ({ skills: skills })),
+            setSkills: (skills: Skills) => set(() => ({ skills: skills })),
 
             domains: {
                 cursed: {
@@ -201,7 +202,7 @@ export const useSkillsAndDomains = create<SkillsAndDomainsZustand>()(
                     knacks: "",
                 },
             },
-            setDomains: (domains: ZustandDomains) => set(() => ({ domains: domains })),
+            setDomains: (domains: Domains) => set(() => ({ domains: domains })),
         }),
         { name: "skillsAndDomains" }
     )
@@ -251,3 +252,49 @@ export const useStress = create<StressZustand>()(
         }
     )
 )
+
+export const useCharacter = () => {
+    const { name, setName } = useName()
+    const { characterClass, setCharacterClass } = useCharacterClass()
+    const { calling, setCalling } = useCalling()
+    const { activeBeats, setActiveBeats } = useActiveBeats()
+    const { equipment, setEquipment } = useEquipment()
+    const { resources, setResources } = useResources()
+    const { abilities, setAbilities } = useAbilities()
+    const { fallout, setFallout } = useFallout()
+    const { skills, setSkills, domains, setDomains } = useSkillsAndDomains()
+    const { protections, setProtections } = useProtections()
+    const { stress, setStress } = useStress()
+
+    const character: Character = {
+        name,
+        characterClass,
+        calling,
+        activeBeats,
+        equipment,
+        resources,
+        abilities,
+        fallout,
+        skills,
+        domains,
+        protections,
+        stress,
+    }
+
+    const setCharacter = (character: Character) => {
+        setName(character.name)
+        setCharacterClass(character.characterClass)
+        setCalling(character.calling)
+        setActiveBeats(character.activeBeats)
+        setEquipment(character.equipment)
+        setResources(character.resources)
+        setAbilities(character.abilities)
+        setFallout(character.fallout)
+        setSkills(character.skills)
+        setDomains(character.domains)
+        setProtections(character.protections)
+        setStress(character.stress)
+    }
+
+    return { character, setCharacter }
+}

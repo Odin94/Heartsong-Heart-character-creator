@@ -8,9 +8,9 @@ import { TbCrystalBall } from "react-icons/tb"
 import { ReactNode } from "react"
 
 export const domains = ["cursed", "desolate", "haven", "occult", "religion", "technology", "warren", "wild"] as const
-export type Domain = (typeof domains)[number]
+export type DomainKey = (typeof domains)[number]
 
-export const iconByDomain: Record<Domain, ReactNode> = {
+export const iconByDomain: Record<DomainKey, ReactNode> = {
     cursed: GiCursedStar({}),
     desolate: GiDesert({}),
     haven: PiHouseLineLight({}),

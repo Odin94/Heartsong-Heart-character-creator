@@ -7,9 +7,9 @@ import { PiShovel, PiSneakerMove } from "react-icons/pi"
 import { RiKnifeBloodLine } from "react-icons/ri"
 
 export const skills = ["compel", "delve", "discern", "endure", "evade", "hunt", "kill", "mend", "sneak"] as const
-export type Skill = (typeof skills)[number]
+export type SkillKey = (typeof skills)[number]
 
-export const iconBySkill: Record<Skill, string | ReactNode> = {
+export const iconBySkill: Record<SkillKey, string | ReactNode> = {
     kill: RiKnifeBloodLine({}),
     hunt: GiBowArrow({}),
     mend: MdHealing({}),

@@ -1,5 +1,5 @@
-import { Domain } from "./domains"
-import { Skill } from "./skills"
+import { DomainKey } from "./domains"
+import { SkillKey } from "./skills"
 import { Ability } from "./abilities"
 import { noBonuses } from "./abilitiesByClass.ts/ability_utils"
 
@@ -17,8 +17,8 @@ export const characterClasses = [
 export type CharacterClass = (typeof characterClasses)[number]
 
 export type CoreTraits = {
-    skill: Skill
-    domain: Domain
+    skill: SkillKey
+    domain: DomainKey
     resource: string
     equipment: string
     pickEquipment: string[]

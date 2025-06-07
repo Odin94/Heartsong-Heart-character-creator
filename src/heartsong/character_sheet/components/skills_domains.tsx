@@ -3,7 +3,7 @@ import { Input } from "@/components/ui/input"
 import { domains } from "@/heartsong/game_data/domains"
 import { skills } from "@/heartsong/game_data/skills"
 import { Fragment } from "react/jsx-runtime"
-import { useSkillsAndDomains, ZustandDomain, ZustandSkill } from "../character_states"
+import { useSkillsAndDomains, RawDomain, RawSkill } from "../character_states"
 
 const SkillsDomains = () => {
     const { skills: existingSkills, domains: existingDomains, setSkills, setDomains } = useSkillsAndDomains()
@@ -40,7 +40,7 @@ const SkillsDomains = () => {
                                             onCheckedChange={(checked) => {
                                                 setSkills({
                                                     ...existingSkills,
-                                                    [skill]: { hasSkill: checked, knacks: skillKnacks } as ZustandSkill,
+                                                    [skill]: { hasSkill: checked, knacks: skillKnacks } as RawSkill,
                                                 })
                                             }}
                                             className="mr-3"
@@ -55,7 +55,7 @@ const SkillsDomains = () => {
                                                 const newKnacks = e.target.value
                                                 setSkills({
                                                     ...existingSkills,
-                                                    [skill]: { hasSkill, knacks: newKnacks } as ZustandSkill,
+                                                    [skill]: { hasSkill, knacks: newKnacks } as RawSkill,
                                                 })
                                             }}
                                         />
@@ -74,7 +74,7 @@ const SkillsDomains = () => {
                                             onCheckedChange={(checked) => {
                                                 setDomains({
                                                     ...existingDomains,
-                                                    [domain]: { hasDomain: checked, knacks: domainKnacks } as ZustandDomain,
+                                                    [domain]: { hasDomain: checked, knacks: domainKnacks } as RawDomain,
                                                 })
                                             }}
                                             className="mr-3"
@@ -89,7 +89,7 @@ const SkillsDomains = () => {
                                                 const newKnacks = e.target.value
                                                 setDomains({
                                                     ...existingDomains,
-                                                    [domain]: { hasDomain, knacks: newKnacks } as ZustandDomain,
+                                                    [domain]: { hasDomain, knacks: newKnacks } as RawDomain,
                                                 })
                                             }}
                                         />

@@ -1,15 +1,15 @@
-import { Domain } from "../domains"
+import { DomainKey } from "../domains"
 import { Resistance } from "../resistances"
-import { Skill } from "../skills"
+import { SkillKey } from "../skills"
 
-export const domain = (...domains: Domain[]) => {
+export const domain = (...domains: DomainKey[]) => {
     return {
         domains: domains,
         skills: [],
         protections: [],
     }
 }
-export const skill = (...skills: Skill[]) => {
+export const skill = (...skills: SkillKey[]) => {
     return {
         domains: [],
         skills: skills,

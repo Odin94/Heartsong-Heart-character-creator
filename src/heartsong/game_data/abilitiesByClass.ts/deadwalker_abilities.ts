@@ -1,7 +1,7 @@
 import { Ability } from "../abilities"
-import { Domain } from "../domains"
+import { DomainKey } from "../domains"
 import { Resistance } from "../resistances"
-import { Skill } from "../skills"
+import { SkillKey } from "../skills"
 import { domain, noBonuses, protection, skill } from "./ability_utils"
 
 export const deadwalkerAbilities: Ability[] = [

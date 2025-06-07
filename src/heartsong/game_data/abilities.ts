@@ -10,13 +10,13 @@ import { vermissianKnightAbilities } from "./abilitiesByClass.ts/vermissian_knig
 import { witchAbilities } from "./abilitiesByClass.ts/witch_abilities"
 import { Calling } from "./callings"
 import { CharacterClass } from "./classes"
-import { Domain } from "./domains"
+import { DomainKey } from "./domains"
 import { Resistance } from "./resistances"
-import { Skill } from "./skills"
+import { SkillKey } from "./skills"
 
 export type StaticBonuses = {
-    domains: Domain[]
-    skills: Skill[]
+    domains: DomainKey[]
+    skills: SkillKey[]
     protections: { resistance: Resistance; amount: number }[]
 }
 
@@ -27,8 +27,8 @@ export type Ability = {
     staticBonuses: StaticBonuses
     parentName?: string
     pickFrom?: {
-        skills: Skill[]
-        domains: Domain[]
+        skills: SkillKey[]
+        domains: DomainKey[]
         protections: Resistance[]
     }
 }
