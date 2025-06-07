@@ -2,7 +2,7 @@ import "./App.css"
 import CharacterSheet from "./heartsong/character_sheet/character_sheet"
 
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog"
-import { JSONDownloadButton, JSONUploadButton, ResetButton } from "./heartsong/character_sheet/components/character_buttons"
+import { JSONDownloadButton, ResetButton } from "./heartsong/character_sheet/components/character_buttons"
 
 function App() {
     return (
@@ -50,7 +50,7 @@ function App() {
                 </DialogContent>
             </Dialog>
 
-            <div className={"absolute left-0 flex gap-8"}>
+            <div className={"absolute left-0 flex gap-8 ml-4"}>
                 <JSONDownloadButton />
                 <ResetButton />
 

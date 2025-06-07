@@ -6,6 +6,7 @@ import { Buffer } from "buffer"
 import { useState } from "react"
 import { useCharacter } from "../character_states"
 import { cn } from "@/lib/utils"
+import { Dialog, DialogClose, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog"
 
 export const downloadJson = async (character: Character) => {
     const blob = new Blob([JSON.stringify(character, null, 2)], { type: "application/json" })
@@ -41,9 +42,29 @@ export const ResetButton = () => {
     const { setCharacter } = useCharacter()
 
     return (
-        <Button className={cn("rounded-t-none", growDownClass)} onClick={() => setCharacter(getEmptyCharacter())}>
-            🔥 Reset Character
-        </Button>
+        <Dialog>
+            <DialogTrigger>
+                <Button className={cn("rounded-t-none", growDownClass)}>🔥 Reset Character</Button>
+            </DialogTrigger>
+            <DialogContent>
+                <DialogHeader>
+                    <DialogTitle>Reset Character?</DialogTitle>
+
+                    <div className="mt-2 flex justify-end">
+                        <DialogClose asChild>
+                            <Button type="button" variant="secondary" onClick={() => {}}>
+                                Cancel
+                            </Button>
+                        </DialogClose>
+                        <DialogClose asChild>
+                            <Button className="ml-3" type="button" onClick={() => setCharacter(getEmptyCharacter())}>
+                                Reset Character
+                            </Button>
+                        </DialogClose>
+                    </div>
+                </DialogHeader>
+            </DialogContent>
+        </Dialog>
     )
 }
 
