@@ -46,23 +46,23 @@ export const ResetButton = () => {
             <DialogTrigger>
                 <Button className={cn("rounded-t-none", growDownClass)}>🔥 Reset Character</Button>
             </DialogTrigger>
-            <DialogContent>
+            <DialogContent className="bg-amber-500">
                 <DialogHeader>
                     <DialogTitle>Reset Character?</DialogTitle>
-
-                    <div className="mt-2 flex justify-end">
-                        <DialogClose asChild>
-                            <Button type="button" variant="secondary" onClick={() => {}}>
-                                Cancel
-                            </Button>
-                        </DialogClose>
-                        <DialogClose asChild>
-                            <Button className="ml-3" type="button" onClick={() => setCharacter(getEmptyCharacter())}>
-                                Reset Character
-                            </Button>
-                        </DialogClose>
-                    </div>
                 </DialogHeader>
+
+                <div className="mt-2 flex justify-end">
+                    <DialogClose asChild>
+                        <Button type="button" variant="secondary" onClick={() => {}}>
+                            Cancel
+                        </Button>
+                    </DialogClose>
+                    <DialogClose asChild>
+                        <Button className="ml-3" type="button" onClick={() => setCharacter(getEmptyCharacter())}>
+                            Reset Character
+                        </Button>
+                    </DialogClose>
+                </div>
             </DialogContent>
         </Dialog>
     )
@@ -86,11 +86,34 @@ export const JSONUploadButton = () => {
     }
 
     return (
-        <div>
-            <Label htmlFor="character">Character json file</Label>
-            <Input id="character" type="file" onChange={(e) => setFile(e.target.files?.item(0) ?? undefined)} />
+        <Dialog>
+            <DialogTrigger>
+                <Button className={cn("rounded-t-none", growDownClass)}>Load Character</Button>
+            </DialogTrigger>
+            <DialogContent>
+                <DialogHeader>
+                    <DialogTitle>Load from JSON file</DialogTitle>
+                </DialogHeader>
+                <div>
+                    <Input
+                        id="character"
+                        type="file"
+                        className="text-sm w-[70%]"
+                        onChange={(e) => setFile(e.target.files?.item(0) ?? undefined)}
+                    />
+                </div>
 
-            <Button onClick={() => loadCharacter(file)}>Load file</Button>
-        </div>
+                <div className="mt-2 gap-3 flex justify-end">
+                    <DialogClose asChild>
+                        <Button type="button" variant="secondary" onClick={() => {}}>
+                            Cancel
+                        </Button>
+                    </DialogClose>
+                    <DialogClose asChild>
+                        <Button onClick={() => loadCharacter(file)}>Load file</Button>
+                    </DialogClose>
+                </div>
+            </DialogContent>
+        </Dialog>
     )
 }
