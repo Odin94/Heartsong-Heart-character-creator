@@ -4,6 +4,7 @@ import { Resistance } from "../game_data/resistances"
 import { DomainKey } from "../game_data/domains"
 import { persist } from "zustand/middleware"
 import { Character } from "../game_data/character"
+import { z } from "zod"
 
 export type NameZustand = {
     name: string
@@ -114,10 +115,21 @@ export const useFallout = create<FalloutZustand>((set) => ({
     setFallout: (fallout: string) => set(() => ({ fallout })),
 }))
 
-export type Skill = { hasSkill: boolean; knacks: string }
+export const skillSchema = z.object({
+    hasSkill: z.boolean(),
+    knacks: z.string(),
+})
+
+export const domainSchema = z.object({
+    hasDomain: z.boolean(),
+    knacks: z.string(),
+})
+
+export type Skill = z.infer<typeof skillSchema>
 export type Skills = Record<SkillKey, Skill>
-export type Domain = { hasDomain: boolean; knacks: string }
+export type Domain = z.infer<typeof domainSchema>
 export type Domains = Record<DomainKey, Domain>
+
 export type SkillsAndDomainsZustand = {
     skills: Skills
     setSkills: (skills: Skills) => void

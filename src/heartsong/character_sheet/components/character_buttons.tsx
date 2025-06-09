@@ -1,7 +1,6 @@
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
-import { Character, getEmptyCharacter } from "@/heartsong/game_data/character"
+import { Character, characterSchema, getEmptyCharacter } from "@/heartsong/game_data/character"
 import { Buffer } from "buffer"
 import { useState } from "react"
 import { useCharacter } from "../character_states"
@@ -46,7 +45,7 @@ export const ResetButton = () => {
             <DialogTrigger>
                 <Button className={cn("rounded-t-none", growDownClass)}>🔥 Reset Character</Button>
             </DialogTrigger>
-            <DialogContent className="bg-amber-500">
+            <DialogContent>
                 <DialogHeader>
                     <DialogTitle>Reset Character?</DialogTitle>
                 </DialogHeader>
@@ -81,8 +80,13 @@ export const JSONUploadButton = () => {
         const parsed = JSON.parse(json)
         console.log({ loadedCharacter: parsed })
 
-        // TODOdin: Create zod characterSchema and parse/validation
-        setCharacter(parsed)
+        const character = characterSchema.safeParse(parsed)
+        if (!character.success) {
+            console.error("Invalid character data:", character.error)
+            return
+        }
+
+        setCharacter(character.data)
     }
 
     return (
