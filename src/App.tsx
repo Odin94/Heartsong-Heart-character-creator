@@ -3,10 +3,12 @@ import CharacterSheet from "./heartsong/character_sheet/character_sheet"
 
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog"
 import { JSONDownloadButton, JSONUploadButton, ResetButton } from "./heartsong/character_sheet/components/character_buttons"
+import { Toaster } from "@/components/ui/sonner"
 
 function App() {
     return (
         <div className="relative min-h-screen">
+            <Toaster closeButton />
             <Dialog>
                 <a href="https://odin-matthias.de/" target="_blank" className="absolute top-2 left-8 text-sm underline">
                     /Odin's Site/

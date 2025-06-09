@@ -6,6 +6,7 @@ import { useState } from "react"
 import { useCharacter } from "../character_states"
 import { cn } from "@/lib/utils"
 import { Dialog, DialogClose, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog"
+import { toast } from "sonner"
 
 export const downloadJson = async (character: Character) => {
     const blob = new Blob([JSON.stringify(character, null, 2)], { type: "application/json" })
@@ -76,17 +77,24 @@ export const JSONUploadButton = () => {
 
         const fileData = await getUploadFile(loadedFile)
         const base64 = fileData.split(",")[1]
-        const json = Buffer.from(base64, "base64").toString()
-        const parsed = JSON.parse(json)
-        console.log({ loadedCharacter: parsed })
+        const fileString = Buffer.from(base64, "base64").toString()
+        const jsonObject = JSON.parse(fileString)
+        console.log({ loadedCharacter: jsonObject })
 
-        const character = characterSchema.safeParse(parsed)
+        const character = characterSchema.safeParse(jsonObject)
         if (!character.success) {
-            console.error("Invalid character data:", character.error)
+            const errorSummary = character.error.errors.map((err) => `${err.path.join(".")}: ${err.message}`).join("\n")
+            toast.error("Invalid character data", {
+                description: errorSummary,
+                duration: 100000,
+                dismissible: true,
+                richColors: true,
+            })
             return
         }
 
         setCharacter(character.data)
+        toast.success("Character loaded successfully")
     }
 
     return (
