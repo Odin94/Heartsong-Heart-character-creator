@@ -12,7 +12,7 @@ import { useAbilities, useCalling, useCharacterClass, useEquipment, useName, use
 import { Calling, callings, isCalling } from "@/heartsong/game_data/callings"
 import { abilitiesByClassOrRecord } from "@/heartsong/game_data/abilities"
 import { useApplyStaticBonuses } from "../hooks/useApplyStaticBonuses"
-import { Dialog, DialogClose, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog"
+import { Dialog, DialogClose, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog"
 import { Button } from "@/components/ui/button"
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
 import { Label } from "@/components/ui/label"
@@ -136,6 +136,7 @@ const ClassDropdown = ({
             <DialogContent>
                 <DialogHeader>
                     <DialogTitle>Apply {characterClass.toUpperCase()} core traits?</DialogTitle>
+                    <DialogDescription></DialogDescription>
                     {!!coreTraits ? (
                         // TODOdin: Make this Dialog pretty
                         <div>
@@ -213,6 +214,7 @@ const CallingDropdown = ({ onSelect, onConfirm }: { onSelect: (text: Calling) =>
             <DialogContent>
                 <DialogHeader>
                     <DialogTitle>Apply {calling.toUpperCase()} stats?</DialogTitle>
+                    <DialogDescription></DialogDescription>
                     <div>
                         <p className="text-muted-foreground text-md my-2">
                             '{callingAbility?.name}': {callingAbility?.description}

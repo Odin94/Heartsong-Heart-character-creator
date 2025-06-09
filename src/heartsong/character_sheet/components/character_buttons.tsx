@@ -5,7 +5,7 @@ import { Buffer } from "buffer"
 import { useState } from "react"
 import { useCharacter } from "../character_states"
 import { cn } from "@/lib/utils"
-import { Dialog, DialogClose, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog"
+import { Dialog, DialogClose, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog"
 import { toast } from "sonner"
 
 export const downloadJson = async (character: Character) => {
@@ -49,6 +49,7 @@ export const ResetButton = () => {
             <DialogContent>
                 <DialogHeader>
                     <DialogTitle>Reset Character?</DialogTitle>
+                    <DialogDescription></DialogDescription>
                 </DialogHeader>
 
                 <div className="mt-2 flex justify-end">
@@ -76,9 +77,22 @@ export const JSONUploadButton = () => {
         if (!loadedFile) return
 
         const fileData = await getUploadFile(loadedFile)
-        const base64 = fileData.split(",")[1]
-        const fileString = Buffer.from(base64, "base64").toString()
-        const jsonObject = JSON.parse(fileString)
+        let jsonObject
+        try {
+            const base64 = fileData.split(",")[1]
+            if (!base64) throw new Error("The file could not be read properly")
+            const fileString = Buffer.from(base64, "base64").toString()
+            jsonObject = JSON.parse(fileString)
+        } catch (e) {
+            toast.error("Invalid file format", {
+                description: e instanceof Error ? e.message : "The file is not valid JSON",
+                duration: 8000,
+                dismissible: true,
+                richColors: true,
+            })
+            return
+        }
+
         console.log({ loadedCharacter: jsonObject })
 
         const character = characterSchema.safeParse(jsonObject)
@@ -86,7 +100,7 @@ export const JSONUploadButton = () => {
             const errorSummary = character.error.errors.map((err) => `${err.path.join(".")}: ${err.message}`).join("\n")
             toast.error("Invalid character data", {
                 description: errorSummary,
-                duration: 100000,
+                duration: 8000,
                 dismissible: true,
                 richColors: true,
             })
@@ -94,7 +108,11 @@ export const JSONUploadButton = () => {
         }
 
         setCharacter(character.data)
-        toast.success("Character loaded successfully")
+        setFile(undefined)
+        toast.success("Character loaded successfully", {
+            duration: 5000,
+            dismissible: true,
+        })
     }
 
     return (
@@ -105,6 +123,7 @@ export const JSONUploadButton = () => {
             <DialogContent>
                 <DialogHeader>
                     <DialogTitle>Load from JSON file</DialogTitle>
+                    <DialogDescription></DialogDescription>
                 </DialogHeader>
                 <div>
                     <Input
@@ -117,12 +136,14 @@ export const JSONUploadButton = () => {
 
                 <div className="mt-2 gap-3 flex justify-end">
                     <DialogClose asChild>
-                        <Button type="button" variant="secondary" onClick={() => {}}>
+                        <Button type="button" variant="secondary" onClick={() => setFile(undefined)}>
                             Cancel
                         </Button>
                     </DialogClose>
                     <DialogClose asChild>
-                        <Button onClick={() => loadCharacter(file)}>Load file</Button>
+                        <Button onClick={() => loadCharacter(file)} disabled={!file}>
+                            Load file
+                        </Button>
                     </DialogClose>
                 </div>
             </DialogContent>

@@ -1,4 +1,4 @@
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog"
+import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog"
 import { ScrollArea } from "@/components/ui/scroll-area"
 import { Textarea } from "@/components/ui/textarea"
 import { abilitiesByClassOrRecord, Ability } from "@/heartsong/game_data/abilities"
@@ -127,6 +127,7 @@ const AbilitiesDialog = ({ characterClass }: { characterClass: CharacterClass | 
         <DialogContent className="w-88 sm:w-112 h-200">
             <DialogHeader>
                 <DialogTitle>{characterClass.toUpperCase()} ABILITIES</DialogTitle>
+                <DialogDescription></DialogDescription>
                 {abilityOptions.length === 0 ? (
                     <p>Pick a pre-defined class to select abilities</p>
                 ) : (
