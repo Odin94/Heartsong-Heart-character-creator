@@ -2,11 +2,13 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Character, characterSchema, getEmptyCharacter } from "@/heartsong/game_data/character"
 import { Buffer } from "buffer"
-import { useState } from "react"
+import { useState, useCallback } from "react"
 import { useCharacter } from "../character_states"
 import { cn } from "@/lib/utils"
 import { Dialog, DialogClose, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog"
 import { toast } from "sonner"
+import { useDropzone } from "react-dropzone"
+import { Upload } from "lucide-react"
 
 export const downloadJson = async (character: Character) => {
     const blob = new Blob([JSON.stringify(character, null, 2)], { type: "application/json" })
@@ -72,6 +74,46 @@ export const ResetButton = () => {
 export const JSONUploadButton = () => {
     const [file, setFile] = useState<File>()
     const { setCharacter } = useCharacter()
+    const { getRootProps, getInputProps, isDragActive, isDragReject } = useDropzone({
+        accept: {
+            "application/json": [".json"],
+        },
+        maxFiles: 1,
+        onDrop: (acceptedFiles, rejectedFiles) => {
+            if (rejectedFiles.length > 0) {
+                return
+            }
+            if (acceptedFiles.length > 0) {
+                setFile(acceptedFiles[0])
+            }
+        },
+    })
+
+    const getDropzoneClassName = () => {
+        if (isDragReject) {
+            return "border-red-500 bg-red-50"
+        }
+        if (isDragActive) {
+            return "border-blue-500 bg-blue-50"
+        }
+        if (file) {
+            return "border-green-500 bg-green-50"
+        }
+        return "border-gray-300 hover:border-gray-400"
+    }
+
+    const getDropzoneText = () => {
+        if (isDragReject) {
+            return <p className="text-center text-red-500">Only JSON files are accepted</p>
+        }
+        if (isDragActive) {
+            return <p className="text-center">Drop the JSON file here...</p>
+        }
+        if (file) {
+            return <p className="text-center">Selected: {file.name}</p>
+        }
+        return <p className="text-center">Drag & drop a JSON file here, or click to select</p>
+    }
 
     const loadCharacter = async (loadedFile: File | undefined) => {
         if (!loadedFile) return
@@ -116,9 +158,16 @@ export const JSONUploadButton = () => {
     }
 
     return (
-        <Dialog>
-            <DialogTrigger>
-                <Button className={cn("rounded-t-none", growDownClass)}>Load Character</Button>
+        <Dialog
+            onOpenChange={(open) => {
+                if (!open) setFile(undefined)
+            }}
+        >
+            <DialogTrigger asChild>
+                <Button className={cn("rounded-t-none", growDownClass)}>
+                    <Upload className="mr-2 h-4 w-4" />
+                    Load Character
+                </Button>
             </DialogTrigger>
             <DialogContent>
                 <DialogHeader>
@@ -126,12 +175,13 @@ export const JSONUploadButton = () => {
                     <DialogDescription></DialogDescription>
                 </DialogHeader>
                 <div>
-                    <Input
-                        id="character"
-                        type="file"
-                        className="text-sm w-[70%]"
-                        onChange={(e) => setFile(e.target.files?.item(0) ?? undefined)}
-                    />
+                    <div
+                        {...getRootProps()}
+                        className={`text-sm w-[70%] border-2 border-dashed rounded-md p-2 cursor-pointer transition-colors ${getDropzoneClassName()}`}
+                    >
+                        <input {...getInputProps()} accept=".json" />
+                        {getDropzoneText()}
+                    </div>
                 </div>
 
                 <div className="mt-2 gap-3 flex justify-end">
