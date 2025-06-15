@@ -2,7 +2,12 @@ import "./App.css"
 import CharacterSheet from "./heartsong/character_sheet/character_sheet"
 
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog"
-import { JSONDownloadButton, JSONUploadButton, ResetButton } from "./heartsong/character_sheet/components/character_buttons"
+import {
+    JSONDownloadButton,
+    JSONUploadButton,
+    PDFDownloadButton,
+    ResetButton,
+} from "./heartsong/character_sheet/components/character_buttons"
 import { Toaster } from "@/components/ui/sonner"
 
 function App() {
@@ -56,6 +61,7 @@ function App() {
                 <JSONDownloadButton />
                 <ResetButton />
                 <JSONUploadButton />
+                <PDFDownloadButton />
 
                 {/* TODOdin: Add a button that opens a history pane that keeps character-states from the past (in case you accidentally overwrite) */}
             </div>

@@ -8,7 +8,8 @@ import { cn } from "@/lib/utils"
 import { Dialog, DialogClose, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog"
 import { toast } from "sonner"
 import { useDropzone } from "react-dropzone"
-import { Upload } from "lucide-react"
+import { Upload, FileDown } from "lucide-react"
+import { generateCharacterPDF } from "@/heartsong/creator/pdf_creator"
 
 export const downloadJson = async (character: Character) => {
     const blob = new Blob([JSON.stringify(character, null, 2)], { type: "application/json" })
@@ -198,5 +199,35 @@ export const JSONUploadButton = () => {
                 </div>
             </DialogContent>
         </Dialog>
+    )
+}
+
+export const PDFDownloadButton = ({ className }: { className?: string }) => {
+    const { character } = useCharacter()
+
+    const handleDownload = async () => {
+        try {
+            const pdfBytes = await generateCharacterPDF(character.name, character.characterClass, character.calling, character.abilities)
+
+            const blob = new Blob([pdfBytes], { type: "application/pdf" })
+            const link = document.createElement("a")
+            link.href = window.URL.createObjectURL(blob)
+            link.download = "character_sheet.pdf"
+            link.click()
+        } catch (error) {
+            console.log({ error })
+            toast.error("Failed to generate PDF", {
+                description: error instanceof Error ? error.message : "An unknown error occurred",
+                duration: 5000,
+                dismissible: true,
+            })
+        }
+    }
+
+    return (
+        <Button className={cn("rounded-t-none", growDownClass, className)} onClick={handleDownload}>
+            <FileDown className="mr-2 h-4 w-4" />
+            Download PDF
+        </Button>
     )
 }
