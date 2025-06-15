@@ -58,10 +58,10 @@ function App() {
             </Dialog>
 
             <div className={"h-10 items-start absolute left-0 flex gap-8 ml-4"}>
-                <JSONDownloadButton />
-                <ResetButton />
-                <JSONUploadButton />
                 <PDFDownloadButton />
+                <JSONDownloadButton />
+                <JSONUploadButton />
+                <ResetButton />
 
                 {/* TODOdin: Add a button that opens a history pane that keeps character-states from the past (in case you accidentally overwrite) */}
             </div>

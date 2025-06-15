@@ -52,7 +52,7 @@ export const ResetButton = () => {
             <DialogContent>
                 <DialogHeader>
                     <DialogTitle>Reset Character?</DialogTitle>
-                    <DialogDescription></DialogDescription>
+                    <DialogDescription>This will delete your current character and reset to an empty sheet.</DialogDescription>
                 </DialogHeader>
 
                 <div className="mt-2 flex justify-end">
@@ -172,8 +172,8 @@ export const JSONUploadButton = () => {
             </DialogTrigger>
             <DialogContent>
                 <DialogHeader>
-                    <DialogTitle>Load from JSON file</DialogTitle>
-                    <DialogDescription></DialogDescription>
+                    <DialogTitle>Load from json file</DialogTitle>
+                    <DialogDescription>This will overwrite your current character.</DialogDescription>
                 </DialogHeader>
                 <div>
                     <div
@@ -212,7 +212,7 @@ export const PDFDownloadButton = ({ className }: { className?: string }) => {
             const blob = new Blob([pdfBytes], { type: "application/pdf" })
             const link = document.createElement("a")
             link.href = window.URL.createObjectURL(blob)
-            link.download = "character_sheet.pdf"
+            link.download = `${character.name}_heartsong.pdf`
             link.click()
         } catch (error) {
             console.log({ error })
