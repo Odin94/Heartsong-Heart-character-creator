@@ -207,7 +207,7 @@ export const PDFDownloadButton = ({ className }: { className?: string }) => {
 
     const handleDownload = async () => {
         try {
-            const pdfBytes = await generateCharacterPDF(character.name, character.characterClass, character.calling, character.abilities)
+            const pdfBytes = await generateCharacterPDF(character)
 
             const blob = new Blob([pdfBytes], { type: "application/pdf" })
             const link = document.createElement("a")
