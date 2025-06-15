@@ -1,6 +1,8 @@
 import { PDFDocument, PDFTextField, rgb, setFontAndSize, StandardFonts, PDFPage, PDFForm, PDFFont } from "pdf-lib"
 import Logo from "@/assets/logo.png"
 import { Character } from "../game_data/character"
+import { skills } from "../game_data/skills"
+import { domains } from "../game_data/domains"
 
 const DARK_RED = rgb(0.6, 0.1, 0.1)
 const BLACK = rgb(0, 0, 0)
@@ -26,13 +28,9 @@ export async function generateCharacterPDF(character: Character): Promise<Uint8A
         const pdfDoc = await PDFDocument.create()
         const page = pdfDoc.addPage([width, height]) // A4 size
 
-        // Initialize common variables
+        // TODOdin: Add a cooler font
         font = await pdfDoc.embedFont(StandardFonts.Helvetica)
         boldFont = await pdfDoc.embedFont(StandardFonts.HelveticaBold)
-
-        columnWidth
-        leftColumnX
-        rightColumnX
 
         // Add website URL in bottom right
         page.drawText("heartsong.odin-matthias.de", {
@@ -49,8 +47,8 @@ export async function generateCharacterPDF(character: Character): Promise<Uint8A
         await addLogo(page, pdfDoc)
 
         addBasicInfo(page, form, character, textY)
-
-        addLeftColumnSections(page, form, character)
+        const bottomOfTextFields = addLeftColumnTextFields(page, form, character)
+        addSkills(page, form, character, bottomOfTextFields)
         addResistanceTracks(page, form, character)
         addAbilities(page, form, character)
 
@@ -139,7 +137,127 @@ function addBasicInfo(page: PDFPage, form: PDFForm, character: Character, textY:
     })
 }
 
-function addLeftColumnSections(page: PDFPage, form: PDFForm, character: Character) {
+function addSkills(page: PDFPage, form: PDFForm, character: Character, skillsStartY: number) {
+    const skillSpacing = 15
+    const checkboxSize = 10
+    const textFieldWidth = 60
+    const skillStartX = leftColumnX - 10
+    const domainsStartX = leftColumnX + 130
+
+    page.drawText("SKILLS", {
+        x: skillStartX + 10,
+        y: skillsStartY + 8,
+        size: 12,
+        font: boldFont,
+        color: DARK_RED,
+    })
+
+    const skillKnackXOffset = 70
+    page.drawText("KNACKS", {
+        x: skillStartX + skillKnackXOffset,
+        y: skillsStartY + 8,
+        size: 12,
+        font: boldFont,
+        color: rgb(0.8, 0.3, 0.3),
+    })
+
+    page.drawText("DOMAINS", {
+        x: domainsStartX + 10,
+        y: skillsStartY + 8,
+        size: 12,
+        font: boldFont,
+        color: DARK_RED,
+    })
+
+    const domainsKnackXOffset = 90
+    page.drawText("KNACKS", {
+        x: domainsStartX + domainsKnackXOffset,
+        y: skillsStartY + 8,
+        size: 12,
+        font: boldFont,
+        color: rgb(0.8, 0.3, 0.3),
+    })
+
+    // Add skills section
+    skills.forEach((skill, index) => {
+        const y = skillsStartY - 12 - index * skillSpacing
+
+        const checkbox = form.createCheckBox(`skill_${skill}`)
+        checkbox.addToPage(page, {
+            x: skillStartX + 10,
+            y: y,
+            width: checkboxSize,
+            height: checkboxSize,
+            borderWidth: 1,
+            borderColor: BLACK,
+            backgroundColor: WHITE,
+        })
+        if (character.skills[skill].hasSkill) {
+            checkbox.check()
+        }
+
+        page.drawText(skill.toUpperCase(), {
+            x: skillStartX + 25,
+            y: y + 2,
+            size: 8,
+            font: boldFont,
+            color: DARK_RED,
+        })
+
+        const textField = form.createTextField(`skill_${skill}_knacks`)
+        textField.setText(character.skills[skill].knacks)
+        textField.addToPage(page, {
+            x: skillStartX + skillKnackXOffset,
+            y: y,
+            width: textFieldWidth,
+            height: 13,
+            borderWidth: 1,
+            borderColor: BLACK,
+            backgroundColor: WHITE,
+        })
+    })
+
+    // Add domains section
+    domains.forEach((domain, index) => {
+        const y = skillsStartY - 12 - index * skillSpacing
+
+        const domainCheckbox = form.createCheckBox(`domain_${domain}`)
+        domainCheckbox.addToPage(page, {
+            x: domainsStartX + 10,
+            y: y,
+            width: checkboxSize,
+            height: checkboxSize,
+            borderWidth: 1,
+            borderColor: BLACK,
+            backgroundColor: WHITE,
+        })
+        if (character.domains[domain].hasDomain) {
+            domainCheckbox.check()
+        }
+
+        page.drawText(domain.toUpperCase(), {
+            x: domainsStartX + 25,
+            y: y + 2,
+            size: 8,
+            font: boldFont,
+            color: DARK_RED,
+        })
+
+        const domainTextField = form.createTextField(`domain_${domain}_knacks`)
+        domainTextField.setText(character.domains[domain].knacks)
+        domainTextField.addToPage(page, {
+            x: domainsStartX + domainsKnackXOffset,
+            y: y,
+            width: textFieldWidth,
+            height: 13,
+            borderWidth: 1,
+            borderColor: BLACK,
+            backgroundColor: WHITE,
+        })
+    })
+}
+
+function addLeftColumnTextFields(page: PDFPage, form: PDFForm, character: Character) {
     // Active Beats
     const beatsY = textY - lineHeight * 3 - sectionSpacing
     page.drawRectangle({
@@ -229,6 +347,9 @@ function addLeftColumnSections(page: PDFPage, form: PDFForm, character: Characte
         borderColor: BLACK,
         backgroundColor: WHITE,
     })
+
+    const bottomOfSectionY = resourcesY - sectionHeight - sectionSpacing
+    return bottomOfSectionY
 }
 
 function addResistanceTracks(page: PDFPage, form: PDFForm, character: Character) {
@@ -308,7 +429,6 @@ function addAbilities(page: PDFPage, form: PDFForm, character: Character) {
         height: 30,
         color: DARK_RED,
     })
-
     page.drawText("ABILITIES", {
         x: rightColumnX + 10,
         y: abilitiesBoxY + 8,
@@ -317,16 +437,46 @@ function addAbilities(page: PDFPage, form: PDFForm, character: Character) {
         color: WHITE,
     })
 
-    // Create abilities text field
     const abilitiesField = form.createTextField("abilities")
     abilitiesField.enableMultiline()
     abilitiesField.setText(character.abilities)
     changeFontSize(abilitiesField, 12)
     abilitiesField.addToPage(page, {
         x: rightColumnX + 1,
-        y: abilitiesBoxY - abilitiesBoxHeight,
+        y: abilitiesBoxY - abilitiesBoxHeight - 1,
         width: columnWidth - margin * 2 - 2,
         height: abilitiesBoxHeight,
+        borderWidth: 1,
+        borderColor: BLACK,
+        backgroundColor: WHITE,
+    })
+
+    // Add FALLOUT box
+    const falloutY = abilitiesBoxY - abilitiesBoxHeight - 50
+    page.drawRectangle({
+        x: rightColumnX,
+        y: falloutY,
+        width: columnWidth - margin * 2,
+        height: 30,
+        color: DARK_RED,
+    })
+    page.drawText("FALLOUT", {
+        x: rightColumnX + 10,
+        y: falloutY + 8,
+        size: 14,
+        font: boldFont,
+        color: WHITE,
+    })
+
+    const falloutField = form.createTextField("fallout")
+    falloutField.enableMultiline()
+    falloutField.setText(character.fallout)
+    changeFontSize(falloutField, 12)
+    falloutField.addToPage(page, {
+        x: rightColumnX + 1,
+        y: falloutY - 200,
+        width: columnWidth - margin * 2 - 2,
+        height: 200,
         borderWidth: 1,
         borderColor: BLACK,
         backgroundColor: WHITE,
