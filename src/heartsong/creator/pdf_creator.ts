@@ -21,7 +21,8 @@ const columnWidth = width / 2
 const logoHeight = 89.35792544570502 // this needs to be updated when logo changes
 const textY = height - margin - logoHeight - 50
 const sectionSpacing = 35
-const sectionHeight = 75
+const sectionHeight = 110
+const headerHeight = 30
 
 export async function generateCharacterPDF(character: Character): Promise<Uint8Array> {
     try {
@@ -264,7 +265,7 @@ function addLeftColumnTextFields(page: PDFPage, form: PDFForm, character: Charac
         x: leftColumnX,
         y: beatsY,
         width: columnWidth - margin * 2,
-        height: 30,
+        height: headerHeight,
         color: DARK_RED,
     })
     page.drawText("ACTIVE BEATS", {
@@ -294,7 +295,7 @@ function addLeftColumnTextFields(page: PDFPage, form: PDFForm, character: Charac
         x: leftColumnX,
         y: equipmentY,
         width: columnWidth - margin * 2,
-        height: 30,
+        height: headerHeight,
         color: DARK_RED,
     })
     page.drawText("EQUIPMENT", {
@@ -324,7 +325,7 @@ function addLeftColumnTextFields(page: PDFPage, form: PDFForm, character: Charac
         x: leftColumnX,
         y: resourcesY,
         width: columnWidth - margin * 2,
-        height: 30,
+        height: headerHeight,
         color: DARK_RED,
     })
     page.drawText("RESOURCES", {
@@ -420,13 +421,13 @@ function addResistanceTracks(page: PDFPage, form: PDFForm, character: Character)
 
 function addAbilities(page: PDFPage, form: PDFForm, character: Character) {
     const abilitiesBoxY = page.getHeight() - margin - 180
-    const abilitiesBoxHeight = 302
+    const abilitiesBoxHeight = 380
 
     page.drawRectangle({
         x: rightColumnX,
         y: abilitiesBoxY,
         width: columnWidth - margin * 2,
-        height: 30,
+        height: headerHeight,
         color: DARK_RED,
     })
     page.drawText("ABILITIES", {
@@ -457,7 +458,7 @@ function addAbilities(page: PDFPage, form: PDFForm, character: Character) {
         x: rightColumnX,
         y: falloutY,
         width: columnWidth - margin * 2,
-        height: 30,
+        height: headerHeight,
         color: DARK_RED,
     })
     page.drawText("FALLOUT", {
