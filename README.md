@@ -25,6 +25,7 @@ Heart is copyright Rowan, Rook and Decard. You can find out more and support the
 V1 release requirements:
 
 * Some analytics to see if people actually use it
-* JSON upload/download
 * skill/domain/protection pick & those abilities
-* (stretch) PDF download -->
+* JSON upload/download (done)
+* (stretch) PDF download (done)
+-->

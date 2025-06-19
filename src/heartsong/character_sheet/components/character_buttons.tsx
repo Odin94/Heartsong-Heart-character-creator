@@ -1,23 +1,32 @@
 import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
-import { Character, characterSchema, getEmptyCharacter } from "@/heartsong/game_data/character"
-import { Buffer } from "buffer"
-import { useState, useCallback } from "react"
-import { useCharacter } from "../character_states"
-import { cn } from "@/lib/utils"
 import { Dialog, DialogClose, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog"
-import { toast } from "sonner"
-import { useDropzone } from "react-dropzone"
-import { Upload, FileDown } from "lucide-react"
 import { generateCharacterPDF } from "@/heartsong/creator/pdf_creator"
+import { Character, characterSchema, getEmptyCharacter } from "@/heartsong/game_data/character"
+import { useUserUuid } from "@/lib/analytics"
+import { cn } from "@/lib/utils"
+import { Buffer } from "buffer"
+import { FileDown, Upload } from "lucide-react"
+import posthog from "posthog-js"
+import { useState } from "react"
+import { useDropzone } from "react-dropzone"
+import { toast } from "sonner"
+import { useCharacter } from "../character_states"
 
 export const downloadJson = async (character: Character) => {
-    const blob = new Blob([JSON.stringify(character, null, 2)], { type: "application/json" })
-    const link = document.createElement("a")
+    const { userUuid } = useUserUuid()
 
-    link.href = window.URL.createObjectURL(blob)
-    link.download = `heartsong_${character.name}.json`
-    link.click()
+    try {
+        const blob = new Blob([JSON.stringify(character, null, 2)], { type: "application/json" })
+        const link = document.createElement("a")
+
+        link.href = window.URL.createObjectURL(blob)
+        link.download = `heartsong_${character.name}.json`
+        link.click()
+    } catch (error) {
+        console.error(error)
+    } finally {
+        posthog.capture("JSON Download", { userUuid })
+    }
 }
 
 export const getUploadFile = async (file: File): Promise<string> => {
@@ -116,6 +125,8 @@ export const JSONUploadButton = () => {
         return <p className="text-center">Drag & drop a JSON file here, or click to select</p>
     }
 
+    const { userUuid } = useUserUuid()
+
     const loadCharacter = async (loadedFile: File | undefined) => {
         if (!loadedFile) return
 
@@ -134,6 +145,8 @@ export const JSONUploadButton = () => {
                 richColors: true,
             })
             return
+        } finally {
+            posthog.capture("Character loaded", { userUuid })
         }
 
         console.log({ loadedCharacter: jsonObject })
@@ -204,6 +217,7 @@ export const JSONUploadButton = () => {
 
 export const PDFDownloadButton = ({ className }: { className?: string }) => {
     const { character } = useCharacter()
+    const { userUuid } = useUserUuid()
 
     const handleDownload = async () => {
         try {
@@ -221,6 +235,8 @@ export const PDFDownloadButton = ({ className }: { className?: string }) => {
                 duration: 5000,
                 dismissible: true,
             })
+        } finally {
+            posthog.capture("PDF Download", { userUuid })
         }
     }
 
