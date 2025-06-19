@@ -6,14 +6,15 @@ import { useUserUuid } from "@/lib/analytics"
 import { cn } from "@/lib/utils"
 import { Buffer } from "buffer"
 import { FileDown, Upload } from "lucide-react"
-import posthog from "posthog-js"
 import { useState } from "react"
 import { useDropzone } from "react-dropzone"
 import { toast } from "sonner"
 import { useCharacter } from "../character_states"
+import { usePostHog } from "posthog-js/react"
 
 export const downloadJson = async (character: Character) => {
     const { userUuid } = useUserUuid()
+    const posthog = usePostHog()
 
     try {
         const blob = new Blob([JSON.stringify(character, null, 2)], { type: "application/json" })
@@ -82,6 +83,7 @@ export const ResetButton = () => {
 }
 
 export const JSONUploadButton = () => {
+    const posthog = usePostHog()
     const [file, setFile] = useState<File>()
     const { setCharacter } = useCharacter()
     const { getRootProps, getInputProps, isDragActive, isDragReject } = useDropzone({
@@ -216,6 +218,7 @@ export const JSONUploadButton = () => {
 }
 
 export const PDFDownloadButton = ({ className }: { className?: string }) => {
+    const posthog = usePostHog()
     const { character } = useCharacter()
     const { userUuid } = useUserUuid()
 

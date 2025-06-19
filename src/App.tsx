@@ -9,11 +9,12 @@ import {
     ResetButton,
 } from "./heartsong/character_sheet/components/character_buttons"
 import { Toaster } from "@/components/ui/sonner"
-import posthog from "posthog-js"
 import { useUserUuid } from "@/lib/analytics"
 import { useEffect } from "react"
+import { usePostHog } from "posthog-js/react"
 
 function App() {
+    const posthog = usePostHog()
     const { userUuid, setUserUuid } = useUserUuid()
     useEffect(() => {
         if (!userUuid) {
@@ -21,7 +22,10 @@ function App() {
         }
     }, [userUuid, setUserUuid])
 
-    if (!!userUuid) posthog.capture("Pageview: Heartsong", { userUuid })
+    if (!!userUuid) {
+        posthog.identify(userUuid)
+        posthog.capture("Pageview: Heartsong", { userUuid })
+    }
 
     return (
         <div className="relative min-h-screen">
