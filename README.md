@@ -1,10 +1,16 @@
-# 💖 Heartsong - A Heart Character Creator & Sheet Web App 💖
+# Heartsong 💘
 
 Heartsong is a web app that lets you manage a web character sheet for the TTRPG `Heart - The City Beneath`
 
 [Check out Heartsong here!](https://heartsong.odin-matthias.de)
 
 If you want, you can [buy me a coffee here ☕](https://ko-fi.com/odin_dev)
+
+## How to run
+* `npm isntall`  *yes, it's isntall*
+* `npm run dev` to run locally
+* `npm run build` to generate a production build
+
 
 ## Credits:
 * Heart - The City Beneath TTRPG [Rowan, Rook & Decard](https://rowanrookanddecard.com/product-category/game-systems/resistance/heart/)
