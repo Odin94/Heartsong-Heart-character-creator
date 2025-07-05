@@ -1,5 +1,5 @@
 import { Ability } from "../abilities"
-import { domain, skill, protection, noBonuses } from "./ability_utils"
+import { domain, skill, protection, noBonuses, pickFrom } from "./ability_utils"
 
 export const deepApiaristAbilities: Ability[] = [
     {
@@ -7,6 +7,7 @@ export const deepApiaristAbilities: Ability[] = [
         description: "Gain 'Technology' domain. Given time, you can repair devices even without the right parts.",
         type: "minor",
         staticBonuses: domain("technology"),
+        pickFrom: pickFrom({}),
     },
     {
         name: "Apisambulation",
@@ -14,6 +15,7 @@ export const deepApiaristAbilities: Ability[] = [
             "Gain 'Delve' skill. Once per session, while on a delve, you can fall asleep and let your bees control your body. Getting a few hours of rest this way lets you remove D6 stress.",
         type: "minor",
         staticBonuses: skill("delve"),
+        pickFrom: pickFrom({}),
     },
     {
         name: "Hiveborn",
@@ -21,12 +23,14 @@ export const deepApiaristAbilities: Ability[] = [
             "Gain 'Warren' domain. You can fit yourself through any small gap by fyling through bee by bee. This can take more than 6 hours, or you can rush it by marking D8 'Blood' stress.",
         type: "minor",
         staticBonuses: domain("warren"),
+        pickFrom: pickFrom({}),
     },
     {
         name: "Hunter of the Damned",
         description: "Gain 'Hunt' skill. Once per session, when eliminating a heartsblooded creature, remove D6 stress.",
         type: "minor",
         staticBonuses: skill("hunt"),
+        pickFrom: pickFrom({}),
     },
     {
         name: "Intoxicant",
@@ -34,6 +38,7 @@ export const deepApiaristAbilities: Ability[] = [
             "Gain 'Compel' skill. Once per session, talk to someone for 5 minutes or more to revert them to their basest impulses (lust, hunger, need for shelter - whatever they need right now).",
         type: "minor",
         staticBonuses: skill("compel"),
+        pickFrom: pickFrom({}),
     },
     {
         name: "Intrusion",
@@ -41,18 +46,21 @@ export const deepApiaristAbilities: Ability[] = [
             "Gain 'Wild' domain. You can send your swarm to control the body of a wild animal with a 'Compel' + 'Wild' roll. You can direct the animal to perform basic tasks. While your control is active, your own body slumps to the floor. When your control ends, the animal dies.",
         type: "minor",
         staticBonuses: domain("wild"),
+        pickFrom: pickFrom({}),
     },
     {
         name: "Many Eyes",
         description: "Gain 'Discern' skill. Stand still and close your eyes to see through your bees eyes.",
         type: "minor",
         staticBonuses: skill("discern"),
+        pickFrom: pickFrom({}),
     },
     {
         name: "Perfect Structure",
         description: "Gain +2 'Echo' Protection.",
         type: "minor",
         staticBonuses: protection("echo", 2),
+        pickFrom: pickFrom({}),
     },
     {
         name: "Thrice-Warded",
@@ -60,12 +68,14 @@ export const deepApiaristAbilities: Ability[] = [
             "Gain 'Cursed' domain. Each session, the first time you would take minor 'Fortune' fallout, avoid the fallout and do not remove stress from 'Fortune'.",
         type: "minor",
         staticBonuses: domain("cursed"),
+        pickFrom: pickFrom({}),
     },
     {
         name: "Uncanny Biology",
         description: "Gain +2 'Blood' Protection.",
         type: "minor",
         staticBonuses: protection("blood", 2),
+        pickFrom: pickFrom({}),
     },
     // TODOdin: add Waxen Sigils here once we have protectionpick
     // TODOdin: add 'Whispers of the Hive' once we have domainpick
@@ -76,10 +86,10 @@ export const deepApiaristAbilities: Ability[] = [
     // Annihilation
     {
         name: "Annihilation",
-        description:
-            "Against heartsblooded people or creatures, your touch functions as a 'Kill' D8 weapon. Against any other target as 'Kill' D6.",
+        description: "Against heartsblooded people or creatures, your touch functions as a 'Kill' D8 weapon. Against any other target as 'Kill' D6.",
         type: "major",
         staticBonuses: noBonuses(),
+        pickFrom: pickFrom({}),
     },
     {
         name: "Blossom within the Skull",
@@ -87,6 +97,7 @@ export const deepApiaristAbilities: Ability[] = [
         type: "minor",
         staticBonuses: noBonuses(),
         parentName: "Annihilation",
+        pickFrom: pickFrom({}),
     },
     {
         name: "Dark Flowers",
@@ -94,6 +105,7 @@ export const deepApiaristAbilities: Ability[] = [
         type: "minor",
         staticBonuses: noBonuses(),
         parentName: "Annihilation",
+        pickFrom: pickFrom({}),
     },
     {
         name: "That which is Golden",
@@ -101,6 +113,7 @@ export const deepApiaristAbilities: Ability[] = [
         type: "minor",
         staticBonuses: noBonuses(),
         parentName: "Annihilation",
+        pickFrom: pickFrom({}),
     },
     // Blessed Toxin
     {
@@ -110,14 +123,15 @@ export const deepApiaristAbilities: Ability[] = [
         type: "minor",
         staticBonuses: noBonuses(),
         parentName: "Blessed Toxin",
+        pickFrom: pickFrom({}),
     },
     {
         name: "Fearless",
-        description:
-            "Once per session, remove minor 'Mind' fallout from an ally or let them ignore the effects of Major 'Mind' fallout for a situation.",
+        description: "Once per session, remove minor 'Mind' fallout from an ally or let them ignore the effects of Major 'Mind' fallout for a situation.",
         type: "minor",
         staticBonuses: noBonuses(),
         parentName: "Blessed Toxin",
+        pickFrom: pickFrom({}),
     },
     {
         name: "Painless",
@@ -126,6 +140,7 @@ export const deepApiaristAbilities: Ability[] = [
         type: "minor",
         staticBonuses: noBonuses(),
         parentName: "Blessed Toxin",
+        pickFrom: pickFrom({}),
     },
     {
         name: "Bloodless",
@@ -133,6 +148,7 @@ export const deepApiaristAbilities: Ability[] = [
         type: "minor",
         staticBonuses: protection("blood", 1),
         parentName: "Blessed Toxin",
+        pickFrom: pickFrom({}),
     },
     // Delerium Spike
     {
@@ -141,6 +157,7 @@ export const deepApiaristAbilities: Ability[] = [
             "The stress inflicted by 'Release the Swarm' increases to D6. The first time you inflict stress using 'Release the Swarm' in a situation, add your 'Mind' stress. After that, reduce your 'Mind' stress to 0.",
         type: "major",
         staticBonuses: noBonuses(),
+        pickFrom: pickFrom({}),
     },
     {
         name: "Imperfect Balance",
@@ -148,6 +165,7 @@ export const deepApiaristAbilities: Ability[] = [
         type: "minor",
         staticBonuses: noBonuses(),
         parentName: "Delerium Spike",
+        pickFrom: pickFrom({}),
     },
     {
         name: "Venomous Hex",
@@ -155,6 +173,7 @@ export const deepApiaristAbilities: Ability[] = [
         type: "minor",
         staticBonuses: noBonuses(),
         parentName: "Delerium Spike",
+        pickFrom: pickFrom({}),
     },
     {
         name: "Inquisitive Burrowers",
@@ -162,6 +181,7 @@ export const deepApiaristAbilities: Ability[] = [
         type: "minor",
         staticBonuses: noBonuses(),
         parentName: "Delerium Spike",
+        pickFrom: pickFrom({}),
     },
     // Sacred Geometry
     {
@@ -170,6 +190,7 @@ export const deepApiaristAbilities: Ability[] = [
             "When you are rolling to inflict stress on a delve or adversary, or remove stress from yourself or an ally, and you roll a 6, roll an additional D6 and add it to your total.",
         type: "major",
         staticBonuses: noBonuses(),
+        pickFrom: pickFrom({}),
     },
     {
         name: "Majestic",
@@ -177,6 +198,7 @@ export const deepApiaristAbilities: Ability[] = [
         type: "minor",
         staticBonuses: noBonuses(),
         parentName: "Sacred Geometry",
+        pickFrom: pickFrom({}),
     },
     {
         name: "Pristine",
@@ -184,6 +206,7 @@ export const deepApiaristAbilities: Ability[] = [
         type: "minor",
         staticBonuses: noBonuses(),
         parentName: "Sacred Geometry",
+        pickFrom: pickFrom({}),
     },
     {
         name: "Regal",
@@ -191,6 +214,7 @@ export const deepApiaristAbilities: Ability[] = [
         type: "minor",
         staticBonuses: noBonuses(),
         parentName: "Sacred Geometry",
+        pickFrom: pickFrom({}),
     },
     // Unchaos
     {
@@ -200,6 +224,7 @@ export const deepApiaristAbilities: Ability[] = [
         type: "minor",
         staticBonuses: noBonuses(),
         parentName: "Unchaos",
+        pickFrom: pickFrom({}),
     },
     {
         name: "Stabilisation",
@@ -208,6 +233,7 @@ export const deepApiaristAbilities: Ability[] = [
         type: "minor",
         staticBonuses: noBonuses(),
         parentName: "Unchaos",
+        pickFrom: pickFrom({}),
     },
     {
         name: "Perfection",
@@ -215,6 +241,7 @@ export const deepApiaristAbilities: Ability[] = [
         type: "minor",
         staticBonuses: noBonuses(),
         parentName: "Unchaos",
+        pickFrom: pickFrom({}),
     },
     {
         name: "Filed Away",
@@ -222,6 +249,7 @@ export const deepApiaristAbilities: Ability[] = [
         type: "minor",
         staticBonuses: noBonuses(),
         parentName: "Unchaos",
+        pickFrom: pickFrom({}),
     },
     // Zenith
     {
@@ -230,6 +258,7 @@ export const deepApiaristAbilities: Ability[] = [
             "Touch another creature to bind both of you into an inviolable, immobile, glittering crystal-like statue. No one ever managed to break such a statue.",
         type: "zenith",
         staticBonuses: noBonuses(),
+        pickFrom: pickFrom({}),
     },
     {
         name: "Dimensional Bastion",
@@ -237,11 +266,13 @@ export const deepApiaristAbilities: Ability[] = [
             "You dissolve into bees, which fly out and place wards against the heart in the landmark, protecting it from the heart's influence. Rename the landmark.",
         type: "zenith",
         staticBonuses: noBonuses(),
+        pickFrom: pickFrom({}),
     },
     {
         name: "Surrender to Chaos",
         description: "Create absolute destructive chaos around yourself for a few seconds, killing you in the process.",
         type: "zenith",
         staticBonuses: noBonuses(),
+        pickFrom: pickFrom({}),
     },
 ]

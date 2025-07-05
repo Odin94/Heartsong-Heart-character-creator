@@ -8,6 +8,9 @@ import { RiKnifeBloodLine } from "react-icons/ri"
 
 export const skills = ["compel", "delve", "discern", "endure", "evade", "hunt", "kill", "mend", "sneak"] as const
 export type SkillKey = (typeof skills)[number]
+export const isSkill = (maybeSkill: string | SkillKey): maybeSkill is SkillKey => {
+    return skills.includes(maybeSkill as SkillKey)
+}
 
 export const iconBySkill: Record<SkillKey, string | ReactNode> = {
     kill: RiKnifeBloodLine({}),

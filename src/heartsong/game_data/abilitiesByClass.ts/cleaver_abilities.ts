@@ -1,8 +1,5 @@
 import { Ability } from "../abilities"
-import { domain, skill, protection, noBonuses } from "./ability_utils"
-
-// TODOdin: How to represent "pick any domain" abilities like "DOMINION"?
-// TODOdin: Create an ability-pick modal with tabs for minor, major, zenith
+import { domain, skill, protection, noBonuses, pickFrom } from "./ability_utils"
 
 export const cleaverAbilities: Ability[] = [
     {
@@ -10,46 +7,74 @@ export const cleaverAbilities: Ability[] = [
         description: "Gain 'Wild' domain, summon horde of beasts once per session.",
         type: "minor",
         staticBonuses: domain("wild"),
+        pickFrom: pickFrom({}),
     },
     {
         name: "Darkling Eyes",
         description: "Gain 'Delve' skill, see in darkness.",
         type: "minor",
         staticBonuses: skill("delve"),
+        pickFrom: pickFrom({}),
     },
     {
         name: "Desperate Measures",
         description: "Gain 'Desolate' domain. Gain an associated skill for a scene when eating the flesh of something you recently killed.",
         type: "minor",
         staticBonuses: domain("desolate"),
+        pickFrom: pickFrom({}),
     },
-    // TODOdin: Add "Dominion" here once you have choose-your-domain logic
+    {
+        name: "Dominion",
+        description: "Get one of the following domains: 'Cursed', 'Desolate', 'Occult', 'Religion', 'Wild', 'Warren'. Can be picked more than once.",
+        type: "minor",
+        staticBonuses: noBonuses(),
+        pickFrom: pickFrom({ domains: ["cursed", "desolate", "occult", "religion", "wild", "warren"] }),
+        // TODOdin: Make more-than-once selectable
+    },
     {
         name: "Fell Metabolism",
         description:
             "Gain 'Endure' skill. When you use 'The Red Feast', you may get 'Brutal' on your attacks for [dice-roll] actions on the resource dice instead of gaining a domain.",
         type: "minor",
         staticBonuses: skill("endure"),
+        pickFrom: pickFrom({}),
     },
     {
         name: "Fractured Form",
         description: "Gain 'Evade' skill. Once per delve, a swarm of insects and small animals will serve you as equipment (Delve D8).",
         type: "minor",
         staticBonuses: skill("evade"),
+        pickFrom: pickFrom({}),
     },
-    // TODOdin: Add "Gut Instinct" here once you have choose-your-skill logic
-    // TODOdin: Add "Inhuman" here once you have choose-your-protections logic
+    {
+        name: "Gut Instinct",
+        description: "Get one of the following skills: 'Compel', 'Delve', 'Discern', 'Endure', 'Evade', 'Hunt', 'Kill', 'Mend'. Can be picked more than once.",
+        type: "minor",
+        staticBonuses: noBonuses(),
+        pickFrom: pickFrom({ skills: ["compel", "delve", "discern", "endure", "evade", "hunt", "kill", "mend"] }),
+        // TODOdin: Make more-than-once selectable
+    },
+    {
+        name: "Inhuman",
+        description: "Get +1 for one of the following protections: 'Blood', 'Echo', 'Fortune', 'Supplies'. Can be picked more than once.",
+        type: "minor",
+        staticBonuses: noBonuses(),
+        pickFrom: pickFrom({ protections: ["blood", "echo", "fortune", "supplies"] }),
+        // TODOdin: Make more-than-once selectable
+    },
     {
         name: "Pitchskin",
         description: "Gain 'Sneak' skill. Your skin can secrete flammable and adhesive goo at will.",
         type: "minor",
         staticBonuses: skill("sneak"),
+        pickFrom: pickFrom({}),
     },
     {
         name: "Symbiotic",
         description: "Gain +2 'Fortune' protection.",
         type: "minor",
         staticBonuses: protection("fortune", 2),
+        pickFrom: pickFrom({}),
     },
     {
         name: "Twisting Territory",
@@ -57,18 +82,21 @@ export const cleaverAbilities: Ability[] = [
             "Gain 'Warren' domain. Once per situation, ask GM who's in charge of immediate area. They get the uncanny feeling that they're under threat.",
         type: "minor",
         staticBonuses: domain("warren"),
+        pickFrom: pickFrom({}),
     },
     {
         name: "Unmaking Claws",
         description: "Gain 'Kill' skill. Your unarmed attacks are 'Piercing'.",
         type: "minor",
         staticBonuses: skill("kill"),
+        pickFrom: pickFrom({}),
     },
     {
         name: "Vessel",
         description: "Gain +2 'Echo' protection.",
         type: "minor",
         staticBonuses: protection("echo", 2),
+        pickFrom: pickFrom({}),
     },
 
     // Major & sub-skills
@@ -80,14 +108,15 @@ export const cleaverAbilities: Ability[] = [
         type: "major",
         // TODOdin: Add a static bonus that affects equipment; in this case "Bloodbound" to all weapons
         staticBonuses: noBonuses(),
+        pickFrom: pickFrom({}),
     },
     {
         name: "Pack Hunter",
-        description:
-            "If you mark stress to 'Blood' to activate the 'Bloodbound' tag, roll with 'Mastery' on the 'Delve' and 'Hunt' skills for the situation.",
+        description: "If you mark stress to 'Blood' to activate the 'Bloodbound' tag, roll with 'Mastery' on the 'Delve' and 'Hunt' skills for the situation.",
         type: "minor",
         staticBonuses: noBonuses(),
         parentName: "Bloodbound Beast",
+        pickFrom: pickFrom({}),
     },
     {
         name: "Pounce",
@@ -95,6 +124,7 @@ export const cleaverAbilities: Ability[] = [
         type: "minor",
         staticBonuses: noBonuses(),
         parentName: "Bloodbound Beast",
+        pickFrom: pickFrom({}),
     },
     {
         name: "Faithful until the End",
@@ -103,6 +133,7 @@ export const cleaverAbilities: Ability[] = [
         type: "minor",
         staticBonuses: noBonuses(),
         parentName: "Bloodbound Beast",
+        pickFrom: pickFrom({}),
     },
     // Chimeric Strain
     {
@@ -110,14 +141,15 @@ export const cleaverAbilities: Ability[] = [
         description: "You can mark D4 stress to 'Echo' to gain 'Brutal' and 'Wyrd' to your melee attacks for a situation.",
         type: "major",
         staticBonuses: noBonuses(),
+        pickFrom: pickFrom({}),
     },
     {
         name: "Blighted",
-        description:
-            "When you activate 'Chimeric Strain', increase 'Echo' stress inflicted by 1 step and gain +2 'Blood' protection for one situation.",
+        description: "When you activate 'Chimeric Strain', increase 'Echo' stress inflicted by 1 step and gain +2 'Blood' protection for one situation.",
         type: "minor",
         staticBonuses: noBonuses(),
         parentName: "Chimeric Strain",
+        pickFrom: pickFrom({}),
     },
     {
         name: "Horned",
@@ -126,14 +158,15 @@ export const cleaverAbilities: Ability[] = [
         type: "minor",
         staticBonuses: noBonuses(),
         parentName: "Chimeric Strain",
+        pickFrom: pickFrom({}),
     },
     {
         name: "Bezerk",
-        description:
-            "When you activate 'Chimeric Strain', increase 'Echo' stress inflicted by 1 step and ignore effects of 'Blood' fallout for one situation.",
+        description: "When you activate 'Chimeric Strain', increase 'Echo' stress inflicted by 1 step and ignore effects of 'Blood' fallout for one situation.",
         type: "minor",
         staticBonuses: noBonuses(),
         parentName: "Chimeric Strain",
+        pickFrom: pickFrom({}),
     },
     // Extinction Bow
     {
@@ -141,6 +174,7 @@ export const cleaverAbilities: Ability[] = [
         description: "Gain an enourmous ranged weapon with 'Kill' D10, 'Tiring', 'Ranged', 'Expensive'.",
         type: "major",
         staticBonuses: noBonuses(),
+        pickFrom: pickFrom({}),
     },
     {
         name: "Harpoon",
@@ -148,14 +182,15 @@ export const cleaverAbilities: Ability[] = [
         type: "minor",
         staticBonuses: noBonuses(),
         parentName: "Extinction Bow",
+        pickFrom: pickFrom({}),
     },
     {
         name: "Hunter's Eye",
-        description:
-            "Once per situation, point out a helpful element of the landscape. The first time an ally interacts with it they roll with 'Mastery'.",
+        description: "Once per situation, point out a helpful element of the landscape. The first time an ally interacts with it they roll with 'Mastery'.",
         type: "minor",
         staticBonuses: noBonuses(),
         parentName: "Extinction Bow",
+        pickFrom: pickFrom({}),
     },
     {
         name: "Nighmare Arrow",
@@ -163,6 +198,7 @@ export const cleaverAbilities: Ability[] = [
         type: "minor",
         staticBonuses: noBonuses(),
         parentName: "Extinction Bow",
+        pickFrom: pickFrom({}),
     },
     // Monstrous Apetite
     {
@@ -170,14 +206,15 @@ export const cleaverAbilities: Ability[] = [
         description: "When using 'The Red Feast' for a domain you already have, remove stress from 'Blood' or 'Echo' by [dice-roll].",
         type: "major",
         staticBonuses: noBonuses(),
+        pickFrom: pickFrom({}),
     },
     {
         name: "Rejuvenation",
-        description:
-            "Once per session when using 'Monstrous Appetite' on a resource of value D8 or higher, remove a minor 'Blood' or 'Echo' fallout.",
+        description: "Once per session when using 'Monstrous Appetite' on a resource of value D8 or higher, remove a minor 'Blood' or 'Echo' fallout.",
         type: "minor",
         staticBonuses: noBonuses(),
         parentName: "Monstrous Apetite",
+        pickFrom: pickFrom({}),
     },
     {
         name: "Tainted Meat",
@@ -186,6 +223,7 @@ export const cleaverAbilities: Ability[] = [
         type: "minor",
         staticBonuses: noBonuses(),
         parentName: "Monstrous Apetite",
+        pickFrom: pickFrom({}),
     },
     {
         name: "Horrendous Bite",
@@ -194,6 +232,7 @@ export const cleaverAbilities: Ability[] = [
         type: "minor",
         staticBonuses: noBonuses(),
         parentName: "Monstrous Apetite",
+        pickFrom: pickFrom({}),
     },
     // The Wild Hunt
     {
@@ -202,6 +241,7 @@ export const cleaverAbilities: Ability[] = [
             "Pass an 'Endure' + 'Cursed' roll ('Risky' if you're in a 'Haven') to make yourself and your allies to gain the 'Hunt' skill and increase stress they inflict on delves by 1 step for the current delve.",
         type: "major",
         staticBonuses: noBonuses(),
+        pickFrom: pickFrom({}),
     },
     {
         name: "Echoes of the City Beneath",
@@ -209,6 +249,7 @@ export const cleaverAbilities: Ability[] = [
         type: "minor",
         staticBonuses: noBonuses(),
         parentName: "The Wild Hunt",
+        pickFrom: pickFrom({}),
     },
     {
         name: "Storyteller",
@@ -217,6 +258,7 @@ export const cleaverAbilities: Ability[] = [
         type: "minor",
         staticBonuses: noBonuses(),
         parentName: "The Wild Hunt",
+        pickFrom: pickFrom({}),
     },
     {
         name: "Bounty Shared",
@@ -225,6 +267,7 @@ export const cleaverAbilities: Ability[] = [
         type: "minor",
         staticBonuses: noBonuses(),
         parentName: "The Wild Hunt",
+        pickFrom: pickFrom({}),
     },
     // Zenith
     {
@@ -233,6 +276,7 @@ export const cleaverAbilities: Ability[] = [
             "Transform into a towering, ruinous and powerful Angel. You retain your will for the current situation, after which you will be absorbed back into the flesh of the Heart and beset delvers in centuries to come.",
         type: "zenith",
         staticBonuses: noBonuses(),
+        pickFrom: pickFrom({}),
     },
     {
         name: "Legendary Beast",
@@ -240,6 +284,7 @@ export const cleaverAbilities: Ability[] = [
             "Hunt an ancient creature. You will kill it and become the new beast, a legendary terror in the City Beneath. Create a new landmark that you call your territory. You rule this place, but you can never leave. One day another Cleaver will kill you and take your place.",
         type: "zenith",
         staticBonuses: noBonuses(),
+        pickFrom: pickFrom({}),
     },
     {
         name: "Weald and Woe",
@@ -247,5 +292,6 @@ export const cleaverAbilities: Ability[] = [
             "When you die, the landmark you are currently occupying is overwhelmed by 'The Forest'. If you're on a delve, establish a new landmark. When you are reborn, you awaken in the Forest, where you have an afterlife of hunting, feasting and howling.",
         type: "zenith",
         staticBonuses: noBonuses(),
+        pickFrom: pickFrom({}),
     },
 ]

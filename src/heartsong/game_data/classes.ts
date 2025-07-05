@@ -1,7 +1,7 @@
 import { DomainKey } from "./domains"
 import { SkillKey } from "./skills"
 import { Ability } from "./abilities"
-import { noBonuses } from "./abilitiesByClass.ts/ability_utils"
+import { noBonuses, pickFrom } from "./abilitiesByClass.ts/ability_utils"
 
 export const characterClasses = [
     "Cleaver",
@@ -47,6 +47,7 @@ export const coreTraitsByCharacter: Record<CharacterClass, CoreTraits> = {
                     "Your minimum protection value for all resistances is equal to the tier of the Heart you are currently on, unless you lose protection to a Fallout.",
                 type: "core",
                 staticBonuses: noBonuses(),
+                pickFrom: pickFrom({}),
             },
             {
                 name: "The Red Feast",
@@ -54,6 +55,7 @@ export const coreTraitsByCharacter: Record<CharacterClass, CoreTraits> = {
                     "When you eat a resource, you gain any domains associated with that resource until the end of the situation. If you already have access to the domain, gain an appropriate knack. There's no limit to what you can eat, but tough or noxious materials might require an 'Endure'+'Cursed' check to avoid causing yourself harm. Consuming resources requires your attention and leaves you exposed, so doing it successfully in stressful situations (such as combat) could require a 'Sneak' or 'Evade' roll.",
                 type: "core",
                 staticBonuses: noBonuses(),
+                pickFrom: pickFrom({}),
             },
         ],
     },
@@ -74,6 +76,7 @@ export const coreTraitsByCharacter: Record<CharacterClass, CoreTraits> = {
                     "Roll 'Delve' + 'Religion' to enact this ritual. It takes around ten minutes of preparation. On a success, the smoke clears, and you (and anyone you bring with you) are in the Grey. Within the Grey, the world is a shadowy echo of its living counterpart. Some souls linger here, awaiting their eternal reward, but for the most part it is grim, empty and monochrome. (For more information on travelling and surviving the Grey, see Source Book p. 169.) Exiting the Grey is a simple enough task for a Deadwalker and those they ferry across; it's a 'Delve'+'Religion' roll for anyone else.",
                 type: "core",
                 staticBonuses: noBonuses(),
+                pickFrom: pickFrom({}),
             },
         ],
     },
@@ -94,12 +97,14 @@ export const coreTraitsByCharacter: Record<CharacterClass, CoreTraits> = {
                     "Your bee hive lives inside you. Their curious buzzing aligns your mind with the Hive. At the beginning of each situation, clear all Mind stress. You can never benefit from 'Mind' protection or remove stress from 'Mind', aside from using this ability.",
                 type: "core",
                 staticBonuses: noBonuses(),
+                pickFrom: pickFrom({}),
             },
             {
                 name: "Release the Swarm",
                 description: "Gain access to the following weapon: ('Kill' D4, 'Spread', 'Ranged').",
                 type: "core",
                 staticBonuses: noBonuses(),
+                pickFrom: pickFrom({}),
             },
         ],
     },
@@ -120,6 +125,7 @@ export const coreTraitsByCharacter: Record<CharacterClass, CoreTraits> = {
                     "Once per session, lead your allies in a service of praise to the Moon Beneath (how you practice your faith is up to you). All player characters who took part can remove one Minor 'Blood' or 'Mind' fallout, or downgrade one Major 'Blood' or 'Mind' fallout to Minor, at the end of the service. If you perform this service whilst on a delve, add +D4 to the delve's resistance",
                 type: "core",
                 staticBonuses: noBonuses(),
+                pickFrom: pickFrom({}),
             },
         ],
     },
@@ -140,6 +146,7 @@ export const coreTraitsByCharacter: Record<CharacterClass, CoreTraits> = {
                     "Once per situation, when you would mark stress to any other resistance than 'Fortune', mark it to 'Fortune'. When you suffer 'Fortune' fallout, roll with mastery for the remainder of the situation.",
                 type: "core",
                 staticBonuses: noBonuses(),
+                pickFrom: pickFrom({}),
             },
         ],
     },
@@ -160,6 +167,7 @@ export const coreTraitsByCharacter: Record<CharacterClass, CoreTraits> = {
                     "At any time you may consume a resource and roll its dice; set this dice aside. When you perform an action or inflict stress, but before you roll the dice to resolve it, you may replace any unrolled dice in your pool with the dice you set aside. Once used in this manner, it is consumed. If you have an unspent dice set aside at the end of the session, you take 'Fortune' stress equal to the value rolled on the dice.",
                 type: "core",
                 staticBonuses: noBonuses(),
+                pickFrom: pickFrom({}),
             },
             {
                 name: "Mutually Assured Destruction",
@@ -167,6 +175,7 @@ export const coreTraitsByCharacter: Record<CharacterClass, CoreTraits> = {
                     "If you die, the wards placed on your soul detonate in an attempt to take down whoever did you in. You explode and inflict stress equal to D8 + your current 'Fortune' stress on anyone standing nearby.",
                 type: "core",
                 staticBonuses: noBonuses(),
+                pickFrom: pickFrom({}),
             },
         ],
     },
@@ -186,6 +195,7 @@ export const coreTraitsByCharacter: Record<CharacterClass, CoreTraits> = {
                 description: "When your 'Mind' stress is 4 or higher, roll with mastery when you attempt to cast a spell.",
                 type: "core",
                 staticBonuses: noBonuses(),
+                pickFrom: pickFrom({}),
             },
             {
                 name: "Sacrifice",
@@ -193,6 +203,7 @@ export const coreTraitsByCharacter: Record<CharacterClass, CoreTraits> = {
                     "Before you cast a spell from this class, you can opt to destroy a resource with the 'Occult' domain. Roll the resource's dice; the amount rolled is added to your Protection value against any stress incurred as a result of casting the spell.",
                 type: "core",
                 staticBonuses: noBonuses(),
+                pickFrom: pickFrom({}),
             },
         ],
     },
@@ -213,6 +224,7 @@ export const coreTraitsByCharacter: Record<CharacterClass, CoreTraits> = {
                     "Once per session, when you consume a resource with the 'Technology' or 'Occult' domains by augmenting or repairing your armour, roll the resource's dice and choose one of the following: \n• Remove stress marked against 'Blood', 'Mind' or 'Echo' equal to the amount rolled. \n• Inflict stress on a delve or adversary equal to the amount rolled. \n• (D8 resource or higher) Gain access to a skill or domain for the rest of the session. \n• (D8 resource or higher) Increase your 'Blood' protection by 1 for the rest of the situation.",
                 type: "core",
                 staticBonuses: noBonuses(),
+                pickFrom: pickFrom({}),
             },
         ],
     },
@@ -221,11 +233,7 @@ export const coreTraitsByCharacter: Record<CharacterClass, CoreTraits> = {
         domain: "occult",
         resource: "Tattered finery (a silk scarf, worn jewellery, etc.) (D6 'Haven')",
         equipment: "",
-        pickEquipment: [
-            "Sacred Blade ('Kill' D6, 'Bloodbound')",
-            "Goat's Leg Carbine ('Kill' D6, 'Ranged', 'Reload')",
-            "Physiker's bag ('Mend' 'Blood' D6)",
-        ],
+        pickEquipment: ["Sacred Blade ('Kill' D6, 'Bloodbound')", "Goat's Leg Carbine ('Kill' D6, 'Ranged', 'Reload')", "Physiker's bag ('Mend' 'Blood' D6)"],
         abilities: [
             {
                 name: "Crucible",
@@ -233,6 +241,7 @@ export const coreTraitsByCharacter: Record<CharacterClass, CoreTraits> = {
                     "At any time, roll a D6. If it's equal to or under your current 'Echo' stress, clear that much stress from 'Echo' and roll with mastery on your next action. If it's over your current 'Echo' stress, add that much stress to 'Echo'.",
                 type: "core",
                 staticBonuses: noBonuses(),
+                pickFrom: pickFrom({}),
             },
             {
                 name: "True Form",
@@ -240,6 +249,7 @@ export const coreTraitsByCharacter: Record<CharacterClass, CoreTraits> = {
                     "Whenever you want to, or when you suffer Major fallout, you enter your true form - describe it. When in your true form, you roll with mastery on 'Hunt' and 'Kill' checks, but all other checks become 'Risky'. At the end of the current situation, you revert to your humanoid form.",
                 type: "core",
                 staticBonuses: noBonuses(),
+                pickFrom: pickFrom({}),
             },
         ],
     },

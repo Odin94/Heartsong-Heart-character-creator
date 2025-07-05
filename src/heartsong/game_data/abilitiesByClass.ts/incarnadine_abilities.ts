@@ -1,5 +1,5 @@
-import { Ability } from "../abilities"
-import { domain, skill, protection, noBonuses } from "./ability_utils"
+import { Ability } from "../abilities";
+import { domain, skill, protection, noBonuses, pickFrom } from "./ability_utils";
 
 export const incarnadineAbilities: Ability[] = [
     {
@@ -7,12 +7,14 @@ export const incarnadineAbilities: Ability[] = [
         description: "Gain 'Kill' skill. If you're killing something that's shed your blood before, your attack gains the 'Brutal' tag.",
         type: "minor",
         staticBonuses: skill("kill"),
+        pickFrom: pickFrom({}),
     },
     {
         name: "An Eye for the Strange",
         description: "Gain 'Occult' domain. Once per session, you may change the domain of a resource.",
         type: "minor",
         staticBonuses: domain("occult"),
+        pickFrom: pickFrom({}),
     },
     // TODOdin: Add 'Better Safe than Sorry' here once we have protectionpick
     {
@@ -20,19 +22,21 @@ export const incarnadineAbilities: Ability[] = [
         description: "Gain 'Sneak' skill. When you try to steal something of D10 value or higher, roll with mastery.",
         type: "minor",
         staticBonuses: skill("sneak"),
+        pickFrom: pickFrom({}),
     },
     {
         name: "Creative Book-Keeping",
         description: "Gain +2 'Supplies' protection.",
         type: "minor",
         staticBonuses: protection("supplies", 2),
+        pickFrom: pickFrom({}),
     },
     {
         name: "Eyes in the Back of your Head",
-        description:
-            "Gain 'Discern' skill. When you stand still and concentrate, you can see behind you like you had eyes on the back of your head.",
+        description: "Gain 'Discern' skill. When you stand still and concentrate, you can see behind you like you had eyes on the back of your head.",
         type: "minor",
         staticBonuses: skill("discern"),
+        pickFrom: pickFrom({}),
     },
     // TODOdin: Add "Jack of all Trades" here once we have skillpick
     {
@@ -40,6 +44,7 @@ export const incarnadineAbilities: Ability[] = [
         description: "Gain 'Desolate' domain. Once per session, the GM will tell you where the nearest source of wealth is.",
         type: "minor",
         staticBonuses: domain("desolate"),
+        pickFrom: pickFrom({}),
     },
     {
         name: "Make Do",
@@ -47,13 +52,14 @@ export const incarnadineAbilities: Ability[] = [
             "Gain 'Mend' skill. Once per session, you can immediately fix something that's broken - but it only works once. After that, it's destroyed past the point of repair.",
         type: "minor",
         staticBonuses: skill("mend"),
+        pickFrom: pickFrom({}),
     },
     {
         name: "On the Run",
-        description:
-            "Gain 'Evade' skill. Mark D4 stress to 'Supplies' to shift the attention of a person or creature to another PC or an important NPC.",
+        description: "Gain 'Evade' skill. Mark D4 stress to 'Supplies' to shift the attention of a person or creature to another PC or an important NPC.",
         type: "minor",
         staticBonuses: skill("evade"),
+        pickFrom: pickFrom({}),
     },
     {
         name: "Priest of Incarne",
@@ -61,19 +67,21 @@ export const incarnadineAbilities: Ability[] = [
             "Gain 'Religion' domain. Once per session, when you visit a shrine of Incarne and preach to the faithful, refresh equal to the size of the shrine (D4 for cupboard-sized devotionals, D12 for a glorious temple).",
         type: "minor",
         staticBonuses: domain("religion"),
+        pickFrom: pickFrom({}),
     },
     {
         name: "Red Marketeer",
-        description:
-            "Gain 'Warren' domain. If someone tries to take what's yours, your attacks gain the 'Brutal' tag when you attempt to stop them",
+        description: "Gain 'Warren' domain. If someone tries to take what's yours, your attacks gain the 'Brutal' tag when you attempt to stop them",
         type: "minor",
         staticBonuses: domain("warren"),
+        pickFrom: pickFrom({}),
     },
     {
         name: "Valuable Asset",
         description: "Gain +2 'Fortune' protection.",
         type: "minor",
         staticBonuses: protection("fortune", 2),
+        pickFrom: pickFrom({}),
     },
     // TODOdin: Add 'Areas of Opportunity' here once we have domainpick
 
@@ -82,10 +90,10 @@ export const incarnadineAbilities: Ability[] = [
     // Backstab
     {
         name: "Backstab",
-        description:
-            "When you attack a target that is unaware of your position with a one-handed melee weapon, your attacks gain the 'Piercing' tag.",
+        description: "When you attack a target that is unaware of your position with a one-handed melee weapon, your attacks gain the 'Piercing' tag.",
         type: "major",
         staticBonuses: noBonuses(),
+        pickFrom: pickFrom({}),
     },
     {
         name: "Dead Eye",
@@ -93,6 +101,7 @@ export const incarnadineAbilities: Ability[] = [
         type: "minor",
         staticBonuses: noBonuses(),
         parentName: "Backstab",
+        pickFrom: pickFrom({}),
     },
     {
         name: "Never Saw it Coming",
@@ -101,14 +110,15 @@ export const incarnadineAbilities: Ability[] = [
         type: "minor",
         staticBonuses: noBonuses(),
         parentName: "Backstab",
+        pickFrom: pickFrom({}),
     },
     {
         name: "Remuneration",
-        description:
-            "When you reduce a target to 0 resistance with 'Backstab', remove stress from 'Supplies' equal to double the value of your current tier.",
+        description: "When you reduce a target to 0 resistance with 'Backstab', remove stress from 'Supplies' equal to double the value of your current tier.",
         type: "minor",
         staticBonuses: noBonuses(),
         parentName: "Backstab",
+        pickFrom: pickFrom({}),
     },
     //Broker
     {
@@ -117,6 +127,7 @@ export const incarnadineAbilities: Ability[] = [
             "Roll 'Mend' + 'Haven' to cast this spell. On a success, remove D6 stress from any resistance (other than Supplies) for one nearby character other than yourself.",
         type: "major",
         staticBonuses: noBonuses(),
+        pickFrom: pickFrom({}),
     },
     {
         name: "Invest",
@@ -124,6 +135,7 @@ export const incarnadineAbilities: Ability[] = [
         type: "minor",
         staticBonuses: noBonuses(),
         parentName: "Broker",
+        pickFrom: pickFrom({}),
     },
     {
         name: "Transferral",
@@ -132,6 +144,7 @@ export const incarnadineAbilities: Ability[] = [
         type: "minor",
         staticBonuses: noBonuses(),
         parentName: "Broker",
+        pickFrom: pickFrom({}),
     },
     {
         name: "Inflict",
@@ -140,6 +153,7 @@ export const incarnadineAbilities: Ability[] = [
         type: "minor",
         staticBonuses: noBonuses(),
         parentName: "Broker",
+        pickFrom: pickFrom({}),
     },
     // Crave
     {
@@ -148,6 +162,7 @@ export const incarnadineAbilities: Ability[] = [
             "Roll 'Compel' + 'Haven' to cast this spell on an NPC you're speaking to. On a success, you can instill a great desire for something in them. If the thing they want is unusual for them, casting this spell is Risky. On a success, they now fiercely want whatever it is you've specified until the end of the current situation.",
         type: "major",
         staticBonuses: noBonuses(),
+        pickFrom: pickFrom({}),
     },
     {
         name: "Addict",
@@ -156,14 +171,15 @@ export const incarnadineAbilities: Ability[] = [
         type: "minor",
         staticBonuses: noBonuses(),
         parentName: "Crave",
+        pickFrom: pickFrom({}),
     },
     {
         name: "Viral",
-        description:
-            "A target of 'Crave' has a 1 in 6 chance to spread the desire to anyone they talk to for over 1 Minute (you are immune).",
+        description: "A target of 'Crave' has a 1 in 6 chance to spread the desire to anyone they talk to for over 1 Minute (you are immune).",
         type: "minor",
         staticBonuses: noBonuses(),
         parentName: "Crave",
+        pickFrom: pickFrom({}),
     },
     {
         name: "Conditioning",
@@ -172,6 +188,7 @@ export const incarnadineAbilities: Ability[] = [
         type: "minor",
         staticBonuses: noBonuses(),
         parentName: "Crave",
+        pickFrom: pickFrom({}),
     },
     // Debtor's Reds
     {
@@ -180,6 +197,7 @@ export const incarnadineAbilities: Ability[] = [
             "When you wear the sacred robes of Incarne and a myriad of holy symbols, ledgers and freshly-minted coins, you may automatically cause 1 stress to an adversary who can see you each time you act.",
         type: "major",
         staticBonuses: noBonuses(),
+        pickFrom: pickFrom({}),
     },
     {
         name: "Buy Off",
@@ -187,6 +205,7 @@ export const incarnadineAbilities: Ability[] = [
         type: "minor",
         staticBonuses: noBonuses(),
         parentName: "Debtor's Reds",
+        pickFrom: pickFrom({}),
     },
     {
         name: "Cycle of Debt",
@@ -195,6 +214,7 @@ export const incarnadineAbilities: Ability[] = [
         type: "minor",
         staticBonuses: noBonuses(),
         parentName: "Debtor's Reds",
+        pickFrom: pickFrom({}),
     },
     {
         name: "Assume Debt",
@@ -203,6 +223,7 @@ export const incarnadineAbilities: Ability[] = [
         type: "minor",
         staticBonuses: noBonuses(),
         parentName: "Debtor's Reds",
+        pickFrom: pickFrom({}),
     },
     // Karmic Ledger
     {
@@ -211,14 +232,15 @@ export const incarnadineAbilities: Ability[] = [
             "Roll 'Discern' + 'Haven' to cast this spell on a target you can see and hear. On a success, you determine their deepest karmic debt: the greatest thing that they've taken from someone else (money, valuables, freedom, a son, etc). When you act on this information, roll with mastery.",
         type: "major",
         staticBonuses: noBonuses(),
+        pickFrom: pickFrom({}),
     },
     {
         name: "Connection",
-        description:
-            "When you cast 'Karmic Ledger', you can see who the debt is owed to via an ephemeral red string connecting the two parties.",
+        description: "When you cast 'Karmic Ledger', you can see who the debt is owed to via an ephemeral red string connecting the two parties.",
         type: "minor",
         staticBonuses: noBonuses(),
         parentName: "Karmic Ledger",
+        pickFrom: pickFrom({}),
     },
     {
         name: "Harvest",
@@ -227,6 +249,7 @@ export const incarnadineAbilities: Ability[] = [
         type: "minor",
         staticBonuses: noBonuses(),
         parentName: "Karmic Ledger",
+        pickFrom: pickFrom({}),
     },
     {
         name: "Candidate",
@@ -235,6 +258,7 @@ export const incarnadineAbilities: Ability[] = [
         type: "minor",
         staticBonuses: noBonuses(),
         parentName: "Karmic Ledger",
+        pickFrom: pickFrom({}),
     },
     // Network
     {
@@ -243,6 +267,7 @@ export const incarnadineAbilities: Ability[] = [
             "When in a 'Haven' landmark, roll 'Mend' + 'Religion' to cast this spell as you build a shrine to Incarne. On success, you add the landmark to your trade network. When you enter a haven that is part of your trade network, gain a D4 (increased by 1 step for each haven in your network, max. D10) 'Haven' resource. You can lose a connected haven through a new major 'Fortune'/'Supplies' fallout called 'Severed'.",
         type: "major",
         staticBonuses: noBonuses(),
+        pickFrom: pickFrom({}),
     },
     {
         name: "Proliferation",
@@ -251,6 +276,7 @@ export const incarnadineAbilities: Ability[] = [
         type: "minor",
         staticBonuses: noBonuses(),
         parentName: "Network",
+        pickFrom: pickFrom({}),
     },
     {
         name: "Pathways",
@@ -259,14 +285,15 @@ export const incarnadineAbilities: Ability[] = [
         type: "minor",
         staticBonuses: noBonuses(),
         parentName: "Network",
+        pickFrom: pickFrom({}),
     },
     {
         name: "Money Talks",
-        description:
-            "Whilst at a shrine to Incarne, you can communicate with bonds or haunts in any haven that's part of your trade network.",
+        description: "Whilst at a shrine to Incarne, you can communicate with bonds or haunts in any haven that's part of your trade network.",
         type: "minor",
         staticBonuses: noBonuses(),
         parentName: "Network",
+        pickFrom: pickFrom({}),
     },
 
     // Zenith
@@ -276,6 +303,7 @@ export const incarnadineAbilities: Ability[] = [
             "Once, you can buy anything (except the Heart itself). You have as much control over this item or concept as you have over any object you own. Two sessions from now, the debt will be recalled and it will take your life.",
         type: "zenith",
         staticBonuses: noBonuses(),
+        pickFrom: pickFrom({}),
     },
     {
         name: "Ultimate Debt",
@@ -283,12 +311,13 @@ export const incarnadineAbilities: Ability[] = [
             "Once you can unload the weight of Incarne's debt upon a single individual, location or entity (except the Heart itself). Everything will go catastrophically wrong for the target, but they do not die. Once per situation, you can harvest the debt on the target to clear stress from your resistance tracks. When doing so, roll a D10. 2 or higher: Remove that much stress. 1: Your luck runs out and a cosmic loophole sees Incarne claim your life.",
         type: "zenith",
         staticBonuses: noBonuses(),
+        pickFrom: pickFrom({}),
     },
     {
         name: "Ultimate Reward",
-        description:
-            "You got out of Incarne's debt. You can retire to a normal life. You die several decades from now, surrounded by loved ones.",
+        description: "You got out of Incarne's debt. You can retire to a normal life. You die several decades from now, surrounded by loved ones.",
         type: "zenith",
         staticBonuses: noBonuses(),
+        pickFrom: pickFrom({}),
     },
-]
+];

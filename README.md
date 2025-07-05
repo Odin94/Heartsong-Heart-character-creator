@@ -30,7 +30,7 @@ Heart is copyright Rowan, Rook and Decard. You can find out more and support the
 <!-- 
 V1 release requirements:
 
-* Some analytics to see if people actually use it
+* Some analytics to see if people actually use it (done)
 * skill/domain/protection pick & those abilities
 * JSON upload/download (done)
 * (stretch) PDF download (done)

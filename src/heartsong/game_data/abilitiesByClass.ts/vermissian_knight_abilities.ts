@@ -1,5 +1,5 @@
 import { Ability } from "../abilities"
-import { domain, skill, protection, noBonuses } from "./ability_utils"
+import { domain, skill, protection, noBonuses, pickFrom } from "./ability_utils"
 
 export const vermissianKnightAbilities: Ability[] = [
     {
@@ -7,12 +7,14 @@ export const vermissianKnightAbilities: Ability[] = [
         description: "Gain +2 'Echo' protection.",
         type: "minor",
         staticBonuses: protection("echo", 2),
+        pickFrom: pickFrom({}),
     },
     {
         name: "Armour Plating",
         description: "Gain +2 'Blood' protection.",
         type: "minor",
         staticBonuses: protection("blood", 2),
+        pickFrom: pickFrom({}),
     },
     {
         name: "Black Knight",
@@ -20,6 +22,7 @@ export const vermissianKnightAbilities: Ability[] = [
             "Gain 'Occult' domain. Once per session, when you enter a landmark, you can intuit the location of an occult sect who are hiding information that will aid you in your quest.",
         type: "minor",
         staticBonuses: domain("occult"),
+        pickFrom: pickFrom({}),
     },
     {
         name: "Knight Protector",
@@ -27,18 +30,21 @@ export const vermissianKnightAbilities: Ability[] = [
             "Gain 'Kill' skill. Once per situation, when an ally within arm's reach would mark stress to 'Blood', you mark an equivalent amount to 'Blood' instead.",
         type: "minor",
         staticBonuses: skill("kill"),
+        pickFrom: pickFrom({}),
     },
     {
         name: "Hellwalker",
         description: "Gain 'Cursed' domain. You can use a resource with the 'Cursed' domain to activate 'Vermissian Plate'.",
         type: "minor",
         staticBonuses: domain("cursed"),
+        pickFrom: pickFrom({}),
     },
     {
         name: "Phantom Lens",
         description: "Gain 'Hunt' skill. While you wear these lenses, you can track anything - even if it doesn't leave a tangible trail",
         type: "minor",
         staticBonuses: skill("hunt"),
+        pickFrom: pickFrom({}),
     },
     {
         name: "Protector's Gauntlets",
@@ -58,6 +64,7 @@ export const vermissianKnightAbilities: Ability[] = [
                 },
             ],
         },
+        pickFrom: pickFrom({}),
     },
     {
         name: "Sanguinary Array",
@@ -65,6 +72,7 @@ export const vermissianKnightAbilities: Ability[] = [
             "Gain 'Discern' skill. If one of your senses becomes damaged or unusable, you can replace it with the weird echoes that shudder through your exposed blood - it's not perfect, but it'll do.",
         type: "minor",
         staticBonuses: skill("discern"),
+        pickFrom: pickFrom({}),
     },
     // TODOdin: Add "Stalwart" once we have resistancepick
     {
@@ -72,6 +80,7 @@ export const vermissianKnightAbilities: Ability[] = [
         description: "Gain 'Endure' skill. You can fall distances of up to 3 storeys without taking damage.",
         type: "minor",
         staticBonuses: skill("endure"),
+        pickFrom: pickFrom({}),
     },
     // TODOdin: add 'Student of the Sages' once we have skillpick
     {
@@ -80,6 +89,7 @@ export const vermissianKnightAbilities: Ability[] = [
             "Gain 'Warren' domain. You can hold your breath for a very long time, allowing you to stay underwater or in toxic areas for extended periods.",
         type: "minor",
         staticBonuses: domain("warren"),
+        pickFrom: pickFrom({}),
     },
     // TODOdin: Add 'Well Travelled' once we have domainpick
 
@@ -91,6 +101,7 @@ export const vermissianKnightAbilities: Ability[] = [
         description: "Once per session, gain +3 'Echo' protection until the end of the situation.",
         type: "major",
         staticBonuses: noBonuses(),
+        pickFrom: pickFrom({}),
     },
     {
         name: "Helixican Burst",
@@ -98,6 +109,7 @@ export const vermissianKnightAbilities: Ability[] = [
         type: "minor",
         staticBonuses: noBonuses(),
         parentName: "Aetheric Field",
+        pickFrom: pickFrom({}),
     },
     {
         name: "Recharge",
@@ -106,6 +118,7 @@ export const vermissianKnightAbilities: Ability[] = [
         type: "minor",
         staticBonuses: noBonuses(),
         parentName: "Aetheric Field",
+        pickFrom: pickFrom({}),
     },
     {
         name: "Anathema",
@@ -113,6 +126,7 @@ export const vermissianKnightAbilities: Ability[] = [
         type: "minor",
         staticBonuses: noBonuses(),
         parentName: "Aetheric Field",
+        pickFrom: pickFrom({}),
     },
     // Dragon-Killer
     {
@@ -121,6 +135,7 @@ export const vermissianKnightAbilities: Ability[] = [
             "Gain a Greatblade with two profiles: 'Kill', D6, 'Tiring' against humans, and 'Kill', D10, 'Tiring' against targets significantly larger than yourself.",
         type: "major",
         staticBonuses: noBonuses(),
+        pickFrom: pickFrom({}),
     },
     {
         name: "Hunt",
@@ -129,6 +144,7 @@ export const vermissianKnightAbilities: Ability[] = [
         type: "minor",
         staticBonuses: noBonuses(),
         parentName: "Dragon-Killer",
+        pickFrom: pickFrom({}),
     },
     {
         name: "Endurance Training",
@@ -136,6 +152,7 @@ export const vermissianKnightAbilities: Ability[] = [
         type: "minor",
         staticBonuses: noBonuses(),
         parentName: "Dragon-Killer",
+        pickFrom: pickFrom({}),
     },
     {
         name: "Applied Research",
@@ -144,6 +161,7 @@ export const vermissianKnightAbilities: Ability[] = [
         type: "minor",
         staticBonuses: noBonuses(),
         parentName: "Dragon-Killer",
+        pickFrom: pickFrom({}),
     },
     // Get Behind Me
     {
@@ -152,6 +170,7 @@ export const vermissianKnightAbilities: Ability[] = [
             "Any ally within arm's reach of you gains +1 'Blood' protection thanks to your interventions. Once per situation, you can bellow an order and remove D4 'Blood' or 'Mind' stress from a nearby ally.",
         type: "major",
         staticBonuses: noBonuses(),
+        pickFrom: pickFrom({}),
     },
     {
         name: "Last-Minute Intervention",
@@ -160,6 +179,7 @@ export const vermissianKnightAbilities: Ability[] = [
         type: "minor",
         staticBonuses: noBonuses(),
         parentName: "Get Behind Me",
+        pickFrom: pickFrom({}),
     },
     {
         name: "Steam Vent",
@@ -167,6 +187,7 @@ export const vermissianKnightAbilities: Ability[] = [
         type: "minor",
         staticBonuses: noBonuses(),
         parentName: "Get Behind Me",
+        pickFrom: pickFrom({}),
     },
     {
         name: "Back-to-Back",
@@ -174,6 +195,7 @@ export const vermissianKnightAbilities: Ability[] = [
         type: "minor",
         staticBonuses: noBonuses(),
         parentName: "Get Behind Me",
+        pickFrom: pickFrom({}),
     },
     // Overclock
     {
@@ -182,6 +204,7 @@ export const vermissianKnightAbilities: Ability[] = [
             "You may activate this ability at any time. When you do, make an immediate melee attack; your weapon gains the 'Brutal' tag. After using the ability, mark D4 stress to 'Fortune' as you push your luck and strain your engines.",
         type: "major",
         staticBonuses: noBonuses(),
+        pickFrom: pickFrom({}),
     },
     {
         name: "Puncture",
@@ -190,6 +213,7 @@ export const vermissianKnightAbilities: Ability[] = [
         type: "minor",
         staticBonuses: noBonuses(),
         parentName: "Overclock",
+        pickFrom: pickFrom({}),
     },
     {
         name: "Momentum",
@@ -197,14 +221,15 @@ export const vermissianKnightAbilities: Ability[] = [
         type: "minor",
         staticBonuses: noBonuses(),
         parentName: "Overclock",
+        pickFrom: pickFrom({}),
     },
     {
         name: "Galvanic Crucible",
-        description:
-            "You may activate 'Vermissian Plate' twice per session instead of once. The second time you do it, mark D4 stress to 'Fortune'.",
+        description: "You may activate 'Vermissian Plate' twice per session instead of once. The second time you do it, mark D4 stress to 'Fortune'.",
         type: "minor",
         staticBonuses: noBonuses(),
         parentName: "Overclock",
+        pickFrom: pickFrom({}),
     },
     // Trailblazer
     {
@@ -213,6 +238,7 @@ export const vermissianKnightAbilities: Ability[] = [
             "When you lead a party on a delve, you may activate this ability. When active, increase the stress dice inflicted on the delve (and that the delve inflicts on you) by one step.",
         type: "major",
         staticBonuses: noBonuses(),
+        pickFrom: pickFrom({}),
     },
     {
         name: "First to the Front",
@@ -221,6 +247,7 @@ export const vermissianKnightAbilities: Ability[] = [
         type: "minor",
         staticBonuses: noBonuses(),
         parentName: "Trailblazer",
+        pickFrom: pickFrom({}),
     },
     {
         name: "Pathfinder",
@@ -228,6 +255,7 @@ export const vermissianKnightAbilities: Ability[] = [
         type: "minor",
         staticBonuses: noBonuses(),
         parentName: "Trailblazer",
+        pickFrom: pickFrom({}),
     },
     {
         name: "Keep Your Heads Down",
@@ -235,6 +263,7 @@ export const vermissianKnightAbilities: Ability[] = [
         type: "minor",
         staticBonuses: noBonuses(),
         parentName: "Trailblazer",
+        pickFrom: pickFrom({}),
     },
 
     // Zenith
@@ -244,6 +273,7 @@ export const vermissianKnightAbilities: Ability[] = [
             "On tier 2 or deeper, you may activate this power. You learn of the location of a unique and extraordinary landmark. Work out what it is with the GM. Once you complete a delve to reach it, you cannot leave again. Instead, die in some tragic fashion, vow to protect it forever or ascend into a pure state of electricity and echoing rails. Your character is removed from the story.",
         type: "zenith",
         staticBonuses: noBonuses(),
+        pickFrom: pickFrom({}),
     },
     {
         name: "Perpetual Motion Machine",
@@ -251,6 +281,7 @@ export const vermissianKnightAbilities: Ability[] = [
             "Upon implantation of the heartseed into your suit's furnace, you become an unstoppable force within the City Beneath - indeed, you can never stop moving. You stamp off into the darkness, and your character is removed from the story except for the 'Deus Ex Machina' ability that is granted to all surviving members of your party.\n\n'Deus Ex Machina': May only be used once per campaign. When you are outside of a landmark and you or an ally suffers Major or Critical fallout, an inhuman collection of meat and twisted steel - the Vermissian Knight - arrives. They've been watching you this whole time. They immediately inflict 25 stress on an adversary of the GM's choosing, then disappear into the City Beneath to protect other delvers.",
         type: "zenith",
         staticBonuses: noBonuses(),
+        pickFrom: pickFrom({}),
     },
     {
         name: "The Last Train",
@@ -258,5 +289,6 @@ export const vermissianKnightAbilities: Ability[] = [
             "The Last Train arrives at your current position by the most direct and destructive route, destroying anything in its path. You are killed when this ability is used, crushed under the wheels of the train, riddled with strange energies and cooked in your armour or burned out from the occult strain.",
         type: "zenith",
         staticBonuses: noBonuses(),
+        pickFrom: pickFrom({}),
     },
 ]

@@ -1,20 +1,21 @@
 import { Ability } from "../abilities"
-import { domain, noBonuses, protection, skill } from "./ability_utils"
+import { domain, noBonuses, pickFrom, protection, skill } from "./ability_utils"
 
 export const deadwalkerAbilities: Ability[] = [
     // TODOdin: Add "Adept" here once we have skillpick
     {
         name: "Deathless",
-        description:
-            "Gain 'Endure' skill. Roll 'Endure' + 'Religion' to ignore effects of minor 'Blood' or 'Echo' fallout for this situation.",
+        description: "Gain 'Endure' skill. Roll 'Endure' + 'Religion' to ignore effects of minor 'Blood' or 'Echo' fallout for this situation.",
         type: "minor",
         staticBonuses: skill("endure"),
+        pickFrom: pickFrom({}),
     },
     {
         name: "Firt under the Fingernails",
         description: "Gain 'Warren' domain. Dig through earth with bare hands as if you had a shovel.",
         type: "minor",
         staticBonuses: domain("warren"),
+        pickFrom: pickFrom({}),
     },
     // TODOdin: Add "Explorer" here once we have domainpick
     {
@@ -22,30 +23,35 @@ export const deadwalkerAbilities: Ability[] = [
         description: "Gain +2 'Blood' protection.",
         type: "minor",
         staticBonuses: protection("blood", 2),
+        pickFrom: pickFrom({}),
     },
     {
         name: "Grim Reaper",
         description: "Gain 'Kill' skill. Your death functions as 'Kill' D8, 'Ranged', 'One-Shot' weapon.",
         type: "minor",
         staticBonuses: skill("kill"),
+        pickFrom: pickFrom({}),
     },
     {
         name: "Last Rites",
         description: "Gain 'Religion' domain. Ask the spirit of a recently dead person a single question before it fades away.",
         type: "minor",
         staticBonuses: domain("religion"),
+        pickFrom: pickFrom({}),
     },
     {
         name: "Marked for Death",
         description: "Gain 'Hunt' skill. You can mark prey by observing them for 10 minutes. When hunting them, roll with 'Mastery'.",
         type: "minor",
         staticBonuses: noBonuses(),
+        pickFrom: pickFrom({}),
     },
     {
         name: "Shadow",
         description: "Gain 'Sneak' skill. Blow out a lit candle to extinguish all light sources nearby.",
         type: "minor",
         staticBonuses: skill("sneak"),
+        pickFrom: pickFrom({}),
     },
     // TODOdin: Add "Survivor" here once we have protectionPick
     {
@@ -57,12 +63,14 @@ export const deadwalkerAbilities: Ability[] = [
             protections: [{ resistance: "echo", amount: 1 }],
             skills: [],
         },
+        pickFrom: pickFrom({}),
     },
     {
         name: "Walking Reliquary",
         description: "Gain +2 'Supplies' protection",
         type: "minor",
         staticBonuses: protection("supplies", 2),
+        pickFrom: pickFrom({}),
     },
     // Major
 
@@ -73,6 +81,7 @@ export const deadwalkerAbilities: Ability[] = [
             "When you are in the Grey, you may delve to one of the eight landmark Heavens (choose which one when taking this). The delve is 'Risky' unless you and your companions dress in ritual garb and make preparations to enter the target Heaven. Returning requires another delve.",
         type: "major",
         staticBonuses: noBonuses(),
+        pickFrom: pickFrom({}),
     },
     {
         name: "Esoteric Cartographer",
@@ -80,6 +89,7 @@ export const deadwalkerAbilities: Ability[] = [
         type: "minor",
         staticBonuses: noBonuses(),
         parentName: "Descent",
+        pickFrom: pickFrom({}),
     },
     {
         name: "Step Between",
@@ -88,6 +98,7 @@ export const deadwalkerAbilities: Ability[] = [
         type: "minor",
         staticBonuses: noBonuses(),
         parentName: "Descent",
+        pickFrom: pickFrom({}),
     },
     {
         name: "All Doors as One",
@@ -95,6 +106,7 @@ export const deadwalkerAbilities: Ability[] = [
         type: "minor",
         staticBonuses: noBonuses(),
         parentName: "Descent",
+        pickFrom: pickFrom({}),
     },
     // Echoes
     {
@@ -103,6 +115,7 @@ export const deadwalkerAbilities: Ability[] = [
             "Roll 'Discern' + 'Domain' to witness ghostly recreations of the past in your current location, showing the most dramatic or interesting thing that occured recently.",
         type: "major",
         staticBonuses: noBonuses(),
+        pickFrom: pickFrom({}),
     },
     {
         name: "Hidden Passageway",
@@ -110,6 +123,7 @@ export const deadwalkerAbilities: Ability[] = [
         type: "minor",
         staticBonuses: noBonuses(),
         parentName: "Echoes",
+        pickFrom: pickFrom({}),
     },
     {
         name: "Fragmentary Recollection",
@@ -118,6 +132,7 @@ export const deadwalkerAbilities: Ability[] = [
         type: "minor",
         staticBonuses: noBonuses(),
         parentName: "Echoes",
+        pickFrom: pickFrom({}),
     },
     {
         name: "Absorb Memories",
@@ -126,14 +141,15 @@ export const deadwalkerAbilities: Ability[] = [
         type: "minor",
         staticBonuses: noBonuses(),
         parentName: "Echoes",
+        pickFrom: pickFrom({}),
     },
     // Invidious Spectre
     {
         name: "Invidious Spectre",
-        description:
-            "Any weapon you carry gains 'Conduit', meaning you can mark D4 stress to 'Mind' to roll with 'Mastery' on attacks for one situation.",
+        description: "Any weapon you carry gains 'Conduit', meaning you can mark D4 stress to 'Mind' to roll with 'Mastery' on attacks for one situation.",
         type: "major",
         staticBonuses: noBonuses(),
+        pickFrom: pickFrom({}),
     },
     {
         name: "Soothe",
@@ -141,6 +157,7 @@ export const deadwalkerAbilities: Ability[] = [
         type: "minor",
         staticBonuses: noBonuses(),
         parentName: "Invidious Spectre",
+        pickFrom: pickFrom({}),
     },
     {
         name: "Ghoulish Grasp",
@@ -148,6 +165,7 @@ export const deadwalkerAbilities: Ability[] = [
         type: "minor",
         staticBonuses: noBonuses(),
         parentName: "Invidious Spectre",
+        pickFrom: pickFrom({}),
     },
     {
         name: "Ethereal Touch",
@@ -155,6 +173,7 @@ export const deadwalkerAbilities: Ability[] = [
         type: "minor",
         staticBonuses: noBonuses(),
         parentName: "Invidious Spectre",
+        pickFrom: pickFrom({}),
     },
     // Reaper's Strike
     {
@@ -163,6 +182,7 @@ export const deadwalkerAbilities: Ability[] = [
             "When attacking, you can choose to lose your 'Blood' protection for the attack before you roll. If you hit, add your 'Blood' protection value to the stress inflicted.",
         type: "major",
         staticBonuses: noBonuses(),
+        pickFrom: pickFrom({}),
     },
     {
         name: "Inexorable",
@@ -171,14 +191,15 @@ export const deadwalkerAbilities: Ability[] = [
         type: "minor",
         staticBonuses: noBonuses(),
         parentName: "Reaper's Strike",
+        pickFrom: pickFrom({}),
     },
     {
         name: "Bloodied but Unbroken",
-        description:
-            "When you have 4 of more stress marked to 'Blood' or are suffering from ongoing 'Blood' fallout, gain +2 'Blood' Protection",
+        description: "When you have 4 of more stress marked to 'Blood' or are suffering from ongoing 'Blood' fallout, gain +2 'Blood' Protection",
         type: "minor",
         staticBonuses: noBonuses(),
         parentName: "Reaper's Strike",
+        pickFrom: pickFrom({}),
     },
     {
         name: "Scything Blow",
@@ -186,14 +207,15 @@ export const deadwalkerAbilities: Ability[] = [
         type: "minor",
         staticBonuses: noBonuses(),
         parentName: "Reaper's Strike",
+        pickFrom: pickFrom({}),
     },
     // Sudden Death
     {
         name: "Sudden Death",
-        description:
-            "'Enter the Grey' no longer takes 10 minutes, it is instantaneous. Bringing others along like this makes the action 'Risky'.",
+        description: "'Enter the Grey' no longer takes 10 minutes, it is instantaneous. Bringing others along like this makes the action 'Risky'.",
         type: "major",
         staticBonuses: noBonuses(),
+        pickFrom: pickFrom({}),
     },
     {
         name: "Liminal",
@@ -202,6 +224,7 @@ export const deadwalkerAbilities: Ability[] = [
         type: "minor",
         staticBonuses: noBonuses(),
         parentName: "Sudden Death",
+        pickFrom: pickFrom({}),
     },
     {
         name: "Entropy",
@@ -210,6 +233,7 @@ export const deadwalkerAbilities: Ability[] = [
         type: "minor",
         staticBonuses: noBonuses(),
         parentName: "Sudden Death",
+        pickFrom: pickFrom({}),
     },
     {
         name: "Blood Sacrifice",
@@ -218,6 +242,7 @@ export const deadwalkerAbilities: Ability[] = [
         type: "minor",
         staticBonuses: noBonuses(),
         parentName: "Sudden Death",
+        pickFrom: pickFrom({}),
     },
     // Zenith
     {
@@ -226,6 +251,7 @@ export const deadwalkerAbilities: Ability[] = [
             "You can draw any person, entity, landmark or concept (except the Heart itself) into a physical vessel and kill it, destroying the concept and yourself in a final strike. The difficulty of the fight is determined by the GM.",
         type: "zenith",
         staticBonuses: noBonuses(),
+        pickFrom: pickFrom({}),
     },
     {
         name: "Infernal Claws",
@@ -233,12 +259,13 @@ export const deadwalkerAbilities: Ability[] = [
             "You can drag someone to hell or summon hell to a landmark, trapping the person or place in eternal torment. Doing this consumes your life essence and you die.",
         type: "zenith",
         staticBonuses: noBonuses(),
+        pickFrom: pickFrom({}),
     },
     {
         name: "Sunder the Veil",
-        description:
-            "When you die, all nearby allies remove all ongoing fallout and stress, and they gain 'Mastery' on all rolls for the situation.",
+        description: "When you die, all nearby allies remove all ongoing fallout and stress, and they gain 'Mastery' on all rolls for the situation.",
         type: "zenith",
         staticBonuses: noBonuses(),
+        pickFrom: pickFrom({}),
     },
 ]

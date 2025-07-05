@@ -1,3 +1,4 @@
+import { AbilityPickFrom } from "../abilities"
 import { DomainKey } from "../domains"
 import { Resistance } from "../resistances"
 import { SkillKey } from "../skills"
@@ -28,5 +29,14 @@ export const noBonuses = () => {
         domains: [],
         skills: [],
         protections: [],
+    }
+}
+
+export const pickFrom = (pickFrom: Partial<AbilityPickFrom>) => {
+    return {
+        skills: [],
+        domains: [],
+        protections: [],
+        ...pickFrom,
     }
 }

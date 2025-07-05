@@ -1,4 +1,4 @@
-import { noBonuses, protection, skill } from "./abilitiesByClass.ts/ability_utils"
+import { noBonuses, pickFrom, protection, skill } from "./abilitiesByClass.ts/ability_utils"
 import { cleaverAbilities } from "./abilitiesByClass.ts/cleaver_abilities"
 import { deadwalkerAbilities } from "./abilitiesByClass.ts/deadwalker_abilities"
 import { deepApiaristAbilities } from "./abilitiesByClass.ts/deep_apiarist_abilities"
@@ -26,12 +26,16 @@ export type Ability = {
     type: "core" | "major" | "minor" | "zenith"
     staticBonuses: StaticBonuses
     parentName?: string
-    pickFrom?: {
+    pickFrom: {
         skills: SkillKey[]
         domains: DomainKey[]
         protections: Resistance[]
     }
+    // TODOdin: Add "can be picked multiple times" attribute
 }
+export type AbilityPickFrom = Ability["pickFrom"]
+export type PickFromOption = SkillKey | DomainKey | Resistance
+export const comesWithPick = ({ pickFrom }: Ability) => Object.values(pickFrom ?? {}).some(({ length }) => length > 0)
 
 export const abilitiesByClassOrCalling: Record<CharacterClass | Calling, Ability[]> = {
     // Classes
@@ -52,6 +56,7 @@ export const abilitiesByClassOrCalling: Record<CharacterClass | Calling, Ability
             description: "When you gain a minor advance, refresh D6. When you gain a major advance, refresh D8",
             type: "core",
             staticBonuses: noBonuses(),
+            pickFrom: pickFrom({}),
         },
     ],
     Enlightenment: [
@@ -61,6 +66,7 @@ export const abilitiesByClassOrCalling: Record<CharacterClass | Calling, Ability
                 "Gain 'Discern' skill. Once per session, before you roll dice to resolve an action, instead state that your result is a 6. You succeed but take stress.",
             type: "core",
             staticBonuses: skill("discern"),
+            pickFrom: pickFrom({}),
         },
     ],
     Forced: [
@@ -69,15 +75,16 @@ export const abilitiesByClassOrCalling: Record<CharacterClass | Calling, Ability
             description: "Once per session, allocate stress to the nearest friendly target (PC or NPC) instead of marking it yourself.",
             type: "core",
             staticBonuses: noBonuses(),
+            pickFrom: pickFrom({}),
         },
     ],
     Heartsong: [
         {
             name: "In the Blood",
-            description:
-                "Gain +1 'Echo' protection. Once per situation, when you take stress to any resistance other than 'Echo', allocate it to 'Echo'.",
+            description: "Gain +1 'Echo' protection. Once per situation, when you take stress to any resistance other than 'Echo', allocate it to 'Echo'.",
             type: "core",
             staticBonuses: protection("echo", 1),
+            pickFrom: pickFrom({}),
         },
     ],
     Penitent: [
@@ -87,6 +94,7 @@ export const abilitiesByClassOrCalling: Record<CharacterClass | Calling, Ability
                 "Once per session, activate this ability to avoid suffering negative effects from Blood or Mind fallout for the remainder of the situation.",
             type: "core",
             staticBonuses: noBonuses(),
+            pickFrom: pickFrom({}),
         },
     ],
 }
