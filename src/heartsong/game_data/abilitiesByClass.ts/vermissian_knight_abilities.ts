@@ -74,7 +74,15 @@ export const vermissianKnightAbilities: Ability[] = [
         staticBonuses: skill("discern"),
         pickFrom: pickFrom({}),
     },
-    // TODOdin: Add "Stalwart" once we have resistancepick
+    {
+        name: "Stalwart",
+        description: "Get +1 to one of the following protections: 'Blood', 'Echo', 'Fortune', 'Supplies'. Can be picked more than once.",
+        type: "minor",
+        staticBonuses: noBonuses(),
+        pickFrom: pickFrom({ protections: ["blood", "echo", "fortune", "supplies"] }),
+        // TODOdin: Make more-than-once selectable
+    },
+
     {
         name: "Steelbones",
         description: "Gain 'Endure' skill. You can fall distances of up to 3 storeys without taking damage.",
@@ -82,7 +90,14 @@ export const vermissianKnightAbilities: Ability[] = [
         staticBonuses: skill("endure"),
         pickFrom: pickFrom({}),
     },
-    // TODOdin: add 'Student of the Sages' once we have skillpick
+    {
+        name: "Student of the Sages",
+        description: "Get one of the following skills: 'Compel', 'Delve', 'Discern', 'Endure', 'Hunt', 'Kill', 'Mend'. Can be picked more than once.",
+        type: "minor",
+        staticBonuses: noBonuses(),
+        pickFrom: pickFrom({ skills: ["compel", "delve", "discern", "endure", "hunt", "kill", "mend"] }),
+        // TODOdin: Make more-than-once selectable
+    },
     {
         name: "Tunnel Rat",
         description:
@@ -91,7 +106,14 @@ export const vermissianKnightAbilities: Ability[] = [
         staticBonuses: domain("warren"),
         pickFrom: pickFrom({}),
     },
-    // TODOdin: Add 'Well Travelled' once we have domainpick
+    {
+        name: "Well Travelled",
+        description: "Get one of the following domains: 'Cursed', 'Desolate', 'Haven', 'Occult', 'Technology', 'Wild', 'Warren'. Can be picked more than once.",
+        type: "minor",
+        staticBonuses: noBonuses(),
+        pickFrom: pickFrom({ domains: ["cursed", "desolate", "haven", "occult", "technology", "wild", "warren"] }),
+        // TODOdin: Make more-than-once selectable
+    },
 
     // Major
 

@@ -16,8 +16,22 @@ export const witchAbilities: Ability[] = [
         staticBonuses: skill("sneak"),
         pickFrom: pickFrom({}),
     },
-    // TODOdin: add 'Books of Lore' once we have domainpick
-    // TODOdin: Add 'Charms and Wards' once we have protectionPick
+    {
+        name: "Books of Lore",
+        description: "Get one of the following domains: 'Cursed', 'Desolate', 'Occult', 'Religion', 'Wild', 'Warren'. Can be picked more than once.",
+        type: "minor",
+        staticBonuses: noBonuses(),
+        pickFrom: pickFrom({ domains: ["cursed", "desolate", "occult", "religion", "wild", "warren"] }),
+        // TODOdin: Make more-than-once selectable
+    },
+    {
+        name: "Charms and Wards",
+        description: "Get +1 to one of the following protections: 'Blood', 'Mind', 'Fortune', 'Supplies'. Can be picked more than once.",
+        type: "minor",
+        staticBonuses: noBonuses(),
+        pickFrom: pickFrom({ protections: ["blood", "mind", "fortune", "supplies"] }),
+        // TODOdin: Make more-than-once selectable
+    },
     {
         name: "Distinguished Lineage",
         description: "Gain 'Haven' domain. Once per session, when you mark stress to a bond, do not roll for fallout.",
@@ -33,7 +47,14 @@ export const witchAbilities: Ability[] = [
         staticBonuses: domain("religion"),
         pickFrom: pickFrom({}),
     },
-    // TODOdin: Add Heart-Wise once we have skillpick
+    {
+        name: "Heart-Wise",
+        description: "Get one of the following skills: 'Compel', 'Delve', 'Discern', 'Endure', 'Hunt', 'Kill', 'Mend'. Can be picked more than once.",
+        type: "minor",
+        staticBonuses: noBonuses(),
+        pickFrom: pickFrom({ skills: ["compel", "delve", "discern", "endure", "hunt", "kill", "mend"] }),
+        // TODOdin: Make more-than-once selectable
+    },
     {
         name: "Implacable",
         description: "Gain 'Endure' skill. Once per session, add 1 to a resistance of your choice. Remove the +1 at the end of the session.",

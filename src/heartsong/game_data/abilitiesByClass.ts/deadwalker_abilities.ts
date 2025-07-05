@@ -2,7 +2,14 @@ import { Ability } from "../abilities"
 import { domain, noBonuses, pickFrom, protection, skill } from "./ability_utils"
 
 export const deadwalkerAbilities: Ability[] = [
-    // TODOdin: Add "Adept" here once we have skillpick
+    {
+        name: "Adept",
+        description: "Get one of the skills domains: 'Compel', 'Delve', 'Discern', 'Endure', 'Evade', 'Hunt', 'Kill', 'Sneak'. Can be picked more than once.",
+        type: "minor",
+        staticBonuses: noBonuses(),
+        pickFrom: pickFrom({ skills: ["compel", "delve", "discern", "endure", "evade", "hunt", "kill", "sneak"] }),
+        // TODOdin: Make more-than-once selectable
+    },
     {
         name: "Deathless",
         description: "Gain 'Endure' skill. Roll 'Endure' + 'Religion' to ignore effects of minor 'Blood' or 'Echo' fallout for this situation.",
@@ -17,7 +24,15 @@ export const deadwalkerAbilities: Ability[] = [
         staticBonuses: domain("warren"),
         pickFrom: pickFrom({}),
     },
-    // TODOdin: Add "Explorer" here once we have domainpick
+    {
+        name: "Explorer",
+        description:
+            "Get one of the following domains: 'Cursed', 'Desolate', 'Occult', 'Religion', 'Technology', 'Wild', 'Warren'. Can be picked more than once.",
+        type: "minor",
+        staticBonuses: noBonuses(),
+        pickFrom: pickFrom({ domains: ["cursed", "desolate", "occult", "religion", "technology", "wild", "warren"] }),
+        // TODOdin: Make more-than-once selectable
+    },
     {
         name: "Grail Armour",
         description: "Gain +2 'Blood' protection.",
@@ -53,7 +68,14 @@ export const deadwalkerAbilities: Ability[] = [
         staticBonuses: skill("sneak"),
         pickFrom: pickFrom({}),
     },
-    // TODOdin: Add "Survivor" here once we have protectionPick
+    {
+        name: "Survivor",
+        description: "Get +1 to one of the following protections: 'Blood', 'Echo', 'Fortune', 'Supplies'. Can be picked more than once.",
+        type: "minor",
+        staticBonuses: noBonuses(),
+        pickFrom: pickFrom({ protections: ["blood", "echo", "fortune", "supplies"] }),
+        // TODOdin: Make more-than-once selectable
+    },
     {
         name: "Tattered Soul",
         description: "Gain 'Cursed' domain and +1 'Echo' protection.",

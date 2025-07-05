@@ -1,5 +1,5 @@
-import { Ability } from "../abilities";
-import { domain, skill, protection, noBonuses, pickFrom } from "./ability_utils";
+import { Ability } from "../abilities"
+import { domain, skill, protection, noBonuses, pickFrom } from "./ability_utils"
 
 export const incarnadineAbilities: Ability[] = [
     {
@@ -16,7 +16,14 @@ export const incarnadineAbilities: Ability[] = [
         staticBonuses: domain("occult"),
         pickFrom: pickFrom({}),
     },
-    // TODOdin: Add 'Better Safe than Sorry' here once we have protectionpick
+    {
+        name: "Better Safe than Sorry",
+        description: "Get +1 to one of the following protections: 'Mind', 'Echo', 'Fortune', 'Supplies'. Can be picked more than once.",
+        type: "minor",
+        staticBonuses: noBonuses(),
+        pickFrom: pickFrom({ protections: ["mind", "echo", "fortune", "supplies"] }),
+        // TODOdin: Make more-than-once selectable
+    },
     {
         name: "Creative Acquisitions",
         description: "Gain 'Sneak' skill. When you try to steal something of D10 value or higher, roll with mastery.",
@@ -38,7 +45,14 @@ export const incarnadineAbilities: Ability[] = [
         staticBonuses: skill("discern"),
         pickFrom: pickFrom({}),
     },
-    // TODOdin: Add "Jack of all Trades" here once we have skillpick
+    {
+        name: "Jack of all Trades",
+        description: "Get one of the following skills: 'Compel', 'Discern', 'Endure', 'Hunt', 'Kill', 'Mend', 'Sneak'. Can be picked more than once.",
+        type: "minor",
+        staticBonuses: noBonuses(),
+        pickFrom: pickFrom({ skills: ["compel", "discern", "endure", "hunt", "kill", "mend", "sneak"] }),
+        // TODOdin: Make more-than-once selectable
+    },
     {
         name: "Lost it All",
         description: "Gain 'Desolate' domain. Once per session, the GM will tell you where the nearest source of wealth is.",
@@ -83,7 +97,14 @@ export const incarnadineAbilities: Ability[] = [
         staticBonuses: protection("fortune", 2),
         pickFrom: pickFrom({}),
     },
-    // TODOdin: Add 'Areas of Opportunity' here once we have domainpick
+    {
+        name: "Areas of Opportunity",
+        description: "Get one of the following domains: 'Cursed', 'Desolate', 'Occult', 'Religion', 'Technology', 'Warren'. Can be picked more than once.",
+        type: "minor",
+        staticBonuses: noBonuses(),
+        pickFrom: pickFrom({ domains: ["cursed", "desolate", "occult", "religion", "technology", "warren"] }),
+        // TODOdin: Make more-than-once selectable
+    },
 
     // Major
 
@@ -320,4 +341,4 @@ export const incarnadineAbilities: Ability[] = [
         staticBonuses: noBonuses(),
         pickFrom: pickFrom({}),
     },
-];
+]

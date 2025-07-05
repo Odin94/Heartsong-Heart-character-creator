@@ -9,7 +9,23 @@ export const junkMageAbilities: Ability[] = [
         staticBonuses: protection("supplies", 2),
         pickFrom: pickFrom({}),
     },
-    // TODOdin: Add "By Any Means" once we have skillpick
+    {
+        name: "Been Everywhere",
+        description:
+            "Get one of the following domains: 'Cursed', 'Desolate', 'Occult', 'Haven', 'Religion', 'Technology', 'Warren'. Can be picked more than once.",
+        type: "minor",
+        staticBonuses: noBonuses(),
+        pickFrom: pickFrom({ domains: ["cursed", "desolate", "occult", "haven", "religion", "technology", "warren"] }),
+        // TODOdin: Make more-than-once selectable
+    },
+    {
+        name: "By Any Means",
+        description: "Get one of the following skills: 'Compel', 'Delve', 'Discern', 'Evade', 'Hunt', 'Kill', 'Mend', 'Sneak'. Can be picked more than once.",
+        type: "minor",
+        staticBonuses: noBonuses(),
+        pickFrom: pickFrom({ skills: ["compel", "delve", "discern", "evade", "hunt", "kill", "mend", "sneak"] }),
+        // TODOdin: Make more-than-once selectable
+    },
     {
         name: "Frontier Etiquette",
         description: "Gain 'Haven' domain. The first time each session that you use a haunt, your spent resource counts as one dice size higher.",
@@ -69,7 +85,15 @@ export const junkMageAbilities: Ability[] = [
         staticBonuses: protection("fortune", 2),
         pickFrom: pickFrom({}),
     },
-    // TODOdin: Add "Warding Spells" here once we have resistancepick
+    {
+        name: "Warding Spells",
+        description: "Get +1 to one of the following protections: 'Blood', 'Echo', 'Fortune', 'Supplies'. Can be picked more than once.",
+        type: "minor",
+        staticBonuses: noBonuses(),
+        pickFrom: pickFrom({ protections: ["blood", "echo", "fortune", "supplies"] }),
+        // TODOdin: Make more-than-once selectable
+    },
+
     {
         name: "Wretched and Glorious",
         description: "Gain 'Cursed' domain. When you use 'Sacrifice', you may also consume 'Cursed' resources.",

@@ -77,9 +77,31 @@ export const deepApiaristAbilities: Ability[] = [
         staticBonuses: protection("blood", 2),
         pickFrom: pickFrom({}),
     },
-    // TODOdin: add Waxen Sigils here once we have protectionpick
-    // TODOdin: add 'Whispers of the Hive' once we have domainpick
-    // TODOdin: add 'Wisdom Flows so Sweet' once we have skillpick
+    {
+        name: "Waxen Sigils",
+        description: "Get +1 to one of the following protections: 'Blood', 'Echo', 'Fortune', 'Supplies'. Can be picked more than once.",
+        type: "minor",
+        staticBonuses: noBonuses(),
+        pickFrom: pickFrom({ protections: ["blood", "echo", "fortune", "supplies"] }),
+        // TODOdin: Make more-than-once selectable
+    },
+    {
+        name: "Whispers of the Hive",
+        description:
+            "Get one of the following domains: 'Cursed', 'Desolate', 'Occult', 'Religion', 'Technology', 'Wild', 'Warren'. Can be picked more than once.",
+        type: "minor",
+        staticBonuses: noBonuses(),
+        pickFrom: pickFrom({ domains: ["cursed", "desolate", "occult", "religion", "technology", "wild", "warren"] }),
+        // TODOdin: Make more-than-once selectable
+    },
+    {
+        name: "Wisdom Flows so Sweet",
+        description: "Get one of the following skills: 'Compel', 'Delve', 'Discern', 'Endure', 'Hunt', 'Kill', 'Mend', 'Sneak'. Can be picked more than once.",
+        type: "minor",
+        staticBonuses: noBonuses(),
+        pickFrom: pickFrom({ skills: ["compel", "delve", "discern", "endure", "hunt", "kill", "mend", "sneak"] }),
+        // TODOdin: Make more-than-once selectable
+    },
 
     // Major
 

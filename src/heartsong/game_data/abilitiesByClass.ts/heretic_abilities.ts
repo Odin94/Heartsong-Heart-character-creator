@@ -17,7 +17,14 @@ export const hereticAbilities: Ability[] = [
         staticBonuses: domain("warren"),
         pickFrom: pickFrom({}),
     },
-    // TODOdin: Add 'The Goddess' Gifts' here once we have skillpick
+    {
+        name: "The Goddess' Gifts",
+        description: "Get one of the following skills: 'Compel', 'Discern', 'Endure', 'Evade', 'Hunt', 'Kill', 'Mend'. Can be picked more than once.",
+        type: "minor",
+        staticBonuses: noBonuses(),
+        pickFrom: pickFrom({ skills: ["compel", "discern", "endure", "evade", "hunt", "kill", "mend"] }),
+        // TODOdin: Make more-than-once selectable
+    },
     {
         name: "The Left Hand of the Goddess",
         description: "Gain 'Kill' skill and +1 'Blood' protection.",
@@ -67,6 +74,23 @@ export const hereticAbilities: Ability[] = [
     },
     // TODOdin: Add Tomes of Knowledge here once we have domainpick
     // TODODin: Add Unwavering Faith here once we have protectionpick
+    {
+        name: "Tomes of Knowledge",
+        description:
+            "Get one of the following domains: 'Cursed', 'Desolate', 'Haven', 'Religion', 'Technology', 'Wild', 'Warren'. Can be picked more than once.",
+        type: "minor",
+        staticBonuses: noBonuses(),
+        pickFrom: pickFrom({ domains: ["cursed", "desolate", "haven", "religion", "technology", "wild", "warren"] }),
+        // TODOdin: Make more-than-once selectable
+    },
+    {
+        name: "Unwavering Faith",
+        description: "Get +1 to one of the following protections: 'Blood', 'Mind', 'Fortune', 'Supplies'. Can be picked more than once.",
+        type: "minor",
+        staticBonuses: noBonuses(),
+        pickFrom: pickFrom({ protections: ["blood", "mind", "fortune", "supplies"] }),
+        // TODOdin: Make more-than-once selectable
+    },
     {
         name: "Words of Grace",
         description: "Gain 'Haven' domain. Once per session, when you lead the community in an act of mercy and grace, refresh D6.",

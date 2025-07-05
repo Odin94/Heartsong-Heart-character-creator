@@ -2,7 +2,15 @@ import { Ability } from "../abilities"
 import { domain, skill, protection, noBonuses, pickFrom } from "./ability_utils"
 
 export const houndAbilities: Ability[] = [
-    // TODOdin: Add "Advanced Training" once we have skillpick
+    {
+        name: "Advanced Training",
+        description:
+            "Get one of the following skills: 'Compel', 'Delve', 'Discern', 'Endure', 'Evade', 'Hunt', 'Kill', 'Mend', 'Sneak'. Can be picked more than once.",
+        type: "minor",
+        staticBonuses: noBonuses(),
+        pickFrom: pickFrom({ skills: ["compel", "delve", "discern", "endure", "evade", "hunt", "kill", "mend", "sneak"] }),
+        // TODOdin: Make more-than-once selectable
+    },
     {
         name: "The Better Part of Valour",
         description: "Gain 'Evade' skill. If you succeed on an 'Evade' roll, all nearby allies roll with mastery for one turn.",
@@ -24,8 +32,22 @@ export const houndAbilities: Ability[] = [
         staticBonuses: skill("mend"),
         pickFrom: pickFrom({}),
     },
-    // TODOdin: Add Echoes of the 33rd once we have domainpick
-    // TODOdin: Add Hard as Nails once we have protectionpick
+    {
+        name: "Echoes of the 33rd",
+        description: "Get one of the following domains: 'Cursed', 'Desolate', 'Haven', 'Technology', 'Wild', 'Warren'. Can be picked more than once.",
+        type: "minor",
+        staticBonuses: noBonuses(),
+        pickFrom: pickFrom({ domains: ["cursed", "desolate", "haven", "technology", "wild", "warren"] }),
+        // TODOdin: Make more-than-once selectable
+    },
+    {
+        name: "Hard as Nails",
+        description: "Get +1 to one of the following protections: 'Blood', 'Mind', 'Echo', 'Supplies'. Can be picked more than once.",
+        type: "minor",
+        staticBonuses: noBonuses(),
+        pickFrom: pickFrom({ protections: ["blood", "mind", "echo", "supplies"] }),
+        // TODOdin: Make more-than-once selectable
+    },
     {
         name: "Kill Count",
         description: "Gain 'Kill' skill. Whenever you kill a creature, remove 1 stress.",
