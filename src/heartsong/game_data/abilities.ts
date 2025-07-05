@@ -33,7 +33,7 @@ export type Ability = {
     }
 }
 
-export const abilitiesByClassOrRecord: Record<CharacterClass | Calling, Ability[]> = {
+export const abilitiesByClassOrCalling: Record<CharacterClass | Calling, Ability[]> = {
     // Classes
     Cleaver: cleaverAbilities,
     Deadwalker: deadwalkerAbilities,

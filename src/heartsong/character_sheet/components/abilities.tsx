@@ -1,7 +1,7 @@
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog"
 import { ScrollArea } from "@/components/ui/scroll-area"
 import { Textarea } from "@/components/ui/textarea"
-import { abilitiesByClassOrRecord, Ability } from "@/heartsong/game_data/abilities"
+import { abilitiesByClassOrCalling, Ability } from "@/heartsong/game_data/abilities"
 import { CharacterClass } from "@/heartsong/game_data/classes"
 import { iconByDomain } from "@/heartsong/game_data/domains"
 import { iconBySkill } from "@/heartsong/game_data/skills"
@@ -52,7 +52,7 @@ const AbilitiesDialog = ({ characterClass }: { characterClass: CharacterClass | 
     const applyStaticBonuses = useApplyStaticBonuses()
 
     const isAbilityPickedAlready = (ability: Ability) => abilities.includes(`${ability.name} - `)
-    const abilityOptions = abilitiesByClassOrRecord[characterClass.trim() as unknown as CharacterClass] ?? []
+    const abilityOptions = abilitiesByClassOrCalling[characterClass.trim() as unknown as CharacterClass] ?? []
     const filteredAbilityOptions =
         abilityType === "major"
             ? abilityOptions.filter(

@@ -10,7 +10,7 @@ import { Input } from "@/components/ui/input"
 import { CharacterClass, characterClasses, coreTraitsByCharacter, isCharacterClass } from "@/heartsong/game_data/classes"
 import { useAbilities, useCalling, useCharacterClass, useEquipment, useName, useResources, useSkillsAndDomains } from "../character_states"
 import { Calling, callings, isCalling } from "@/heartsong/game_data/callings"
-import { abilitiesByClassOrRecord } from "@/heartsong/game_data/abilities"
+import { abilitiesByClassOrCalling } from "@/heartsong/game_data/abilities"
 import { useApplyStaticBonuses } from "../hooks/useApplyStaticBonuses"
 import { Dialog, DialogClose, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog"
 import { Button } from "@/components/ui/button"
@@ -89,9 +89,9 @@ const NameClassCalling = () => {
                         setCalling(calling)
                     }}
                     onConfirm={() => {
-                        // TODOdin: Deal with people putting their race in this field somehow
+                        // TODOdin: Deal with people putting their ancestry in this field somehow
                         if (isCalling(calling)) {
-                            const callingAbility = abilitiesByClassOrRecord[calling][0]
+                            const callingAbility = abilitiesByClassOrCalling[calling][0]
                             if (!abilities.includes(`${callingAbility.name} - `)) {
                                 setAbilities(`${callingAbility.name} - ${callingAbility.description}\n\n${abilities}`)
                             }
@@ -193,7 +193,7 @@ const ClassDropdown = ({
 
 const CallingDropdown = ({ onSelect, onConfirm }: { onSelect: (text: Calling) => void; onConfirm: () => void }) => {
     const { calling } = useCalling()
-    const callingAbility = isCalling(calling) ? abilitiesByClassOrRecord[calling][0] : null
+    const callingAbility = isCalling(calling) ? abilitiesByClassOrCalling[calling][0] : null
 
     return (
         <Dialog>
