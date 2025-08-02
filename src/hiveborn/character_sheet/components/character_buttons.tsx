@@ -1,7 +1,7 @@
 import { Button } from "@/components/ui/button"
 import { Dialog, DialogClose, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog"
-import { generateCharacterPDF } from "@/heartsong/creator/pdf_creator"
-import { Character, characterSchema, getEmptyCharacter } from "@/heartsong/game_data/character"
+import { generateCharacterPDF } from "@/hiveborn/creator/pdf_creator"
+import { Character, characterSchema, getEmptyCharacter } from "@/hiveborn/game_data/character"
 import { useUserUuid } from "@/lib/analytics"
 import { cn } from "@/lib/utils"
 import { Buffer } from "buffer"
@@ -21,7 +21,7 @@ export const downloadJson = async (character: Character) => {
         const link = document.createElement("a")
 
         link.href = window.URL.createObjectURL(blob)
-        link.download = `heartsong_${character.name}.json`
+        link.download = `${character.name}_hiveborn.json`
         link.click()
     } catch (error) {
         console.error(error)
@@ -229,7 +229,7 @@ export const PDFDownloadButton = ({ className }: { className?: string }) => {
             const blob = new Blob([pdfBytes], { type: "application/pdf" })
             const link = document.createElement("a")
             link.href = window.URL.createObjectURL(blob)
-            link.download = `${character.name}_heartsong.pdf`
+            link.download = `${character.name}_hiveborn.pdf`
             link.click()
         } catch (error) {
             console.log({ error })

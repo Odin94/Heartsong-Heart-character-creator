@@ -1,13 +1,8 @@
 import "./App.css"
-import CharacterSheet from "./heartsong/character_sheet/character_sheet"
+import CharacterSheet from "./hiveborn/character_sheet/character_sheet"
 
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog"
-import {
-    JSONDownloadButton,
-    JSONUploadButton,
-    PDFDownloadButton,
-    ResetButton,
-} from "./heartsong/character_sheet/components/character_buttons"
+import { JSONDownloadButton, JSONUploadButton, PDFDownloadButton, ResetButton } from "./hiveborn/character_sheet/components/character_buttons"
 import { Toaster } from "@/components/ui/sonner"
 import { useUserUuid } from "@/lib/analytics"
 import { useEffect } from "react"
@@ -24,7 +19,7 @@ function App() {
 
     if (!!userUuid) {
         posthog.identify(userUuid)
-        posthog.capture("Pageview: Heartsong", { userUuid })
+        posthog.capture("Pageview: Hiveborn", { userUuid })
     }
 
     return (
@@ -34,11 +29,7 @@ function App() {
                 <a href="https://odin-matthias.de/" target="_blank" className="absolute top-2 left-8 text-sm underline">
                     /Odin's Site/
                 </a>
-                <a
-                    href="https://github.com/Odin94/Heartsong-Heart-character-creator"
-                    target="_blank"
-                    className="absolute top-2 left-31 text-sm underline"
-                >
+                <a href="https://github.com/Odin94/Hiveborn-Heart-character-creator" target="_blank" className="absolute top-2 left-31 text-sm underline">
                     /Source Code/
                 </a>
                 <a
@@ -59,8 +50,8 @@ function App() {
                         <DialogTitle>Copyright notice</DialogTitle>
                         <DialogDescription className="text-muted-foreground text-sm">
                             <p>
-                                <em>Heartsong</em> is an independent production by <em>Odin</em> and is not affiliated with Rowan, Rook and
-                                Decard. It is published under the RR&D Community License. Heart is copyright Rowan, Rook and Decard.
+                                <em>Hiveborn</em> is an independent production by <em>Odin</em> and is not affiliated with Rowan, Rook and Decard. It is
+                                published under the RR&D Community License. Heart is copyright Rowan, Rook and Decard.
                             </p>
                             <p className="mt-5">
                                 You can find out more and support these games at{" "}

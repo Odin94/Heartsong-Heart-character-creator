@@ -7,10 +7,10 @@ import {
     DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
 import { Input } from "@/components/ui/input"
-import { CharacterClass, characterClasses, coreTraitsByCharacter, isCharacterClass } from "@/heartsong/game_data/classes"
+import { CharacterClass, characterClasses, coreTraitsByCharacter, isCharacterClass } from "@/hiveborn/game_data/classes"
 import { useAbilities, useCalling, useCharacterClass, useEquipment, useName, useResources, useSkillsAndDomains } from "../character_states"
-import { Calling, callings, isCalling } from "@/heartsong/game_data/callings"
-import { abilitiesByClassOrCalling } from "@/heartsong/game_data/abilities"
+import { Calling, callings, isCalling } from "@/hiveborn/game_data/callings"
+import { abilitiesByClassOrCalling } from "@/hiveborn/game_data/abilities"
 import { useApplyStaticBonuses } from "../hooks/useApplyStaticBonuses"
 import { Dialog, DialogClose, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog"
 import { Button } from "@/components/ui/button"
@@ -106,13 +106,7 @@ const NameClassCalling = () => {
     )
 }
 
-const ClassDropdown = ({
-    onSelect,
-    onConfirm,
-}: {
-    onSelect: (text: CharacterClass) => void
-    onConfirm: (selection: { pickedEquipment: string }) => void
-}) => {
+const ClassDropdown = ({ onSelect, onConfirm }: { onSelect: (text: CharacterClass) => void; onConfirm: (selection: { pickedEquipment: string }) => void }) => {
     const { characterClass } = useCharacterClass()
     const coreTraits = isCharacterClass(characterClass) ? coreTraitsByCharacter[characterClass] : null
     const [pickedEquipmentIndex, setPickedEquipmentIndex] = useState("0")

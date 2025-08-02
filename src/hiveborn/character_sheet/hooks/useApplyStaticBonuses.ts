@@ -1,4 +1,4 @@
-import { StaticBonuses } from "@/heartsong/game_data/abilities"
+import { StaticBonuses } from "@/hiveborn/game_data/abilities"
 import { protectionMaximum, useProtections, useSkillsAndDomains } from "../character_states"
 
 export const useApplyStaticBonuses = () => {

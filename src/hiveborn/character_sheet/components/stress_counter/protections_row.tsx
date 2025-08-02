@@ -1,12 +1,12 @@
 import { Checkbox } from "@/components/ui/checkbox"
-import { NumberBy } from "@/heartsong/utils"
+import { NumberBy } from "@/hiveborn/utils"
 
-export type ResistanceRowProps = NumberBy<["s"]>["s"]
+export type ProtectionsRowProps = NumberBy<["s"]>["s"]
 
-const ResistanceRow = ({ n, setN }: ResistanceRowProps) => {
+const ProtectionsRow = ({ n, setN }: ProtectionsRowProps) => {
     return (
         <div>
-            {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((i) => (
+            {[1, 2, 3, 4, 5].map((i) => (
                 <Checkbox
                     key={i}
                     className="mx-0.5 p-0"
@@ -21,4 +21,4 @@ const ResistanceRow = ({ n, setN }: ResistanceRowProps) => {
     )
 }
 
-export default ResistanceRow
+export default ProtectionsRow

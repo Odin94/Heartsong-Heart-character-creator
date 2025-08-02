@@ -1,7 +1,7 @@
 import { Checkbox } from "@/components/ui/checkbox"
 import { Input } from "@/components/ui/input"
-import { domains } from "@/heartsong/game_data/domains"
-import { skills } from "@/heartsong/game_data/skills"
+import { domains } from "@/hiveborn/game_data/domains"
+import { skills } from "@/hiveborn/game_data/skills"
 import { Fragment } from "react/jsx-runtime"
 import { Domain, Skill, useSkillsAndDomains } from "../character_states"
 

@@ -34,7 +34,7 @@ export async function generateCharacterPDF(character: Character): Promise<Uint8A
         boldFont = await pdfDoc.embedFont(StandardFonts.HelveticaBold)
 
         // Add website URL in bottom right
-        page.drawText("heartsong.odin-matthias.de", {
+        page.drawText("hiveborn.odin-matthias.de", {
             x: width - 77,
             y: 5,
             size: 6,

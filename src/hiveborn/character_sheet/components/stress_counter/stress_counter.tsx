@@ -1,4 +1,4 @@
-import { resistances } from "@/heartsong/game_data/resistances"
+import { resistances } from "@/hiveborn/game_data/resistances"
 import { useProtections, useStress } from "../../character_states"
 import ProtectionsRow from "./protections_row"
 import ResistanceRow from "./resistance_row"

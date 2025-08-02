@@ -1,7 +1,7 @@
-import { Ability, PickFromOption } from "@/heartsong/game_data/abilities"
-import { isDomain } from "@/heartsong/game_data/domains"
-import { isResistance } from "@/heartsong/game_data/resistances"
-import { isSkill } from "@/heartsong/game_data/skills"
+import { Ability, PickFromOption } from "@/hiveborn/game_data/abilities"
+import { isDomain } from "@/hiveborn/game_data/domains"
+import { isResistance } from "@/hiveborn/game_data/resistances"
+import { isSkill } from "@/hiveborn/game_data/skills"
 import { protectionMaximum, useAbilities, useProtections, useSkillsAndDomains } from "../character_states"
 
 export const useApplyPickedBonus = () => {
