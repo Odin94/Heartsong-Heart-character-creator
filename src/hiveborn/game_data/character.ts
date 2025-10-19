@@ -1,14 +1,24 @@
-import { Domains, Skills } from "../character_sheet/character_states"
-import { Calling } from "./callings"
-import { CharacterClass } from "./classes"
-import { Resistance } from "./resistances"
 import { z } from "zod"
-import { characterClasses } from "./classes"
 import { callings } from "./callings"
+import { characterClasses } from "./classes"
 import { domains } from "./domains"
+import { Resistance, resistances } from "./resistances"
 import { skills } from "./skills"
-import { resistances } from "./resistances"
-import { domainSchema, skillSchema } from "../character_sheet/character_states"
+
+export const skillSchema = z.object({
+    hasSkill: z.boolean(),
+    knacks: z.string(),
+})
+
+export const domainSchema = z.object({
+    hasDomain: z.boolean(),
+    knacks: z.string(),
+})
+
+export type Skill = z.infer<typeof skillSchema>
+export type Skills = Record<string, Skill>
+export type Domain = z.infer<typeof domainSchema>
+export type Domains = Record<string, Domain>
 
 const ensureCompleteResistanceRecord = (val: Partial<Record<Resistance, number>>): Record<Resistance, number> => {
     const result: Record<Resistance, number> = {} as Record<Resistance, number>

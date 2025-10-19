@@ -1,13 +1,15 @@
 import { resistances } from "@/hiveborn/game_data/resistances"
-import { useProtections, useStress } from "../../character_states"
+import { useCharacterStore } from "../../character_states"
 import ProtectionsRow from "./protections_row"
 import ResistanceRow from "./resistance_row"
 import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip"
 
 const StressCounter = () => {
     // TODOdin: Consider color-coding your resistances
-    const { stress, setStress } = useStress()
-    const { protections, setProtections } = useProtections()
+    const stress = useCharacterStore.use.stress()
+    const setStress = useCharacterStore.use.setStress()
+    const protections = useCharacterStore.use.protections()
+    const setProtections = useCharacterStore.use.setProtections()
 
     const gridClass = "grid grid-cols-[1fr_2fr_1fr] gap-2 text-left"
     return (

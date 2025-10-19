@@ -1,8 +1,9 @@
 import { Textarea } from "@/components/ui/textarea"
-import { useEquipment } from "../character_states"
+import { useCharacterStore } from "../character_states"
 
 const Equipment = () => {
-    const { equipment, setEquipment } = useEquipment()
+    const equipment = useCharacterStore.use.equipment()
+    const setEquipment = useCharacterStore.use.setEquipment()
     return (
         <div>
             <div className="row-span-3 col-span-2 text-left mt-2">

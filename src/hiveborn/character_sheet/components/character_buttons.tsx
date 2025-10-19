@@ -9,7 +9,7 @@ import { FileDown, Upload } from "lucide-react"
 import { useState } from "react"
 import { useDropzone } from "react-dropzone"
 import { toast } from "sonner"
-import { useCharacter } from "../character_states"
+import { useCharacterStore } from "../character_states"
 import { usePostHog } from "posthog-js/react"
 
 export const downloadJson = async (character: Character) => {
@@ -42,7 +42,8 @@ export const getUploadFile = async (file: File): Promise<string> => {
 const growDownClass = "transition-all duration-200 ease-in-out hover:h-[calc(2rem+15px)]"
 
 export const JSONDownloadButton = ({ className }: { className?: string }) => {
-    const { character } = useCharacter()
+    const getCharacterData = useCharacterStore.use.getCharacterData()
+    const character = getCharacterData()
 
     return (
         <Button className={cn("rounded-t-none", growDownClass, className)} onClick={() => downloadJson(character)}>
@@ -52,7 +53,33 @@ export const JSONDownloadButton = ({ className }: { className?: string }) => {
 }
 
 export const ResetButton = () => {
-    const { setCharacter } = useCharacter()
+    const setName = useCharacterStore.use.setName()
+    const setCharacterClass = useCharacterStore.use.setCharacterClass()
+    const setCalling = useCharacterStore.use.setCalling()
+    const setActiveBeats = useCharacterStore.use.setActiveBeats()
+    const setEquipment = useCharacterStore.use.setEquipment()
+    const setResources = useCharacterStore.use.setResources()
+    const setAbilities = useCharacterStore.use.setAbilities()
+    const setFallout = useCharacterStore.use.setFallout()
+    const setSkills = useCharacterStore.use.setSkills()
+    const setDomains = useCharacterStore.use.setDomains()
+    const setProtections = useCharacterStore.use.setProtections()
+    const setStress = useCharacterStore.use.setStress()
+
+    const setCharacter = (character: Character) => {
+        setName(character.name)
+        setCharacterClass(character.characterClass)
+        setCalling(character.calling)
+        setActiveBeats(character.activeBeats)
+        setEquipment(character.equipment)
+        setResources(character.resources)
+        setAbilities(character.abilities)
+        setFallout(character.fallout)
+        setSkills(character.skills)
+        setDomains(character.domains)
+        setProtections(character.protections)
+        setStress(character.stress)
+    }
 
     return (
         <Dialog>
@@ -85,7 +112,33 @@ export const ResetButton = () => {
 export const JSONUploadButton = () => {
     const posthog = usePostHog()
     const [file, setFile] = useState<File>()
-    const { setCharacter } = useCharacter()
+    const setName = useCharacterStore.use.setName()
+    const setCharacterClass = useCharacterStore.use.setCharacterClass()
+    const setCalling = useCharacterStore.use.setCalling()
+    const setActiveBeats = useCharacterStore.use.setActiveBeats()
+    const setEquipment = useCharacterStore.use.setEquipment()
+    const setResources = useCharacterStore.use.setResources()
+    const setAbilities = useCharacterStore.use.setAbilities()
+    const setFallout = useCharacterStore.use.setFallout()
+    const setSkills = useCharacterStore.use.setSkills()
+    const setDomains = useCharacterStore.use.setDomains()
+    const setProtections = useCharacterStore.use.setProtections()
+    const setStress = useCharacterStore.use.setStress()
+
+    const setCharacter = (character: Character) => {
+        setName(character.name)
+        setCharacterClass(character.characterClass)
+        setCalling(character.calling)
+        setActiveBeats(character.activeBeats)
+        setEquipment(character.equipment)
+        setResources(character.resources)
+        setAbilities(character.abilities)
+        setFallout(character.fallout)
+        setSkills(character.skills)
+        setDomains(character.domains)
+        setProtections(character.protections)
+        setStress(character.stress)
+    }
     const { getRootProps, getInputProps, isDragActive, isDragReject } = useDropzone({
         accept: {
             "application/json": [".json"],
@@ -219,7 +272,8 @@ export const JSONUploadButton = () => {
 
 export const PDFDownloadButton = ({ className }: { className?: string }) => {
     const posthog = usePostHog()
-    const { character } = useCharacter()
+    const getCharacterData = useCharacterStore.use.getCharacterData()
+    const character = getCharacterData()
     const { userUuid } = useUserUuid()
 
     const handleDownload = async () => {

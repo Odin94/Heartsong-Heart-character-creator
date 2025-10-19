@@ -1,8 +1,9 @@
 import { Textarea } from "@/components/ui/textarea"
-import { useActiveBeats } from "../character_states"
+import { useCharacterStore } from "../character_states"
 
 const ActiveBeats = () => {
-    const { activeBeats, setActiveBeats } = useActiveBeats()
+    const activeBeats = useCharacterStore.use.activeBeats()
+    const setActiveBeats = useCharacterStore.use.setActiveBeats()
 
     // TODOdin: Make beats line-by-line with a checkbox and store completed beats in a history somewhere
     // TODOdin: Add MAJOR/MINOR badge to beats

@@ -3,10 +3,14 @@ import { Input } from "@/components/ui/input"
 import { domains } from "@/hiveborn/game_data/domains"
 import { skills } from "@/hiveborn/game_data/skills"
 import { Fragment } from "react/jsx-runtime"
-import { Domain, Skill, useSkillsAndDomains } from "../character_states"
+import { useCharacterStore } from "../character_states"
+import { Domain, Skill } from "../../game_data/character"
 
 const SkillsDomains = () => {
-    const { skills: existingSkills, domains: existingDomains, setSkills, setDomains } = useSkillsAndDomains()
+    const existingSkills = useCharacterStore.use.skills()
+    const setSkills = useCharacterStore.use.setSkills()
+    const existingDomains = useCharacterStore.use.domains()
+    const setDomains = useCharacterStore.use.setDomains()
 
     const rowCount = Math.max(skills.length, domains.length)
 

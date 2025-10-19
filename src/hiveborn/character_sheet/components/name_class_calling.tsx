@@ -8,7 +8,7 @@ import {
 } from "@/components/ui/dropdown-menu"
 import { Input } from "@/components/ui/input"
 import { CharacterClass, characterClasses, coreTraitsByCharacter, isCharacterClass } from "@/hiveborn/game_data/classes"
-import { useAbilities, useCalling, useCharacterClass, useEquipment, useName, useResources, useSkillsAndDomains } from "../character_states"
+import { useCharacterStore } from "../character_states"
 import { Calling, callings, isCalling } from "@/hiveborn/game_data/callings"
 import { abilitiesByClassOrCalling } from "@/hiveborn/game_data/abilities"
 import { useApplyStaticBonuses } from "../hooks/useApplyStaticBonuses"
@@ -19,13 +19,22 @@ import { Label } from "@/components/ui/label"
 import { useState } from "react"
 
 const NameClassCalling = () => {
-    const { name, setName } = useName()
-    const { characterClass, setCharacterClass } = useCharacterClass()
-    const { abilities, setAbilities } = useAbilities()
-    const { calling, setCalling } = useCalling()
-    const { skills: existingSkills, setSkills, domains: existingDomains, setDomains } = useSkillsAndDomains()
-    const { resources, setResources } = useResources()
-    const { equipment, setEquipment } = useEquipment()
+    const name = useCharacterStore.use.name()
+    const setName = useCharacterStore.use.setName()
+    const characterClass = useCharacterStore.use.characterClass()
+    const setCharacterClass = useCharacterStore.use.setCharacterClass()
+    const abilities = useCharacterStore.use.abilities()
+    const setAbilities = useCharacterStore.use.setAbilities()
+    const calling = useCharacterStore.use.calling()
+    const setCalling = useCharacterStore.use.setCalling()
+    const existingSkills = useCharacterStore.use.skills()
+    const setSkills = useCharacterStore.use.setSkills()
+    const existingDomains = useCharacterStore.use.domains()
+    const setDomains = useCharacterStore.use.setDomains()
+    const resources = useCharacterStore.use.resources()
+    const setResources = useCharacterStore.use.setResources()
+    const equipment = useCharacterStore.use.equipment()
+    const setEquipment = useCharacterStore.use.setEquipment()
     const applyStaticBonuses = useApplyStaticBonuses()
 
     const applyCoreTraits = ({ pickedEquipment }: { pickedEquipment: string }) => {
@@ -50,9 +59,9 @@ const NameClassCalling = () => {
             setEquipment(newEquipment)
 
             existingSkills[coreTraits.skill].hasSkill = true
-            setSkills(existingSkills)
+            setSkills({ ...existingSkills })
             existingDomains[coreTraits.domain].hasDomain = true
-            setDomains(existingDomains)
+            setDomains({ ...existingDomains })
 
             setResources(`${coreTraits.resource}\n\n${resources}`)
         } else {
@@ -107,7 +116,7 @@ const NameClassCalling = () => {
 }
 
 const ClassDropdown = ({ onSelect, onConfirm }: { onSelect: (text: CharacterClass) => void; onConfirm: (selection: { pickedEquipment: string }) => void }) => {
-    const { characterClass } = useCharacterClass()
+    const characterClass = useCharacterStore.use.characterClass()
     const coreTraits = isCharacterClass(characterClass) ? coreTraitsByCharacter[characterClass] : null
     const [pickedEquipmentIndex, setPickedEquipmentIndex] = useState("0")
 
@@ -186,7 +195,7 @@ const ClassDropdown = ({ onSelect, onConfirm }: { onSelect: (text: CharacterClas
 }
 
 const CallingDropdown = ({ onSelect, onConfirm }: { onSelect: (text: Calling) => void; onConfirm: () => void }) => {
-    const { calling } = useCalling()
+    const calling = useCharacterStore.use.calling()
     const callingAbility = isCalling(calling) ? abilitiesByClassOrCalling[calling][0] : null
 
     return (

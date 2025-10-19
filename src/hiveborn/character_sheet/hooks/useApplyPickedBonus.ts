@@ -2,23 +2,28 @@ import { Ability, PickFromOption } from "@/hiveborn/game_data/abilities"
 import { isDomain } from "@/hiveborn/game_data/domains"
 import { isResistance } from "@/hiveborn/game_data/resistances"
 import { isSkill } from "@/hiveborn/game_data/skills"
-import { protectionMaximum, useAbilities, useProtections, useSkillsAndDomains } from "../character_states"
+import { protectionMaximum, useCharacterStore } from "../character_states"
 
 export const useApplyPickedBonus = () => {
-    const { skills: existingSkills, domains: existingDomains, setSkills, setDomains } = useSkillsAndDomains()
-    const { protections: zustandProtections, setProtections } = useProtections()
-    const { abilities, setAbilities } = useAbilities()
+    const existingSkills = useCharacterStore.use.skills()
+    const setSkills = useCharacterStore.use.setSkills()
+    const existingDomains = useCharacterStore.use.domains()
+    const setDomains = useCharacterStore.use.setDomains()
+    const zustandProtections = useCharacterStore.use.protections()
+    const setProtections = useCharacterStore.use.setProtections()
+    const abilities = useCharacterStore.use.abilities()
+    const setAbilities = useCharacterStore.use.setAbilities()
 
     const applyPickedBonus = (selection: PickFromOption, pickingFromAbility: Ability) => {
         if (isSkill(selection)) {
             existingSkills[selection].hasSkill = true
-            setSkills(existingSkills)
+            setSkills({ ...existingSkills })
         } else if (isDomain(selection)) {
             existingDomains[selection].hasDomain = true
-            setDomains(existingDomains)
+            setDomains({ ...existingDomains })
         } else if (isResistance(selection)) {
             zustandProtections[selection] = Math.min(zustandProtections[selection] + 1, protectionMaximum)
-            setProtections(zustandProtections)
+            setProtections({ ...zustandProtections })
         }
 
         const updatedAbilities = abilities.replace(pickingFromAbility.description, `${pickingFromAbility.description} (Picked ${selection})`)

@@ -1,312 +1,198 @@
 import { create } from "zustand"
-import { SkillKey } from "../game_data/skills"
-import { Resistance } from "../game_data/resistances"
-import { DomainKey } from "../game_data/domains"
 import { persist } from "zustand/middleware"
-import { Character } from "../game_data/character"
-import { z } from "zod"
-
-export type NameZustand = {
-    name: string
-    setName: (name: string) => void
-}
-export const useName = create<NameZustand>()(
-    persist(
-        (set) => ({
-            name: "",
-            setName: (name: string) => set(() => ({ name })),
-        }),
-        {
-            name: "name",
-        }
-    )
-)
-
-export type CharacterClassZustand = {
-    characterClass: string
-    setCharacterClass: (characterclass: string) => void
-}
-export const useCharacterClass = create<CharacterClassZustand>()(
-    persist(
-        (set) => ({
-            characterClass: "",
-            setCharacterClass: (characterclass: string) => set(() => ({ characterClass: characterclass })),
-        }),
-        { name: "characterClass" }
-    )
-)
-
-export type CallingZustand = {
-    calling: string
-    setCalling: (calling: string) => void
-}
-export const useCalling = create<CallingZustand>()(
-    persist(
-        (set) => ({
-            calling: "",
-            setCalling: (calling: string) => set(() => ({ calling })),
-        }),
-        { name: "calling" }
-    )
-)
-
-export type ActiveBeatsZustand = {
-    activeBeats: string
-    setActiveBeats: (activeBeats: string) => void
-}
-export const useActiveBeats = create<ActiveBeatsZustand>()(
-    persist(
-        (set) => ({
-            activeBeats: "",
-            setActiveBeats: (activeBeats: string) => set(() => ({ activeBeats })),
-        }),
-        { name: "activeBeats" }
-    )
-)
-
-export type EquipmentZustand = {
-    equipment: string
-    setEquipment: (equipment: string) => void
-}
-export const useEquipment = create<EquipmentZustand>()(
-    persist(
-        (set) => ({
-            equipment: "",
-            setEquipment: (equipment: string) => set(() => ({ equipment })),
-        }),
-        { name: "equipment" }
-    )
-)
-
-export type ResourcesZustand = {
-    resources: string
-    setResources: (resources: string) => void
-}
-export const useResources = create<ResourcesZustand>()(
-    persist(
-        (set) => ({
-            resources: "",
-            setResources: (resources: string) => set(() => ({ resources })),
-        }),
-        { name: "resources" }
-    )
-)
-
-export type AbilitiesZustand = {
-    abilities: string
-    setAbilities: (abilities: string) => void
-}
-export const useAbilities = create<AbilitiesZustand>()(
-    persist(
-        (set) => ({
-            abilities: "",
-            setAbilities: (abilities: string) => set(() => ({ abilities })),
-        }),
-        { name: "abilities" }
-    )
-)
-
-export type FalloutZustand = {
-    fallout: string
-    setFallout: (fallout: string) => void
-}
-export const useFallout = create<FalloutZustand>((set) => ({
-    fallout: "",
-    setFallout: (fallout: string) => set(() => ({ fallout })),
-}))
-
-export const skillSchema = z.object({
-    hasSkill: z.boolean(),
-    knacks: z.string(),
-})
-
-export const domainSchema = z.object({
-    hasDomain: z.boolean(),
-    knacks: z.string(),
-})
-
-export type Skill = z.infer<typeof skillSchema>
-export type Skills = Record<SkillKey, Skill>
-export type Domain = z.infer<typeof domainSchema>
-export type Domains = Record<DomainKey, Domain>
-
-export type SkillsAndDomainsZustand = {
-    skills: Skills
-    setSkills: (skills: Skills) => void
-
-    domains: Domains
-    setDomains: (domains: Domains) => void
-}
-export const useSkillsAndDomains = create<SkillsAndDomainsZustand>()(
-    persist(
-        (set) => ({
-            skills: {
-                compel: {
-                    hasSkill: false,
-                    knacks: "",
-                },
-                delve: {
-                    hasSkill: false,
-                    knacks: "",
-                },
-                discern: {
-                    hasSkill: false,
-                    knacks: "",
-                },
-                endure: {
-                    hasSkill: false,
-                    knacks: "",
-                },
-                evade: {
-                    hasSkill: false,
-                    knacks: "",
-                },
-                hunt: {
-                    hasSkill: false,
-                    knacks: "",
-                },
-                kill: {
-                    hasSkill: false,
-                    knacks: "",
-                },
-                mend: {
-                    hasSkill: false,
-                    knacks: "",
-                },
-                sneak: {
-                    hasSkill: false,
-                    knacks: "",
-                },
-            },
-            setSkills: (skills: Skills) => set(() => ({ skills: skills })),
-
-            domains: {
-                cursed: {
-                    hasDomain: false,
-                    knacks: "",
-                },
-                desolate: {
-                    hasDomain: false,
-                    knacks: "",
-                },
-                haven: {
-                    hasDomain: false,
-                    knacks: "",
-                },
-                occult: {
-                    hasDomain: false,
-                    knacks: "",
-                },
-                religion: {
-                    hasDomain: false,
-                    knacks: "",
-                },
-                technology: {
-                    hasDomain: false,
-                    knacks: "",
-                },
-                warren: {
-                    hasDomain: false,
-                    knacks: "",
-                },
-                wild: {
-                    hasDomain: false,
-                    knacks: "",
-                },
-            },
-            setDomains: (domains: Domains) => set(() => ({ domains: domains })),
-        }),
-        { name: "skillsAndDomains" }
-    )
-)
+import { Character, Domains, getEmptyCharacter, Skills } from "../game_data/character"
+import { Resistance } from "../game_data/resistances"
+import { createSelectors } from "../../lib/selectors"
 
 export const protectionMaximum = 5
-export type ProtectionsZustand = {
+
+export type CharacterState = {
+    characters: Character[]
+    currentCharacterIndex: number
+
+    name: string
+    characterClass: string
+    calling: string
+    activeBeats: string
+    equipment: string
+    resources: string
+    abilities: string
+    fallout: string
+    skills: Skills
+    domains: Domains
     protections: Record<Resistance, number>
-    setProtections: (protections: Record<Resistance, number>) => void
-}
-export const useProtections = create<ProtectionsZustand>()(
-    persist(
-        (set) => ({
-            protections: {
-                blood: 0,
-                mind: 0,
-                echo: 0,
-                fortune: 0,
-                supplies: 0,
-            },
-            setProtections: (protections: Record<Resistance, number>) => set(() => ({ protections })),
-        }),
-        {
-            name: "protections",
-        }
-    )
-)
-
-export type StressZustand = {
     stress: Record<Resistance, number>
+
+    setName: (name: string) => void
+    setCharacterClass: (characterClass: string) => void
+    setCalling: (calling: string) => void
+    setActiveBeats: (activeBeats: string) => void
+    setEquipment: (equipment: string) => void
+    setResources: (resources: string) => void
+    setAbilities: (abilities: string) => void
+    setFallout: (fallout: string) => void
+    setSkills: (skills: Skills) => void
+    setDomains: (domains: Domains) => void
+    setProtections: (protections: Record<Resistance, number>) => void
     setStress: (stress: Record<Resistance, number>) => void
+
+    addCharacter: (name?: string) => void
+    removeCharacter: (index: number) => void
+    setCurrentCharacter: (index: number) => void
+    getCharacterData: () => Character
 }
-export const useStress = create<StressZustand>()(
-    persist(
-        (set) => ({
-            stress: {
-                blood: 0,
-                mind: 0,
-                echo: 0,
-                fortune: 0,
-                supplies: 0,
+
+export const useCharacterStore = createSelectors(
+    create<CharacterState>()(
+        persist(
+            (set, get) => {
+                const getCurrentCharacter = () => {
+                    const state = get()
+                    return state.characters[state.currentCharacterIndex] || getEmptyCharacter()
+                }
+
+                const updateCurrentCharacter = (updates: Partial<Character>) => {
+                    const state = get()
+                    const newCharacters = [...state.characters]
+                    const currentIndex = state.currentCharacterIndex
+
+                    if (!newCharacters[currentIndex]) {
+                        newCharacters[currentIndex] = getEmptyCharacter()
+                    }
+
+                    newCharacters[currentIndex] = { ...newCharacters[currentIndex], ...updates }
+
+                    const updatedCharacter = newCharacters[currentIndex]
+                    set({
+                        characters: newCharacters,
+                        name: updatedCharacter.name,
+                        characterClass: updatedCharacter.characterClass,
+                        calling: updatedCharacter.calling,
+                        activeBeats: updatedCharacter.activeBeats,
+                        equipment: updatedCharacter.equipment,
+                        resources: updatedCharacter.resources,
+                        abilities: updatedCharacter.abilities,
+                        fallout: updatedCharacter.fallout,
+                        skills: updatedCharacter.skills,
+                        domains: updatedCharacter.domains,
+                        protections: updatedCharacter.protections,
+                        stress: updatedCharacter.stress,
+                    })
+                }
+
+                return {
+                    characters: [getEmptyCharacter()],
+                    currentCharacterIndex: 0,
+
+                    name: getEmptyCharacter().name,
+                    characterClass: getEmptyCharacter().characterClass,
+                    calling: getEmptyCharacter().calling,
+                    activeBeats: getEmptyCharacter().activeBeats,
+                    equipment: getEmptyCharacter().equipment,
+                    resources: getEmptyCharacter().resources,
+                    abilities: getEmptyCharacter().abilities,
+                    fallout: getEmptyCharacter().fallout,
+                    skills: getEmptyCharacter().skills,
+                    domains: getEmptyCharacter().domains,
+                    protections: getEmptyCharacter().protections,
+                    stress: getEmptyCharacter().stress,
+
+                    setName: (name) => updateCurrentCharacter({ name }),
+                    setCharacterClass: (characterClass) => updateCurrentCharacter({ characterClass }),
+                    setCalling: (calling) => updateCurrentCharacter({ calling }),
+                    setActiveBeats: (activeBeats) => updateCurrentCharacter({ activeBeats }),
+                    setEquipment: (equipment) => updateCurrentCharacter({ equipment }),
+                    setResources: (resources) => updateCurrentCharacter({ resources }),
+                    setAbilities: (abilities) => updateCurrentCharacter({ abilities }),
+                    setFallout: (fallout) => updateCurrentCharacter({ fallout }),
+                    setSkills: (skills) => updateCurrentCharacter({ skills }),
+                    setDomains: (domains) => updateCurrentCharacter({ domains }),
+                    setProtections: (protections) => updateCurrentCharacter({ protections }),
+                    setStress: (stress) => updateCurrentCharacter({ stress }),
+
+                    addCharacter: (name = "New Character") => {
+                        const state = get()
+                        const newCharacter = { ...getEmptyCharacter(), name }
+                        set({
+                            characters: [...state.characters, newCharacter],
+                            currentCharacterIndex: state.characters.length,
+                            name: newCharacter.name,
+                            characterClass: newCharacter.characterClass,
+                            calling: newCharacter.calling,
+                            activeBeats: newCharacter.activeBeats,
+                            equipment: newCharacter.equipment,
+                            resources: newCharacter.resources,
+                            abilities: newCharacter.abilities,
+                            fallout: newCharacter.fallout,
+                            skills: newCharacter.skills,
+                            domains: newCharacter.domains,
+                            protections: newCharacter.protections,
+                            stress: newCharacter.stress,
+                        })
+                    },
+                    removeCharacter: (index) => {
+                        const state = get()
+                        const newCharacters = state.characters.filter((_, i) => i !== index)
+                        const newIndex = Math.min(state.currentCharacterIndex, newCharacters.length - 1)
+                        const character = newCharacters[newIndex] || getEmptyCharacter()
+                        set({
+                            characters: newCharacters,
+                            currentCharacterIndex: Math.max(0, newIndex),
+                            name: character.name,
+                            characterClass: character.characterClass,
+                            calling: character.calling,
+                            activeBeats: character.activeBeats,
+                            equipment: character.equipment,
+                            resources: character.resources,
+                            abilities: character.abilities,
+                            fallout: character.fallout,
+                            skills: character.skills,
+                            domains: character.domains,
+                            protections: character.protections,
+                            stress: character.stress,
+                        })
+                    },
+                    setCurrentCharacter: (index) => {
+                        const state = get()
+                        if (index >= 0 && index < state.characters.length) {
+                            const character = state.characters[index] || getEmptyCharacter()
+                            set({
+                                currentCharacterIndex: index,
+                                name: character.name,
+                                characterClass: character.characterClass,
+                                calling: character.calling,
+                                activeBeats: character.activeBeats,
+                                equipment: character.equipment,
+                                resources: character.resources,
+                                abilities: character.abilities,
+                                fallout: character.fallout,
+                                skills: character.skills,
+                                domains: character.domains,
+                                protections: character.protections,
+                                stress: character.stress,
+                            })
+                        }
+                    },
+                    getCharacterData: () => getCurrentCharacter(),
+                }
             },
-            setStress: (stress: Record<Resistance, number>) => set(() => ({ stress })),
-        }),
-        {
-            name: "stress",
-        }
-    )
+            {
+                name: "hiveborn-character-storage",
+            },
+        ),
+    ),
 )
 
-export const useCharacter = () => {
-    const { name, setName } = useName()
-    const { characterClass, setCharacterClass } = useCharacterClass()
-    const { calling, setCalling } = useCalling()
-    const { activeBeats, setActiveBeats } = useActiveBeats()
-    const { equipment, setEquipment } = useEquipment()
-    const { resources, setResources } = useResources()
-    const { abilities, setAbilities } = useAbilities()
-    const { fallout, setFallout } = useFallout()
-    const { skills, setSkills, domains, setDomains } = useSkillsAndDomains()
-    const { protections, setProtections } = useProtections()
-    const { stress, setStress } = useStress()
+export const useMultiCharacter = () => {
+    const { characters, currentCharacterIndex, addCharacter, removeCharacter, setCurrentCharacter } = useCharacterStore()
 
-    const character: Character = {
-        name,
-        characterClass,
-        calling,
-        activeBeats,
-        equipment,
-        resources,
-        abilities,
-        fallout,
-        skills,
-        domains,
-        protections,
-        stress,
+    return {
+        characters,
+        currentCharacterIndex,
+        createCharacter: addCharacter,
+        deleteCharacter: removeCharacter,
+        setActiveCharacter: setCurrentCharacter,
+        getActiveCharacter: () => characters[currentCharacterIndex] || null,
+        getAllCharacters: () => characters,
     }
-
-    const setCharacter = (character: Character) => {
-        setName(character.name)
-        setCharacterClass(character.characterClass)
-        setCalling(character.calling)
-        setActiveBeats(character.activeBeats)
-        setEquipment(character.equipment)
-        setResources(character.resources)
-        setAbilities(character.abilities)
-        setFallout(character.fallout)
-        setSkills(character.skills)
-        setDomains(character.domains)
-        setProtections(character.protections)
-        setStress(character.stress)
-    }
-
-    return { character, setCharacter }
 }

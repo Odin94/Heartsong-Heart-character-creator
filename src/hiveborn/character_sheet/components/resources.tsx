@@ -1,8 +1,9 @@
 import { Textarea } from "@/components/ui/textarea"
-import { useResources } from "../character_states"
+import { useCharacterStore } from "../character_states"
 
 const Resources = () => {
-    const { resources, setResources } = useResources()
+    const resources = useCharacterStore.use.resources()
+    const setResources = useCharacterStore.use.setResources()
 
     return (
         <div>

@@ -9,15 +9,16 @@ import { iconBySkill } from "@/hiveborn/game_data/skills"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@radix-ui/react-tabs"
 import { Dispatch, SetStateAction, useState } from "react"
 import { MdOutlineShield } from "react-icons/md"
-import { useAbilities, useCharacterClass } from "../character_states"
+import { useCharacterStore } from "../character_states"
 import { useApplyPickedBonus } from "../hooks/useApplyPickedBonus"
 import { useApplyStaticBonuses } from "../hooks/useApplyStaticBonuses"
 
 type PickingFromState = [Ability | undefined, Dispatch<SetStateAction<Ability | undefined>>]
 
 const Abilities = () => {
-    const { abilities, setAbilities } = useAbilities()
-    const { characterClass } = useCharacterClass()
+    const abilities = useCharacterStore.use.abilities()
+    const setAbilities = useCharacterStore.use.setAbilities()
+    const characterClass = useCharacterStore.use.characterClass()
     const [pickingFromAbility, setPickingFromAbility] = useState<Ability>()
 
     // TODOdin: Add https://milkdown.dev or https://lexical.dev instead of plain Textarea to render Markdown
@@ -54,7 +55,8 @@ const putAfterParentAbility = (fullAbilityText: string, parentNameWithDash: stri
 const AbilitiesDialog = ({ characterClass, pickingFromState }: { characterClass: CharacterClass | string; pickingFromState: PickingFromState }) => {
     const [pickingFromAbility, setPickingFromAbility] = pickingFromState
     const [abilityType, setAbilityType] = useState("minor")
-    const { abilities, setAbilities } = useAbilities()
+    const abilities = useCharacterStore.use.abilities()
+    const setAbilities = useCharacterStore.use.setAbilities()
     const applyStaticBonuses = useApplyStaticBonuses()
 
     const isAbilityPickedAlready = (ability: Ability) => abilities.includes(`${ability.name} - `)

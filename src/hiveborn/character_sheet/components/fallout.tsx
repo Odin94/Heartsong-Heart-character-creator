@@ -1,8 +1,9 @@
 import { Textarea } from "@/components/ui/textarea"
-import { useFallout } from "../character_states"
+import { useCharacterStore } from "../character_states"
 
 const Fallout = () => {
-    const { fallout, setFallout } = useFallout()
+    const fallout = useCharacterStore.use.fallout()
+    const setFallout = useCharacterStore.use.setFallout()
     return (
         <div>
             <div className="row-span-3 col-span-2 text-left mt-2">
