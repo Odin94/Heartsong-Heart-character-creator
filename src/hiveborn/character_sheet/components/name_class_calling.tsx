@@ -128,7 +128,7 @@ const ClassDropdown = ({ onSelect, onConfirm }: { onSelect: (text: CharacterClas
                     <DropdownMenuLabel>Class</DropdownMenuLabel>
                     <DropdownMenuSeparator />
                     {characterClasses.map((c) => (
-                        <DialogTrigger asChild>
+                        <DialogTrigger asChild key={c}>
                             <DropdownMenuItem onSelect={(_e) => onSelect(c)} key={c}>
                                 {c}
                             </DropdownMenuItem>
@@ -160,7 +160,7 @@ const ClassDropdown = ({ onSelect, onConfirm }: { onSelect: (text: CharacterClas
                             ) : null}
                             <RadioGroup value={pickedEquipmentIndex} onValueChange={setPickedEquipmentIndex}>
                                 {coreTraits.pickEquipment.map((pickEquipment, i) => (
-                                    <div className="flex items-center space-x-2">
+                                    <div className="flex items-center space-x-2" key={pickEquipment}>
                                         <RadioGroupItem value={`${i}`} id={`${i}`} />
                                         <Label htmlFor={`${i}`}>{pickEquipment}</Label>
                                     </div>
@@ -206,7 +206,7 @@ const CallingDropdown = ({ onSelect, onConfirm }: { onSelect: (text: Calling) =>
                     <DropdownMenuLabel>Calling</DropdownMenuLabel>
                     <DropdownMenuSeparator />
                     {callings.map((c) => (
-                        <DialogTrigger asChild>
+                        <DialogTrigger asChild key={c}>
                             <DropdownMenuItem onSelect={(_e) => onSelect(c)} key={c}>
                                 {c}
                             </DropdownMenuItem>

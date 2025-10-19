@@ -82,12 +82,17 @@ const AbilitiesDialog = ({ characterClass, pickingFromState }: { characterClass:
 
         let icons: React.ReactNode[] = []
         for (const domain of staticBonuses.domains) {
-            icons.push(iconByDomain[domain])
+            icons.push(<span key={domain}>{iconByDomain[domain]}</span>)
         }
         for (const skill of staticBonuses.skills) {
-            icons.push(iconBySkill[skill])
+            icons.push(<span key={skill}>{iconBySkill[skill]}</span>)
         }
         return icons
+    }
+
+    const hasIcon = (ability: Ability) => {
+        const icon = getIcon(ability)
+        return icon && (Array.isArray(icon) ? icon.length > 0 : true)
     }
 
     const renderAbilities = () => (
@@ -119,7 +124,7 @@ const AbilitiesDialog = ({ characterClass, pickingFromState }: { characterClass:
                     >
                         <h2 className="flex items-center">
                             {getIcon(ability)}
-                            <span className="ml-2">{`${ability.name}`}</span>
+                            <span className={hasIcon(ability) ? "ml-2" : ""}>{`${ability.name}`}</span>
                         </h2>
 
                         <p className="text-muted-foreground text-sm">{ability.description}</p>
@@ -183,17 +188,17 @@ const PickFrom = ({ pickingFromState }: { pickingFromState: PickingFromState }) 
         <div className="flex flex-col w-full h-[500px] justify-center items-center">
             <div className="grid grid-cols-2 gap-4">
                 {pickingFromAbility.pickFrom.domains.map((domain) => (
-                    <Button variant={selection === domain ? "default" : "secondary"} onClick={() => setSelection(domain)} key={`domain-${domain}`}>
+                    <Button variant={selection === domain ? "default" : "secondary"} onClick={() => setSelection(domain)} key={domain}>
                         {domain.toUpperCase()}
                     </Button>
                 ))}
                 {pickingFromAbility.pickFrom.skills.map((skill) => (
-                    <Button variant={selection === skill ? "default" : "secondary"} onClick={() => setSelection(skill)} key={`skill-${skill}`}>
+                    <Button variant={selection === skill ? "default" : "secondary"} onClick={() => setSelection(skill)} key={skill}>
                         {skill.toUpperCase()}
                     </Button>
                 ))}
                 {pickingFromAbility.pickFrom.protections.map((prot) => (
-                    <Button variant={selection === prot ? "default" : "secondary"} onClick={() => setSelection(prot)} key={`prot-${prot}`}>
+                    <Button variant={selection === prot ? "default" : "secondary"} onClick={() => setSelection(prot)} key={prot}>
                         +1 {prot.toUpperCase()}
                     </Button>
                 ))}

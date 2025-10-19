@@ -83,7 +83,7 @@ export const ResetButton = () => {
 
     return (
         <Dialog>
-            <DialogTrigger>
+            <DialogTrigger asChild>
                 <Button className={cn("rounded-t-none", growDownClass)}>🔥 Reset Character</Button>
             </DialogTrigger>
             <DialogContent>
@@ -280,7 +280,7 @@ export const PDFDownloadButton = ({ className }: { className?: string }) => {
         try {
             const pdfBytes = await generateCharacterPDF(character)
 
-            const blob = new Blob([pdfBytes], { type: "application/pdf" })
+            const blob = new Blob([pdfBytes as BlobPart], { type: "application/pdf" })
             const link = document.createElement("a")
             link.href = window.URL.createObjectURL(blob)
             link.download = `${character.name}_hiveborn.pdf`
