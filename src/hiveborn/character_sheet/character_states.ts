@@ -110,9 +110,9 @@ export const useCharacterStore = createSelectors(
                     setProtections: (protections) => updateCurrentCharacter({ protections }),
                     setStress: (stress) => updateCurrentCharacter({ stress }),
 
-                    addCharacter: (name = "New Character") => {
+                    addCharacter: () => {
                         const state = get()
-                        const newCharacter = { ...getEmptyCharacter(), name }
+                        const newCharacter = { ...getEmptyCharacter() }
                         set({
                             characters: [...state.characters, newCharacter],
                             currentCharacterIndex: state.characters.length,
