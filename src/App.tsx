@@ -7,6 +7,7 @@ import { Toaster } from "@/components/ui/sonner"
 import { useUserUuid } from "@/lib/analytics"
 import { useEffect } from "react"
 import { usePostHog } from "posthog-js/react"
+import CookieConsent from "./components/cookie-consent"
 
 function App() {
     const posthog = usePostHog()
@@ -24,6 +25,7 @@ function App() {
 
     return (
         <div className="relative min-h-screen">
+            <CookieConsent variant="small" />
             <Toaster closeButton />
             <Dialog>
                 <a href="https://odin-matthias.de/" target="_blank" className="absolute top-2 left-8 text-sm underline">
