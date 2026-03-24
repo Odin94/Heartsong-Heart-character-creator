@@ -8,6 +8,7 @@ import { iconByDomain } from "@/hiveborn/game_data/domains"
 import { iconBySkill } from "@/hiveborn/game_data/skills"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@radix-ui/react-tabs"
 import { Dispatch, SetStateAction, useState } from "react"
+import { ChevronDown } from "lucide-react"
 import { MdOutlineShield } from "react-icons/md"
 import { useCharacterStore } from "../character_states"
 import { useApplyPickedBonus } from "../hooks/useApplyPickedBonus"
@@ -27,7 +28,7 @@ const Abilities = () => {
             <div className="row-span-3 col-span-2 text-left mt-2">
                 <Dialog onOpenChange={(_open) => setPickingFromAbility(undefined)}>
                     <h2 className="font-bold py-2 bg-red-900 text-white pl-3">
-                        ABILITIES <DialogTrigger className="absolute right-7 hover:bg-red-800">✨</DialogTrigger>
+                        ABILITIES <DialogTrigger className="absolute right-7 hover:bg-red-800"><ChevronDown className="inline w-4 h-4" /></DialogTrigger>
                     </h2>
                     <AbilitiesDialog characterClass={characterClass} pickingFromState={[pickingFromAbility, setPickingFromAbility]} />
                 </Dialog>

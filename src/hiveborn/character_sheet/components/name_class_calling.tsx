@@ -17,6 +17,7 @@ import { Button } from "@/components/ui/button"
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
 import { Label } from "@/components/ui/label"
 import { useState } from "react"
+import { ChevronDown } from "lucide-react"
 
 const NameClassCalling = () => {
     const name = useCharacterStore.use.name()
@@ -123,7 +124,7 @@ const ClassDropdown = ({ onSelect, onConfirm }: { onSelect: (text: CharacterClas
     return (
         <Dialog>
             <DropdownMenu modal={false}>
-                <DropdownMenuTrigger className="hover:bg-accent">✨</DropdownMenuTrigger>
+                <DropdownMenuTrigger className="hover:bg-accent"><ChevronDown className="w-4 h-4" /></DropdownMenuTrigger>
                 <DropdownMenuContent>
                     <DropdownMenuLabel>Class</DropdownMenuLabel>
                     <DropdownMenuSeparator />
@@ -201,7 +202,7 @@ const CallingDropdown = ({ onSelect, onConfirm }: { onSelect: (text: Calling) =>
     return (
         <Dialog>
             <DropdownMenu modal={false}>
-                <DropdownMenuTrigger className="hover:bg-accent">✨</DropdownMenuTrigger>
+                <DropdownMenuTrigger className="hover:bg-accent"><ChevronDown className="w-4 h-4" /></DropdownMenuTrigger>
                 <DropdownMenuContent>
                     <DropdownMenuLabel>Calling</DropdownMenuLabel>
                     <DropdownMenuSeparator />
